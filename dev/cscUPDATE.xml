@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE calendar [
+<!ELEMENT calendar (year)>
+<!ATTLIST calendar xmlns CDATA #FIXED "">
+<!ATTLIST calendar id CDATA #REQUIRED>
+<!ELEMENT year (month)+>
+<!ATTLIST year xmlns CDATA #FIXED "">
+<!ATTLIST year ordinal CDATA #REQUIRED>
+<!ELEMENT month (week)+>
+<!ATTLIST month xmlns CDATA #FIXED "">
+<!ATTLIST month name NMTOKEN #REQUIRED>
+<!ATTLIST month ordinal CDATA #REQUIRED>
+<!ELEMENT week (day)+>
+<!ATTLIST week xmlns CDATA #FIXED "">
+<!ATTLIST week ordinal CDATA #REQUIRED>
+<!ELEMENT day (job)?>
+<!ATTLIST day xmlns CDATA #FIXED "">
+<!ATTLIST day date CDATA #REQUIRED>
+<!ATTLIST day name NMTOKEN #REQUIRED>
+<!ATTLIST day ordinal CDATA #REQUIRED>
+<!ELEMENT job EMPTY>
+<!ATTLIST job xmlns CDATA #FIXED "">
+<!ATTLIST job number CDATA #REQUIRED>
+<!ENTITY nbsp "&#xA0;">
+]>
+<calendar xmlns="" id="Custom Sign Center">
+	<year xmlns="" ordinal="2017">
+		<month xmlns="" ordinal="5" name="May">
+			<week xmlns="" ordinal="1">
+				<day xmlns="" ordinal="1" name="Sunday" date=""/>
+				
+				<day xmlns="" ordinal="3" name="Tuesday" date="2"/>
+				<day xmlns="" ordinal="4" name="Wednesday" date="3"/>
+				<day xmlns="" ordinal="5" name="Thursday" date="4"/>
+				<day xmlns="" ordinal="6" name="Friday" date="5"/>
+				<day xmlns="" ordinal="7" name="Saturday" date="6"/>
+			</week>
+			<week xmlns="" ordinal="2">
+				<day xmlns="" ordinal="8" name="Sunday" date="7"/>
+				<day xmlns="" ordinal="9" name="Monday" date="8"/>
+				<day xmlns="" ordinal="10" name="Tuesday" date="9"/>
+				<day xmlns="" ordinal="11" name="Wednesday" date="10"/>
+				<day xmlns="" ordinal="12" name="Thursday" date="11"/>
+				<day xmlns="" ordinal="13" name="Friday" date="12"/>
+				<day xmlns="" ordinal="14" name="Saturday" date="13"/>
+			</week>
+			<week xmlns="" ordinal="3">
+				<day xmlns="" ordinal="15" name="Sunday" date="14"/>
+				<day xmlns="" ordinal="16" name="Monday" date="15"/>
+				<day xmlns="" ordinal="17" name="Tuesday" date="16"/>
+				<day xmlns="" ordinal="18" name="Wednesday" date="17"/>
+				<day xmlns="" ordinal="19" name="Thursday" date="18"/>
+				<day xmlns="" ordinal="20" name="Friday" date="19"/>
+				<day xmlns="" ordinal="21" name="Saturday" date="20"/>
+			</week>
+			<week xmlns="" ordinal="4">
+				<day xmlns="" ordinal="22" name="Sunday" date="21"/>
+				<day xmlns="" ordinal="23" name="Monday" date="22"/>
+				<day xmlns="" ordinal="24" name="Tuesday" date="23"/>
+				<day xmlns="" ordinal="25" name="Wednesday" date="24"/>
+				<day xmlns="" ordinal="26" name="Thursday" date="25"/>
+				<day xmlns="" ordinal="27" name="Friday" date="26"/>
+				<day xmlns="" ordinal="28" name="Saturday" date="27"/>
+			</week>
+			<week xmlns="" ordinal="5">
+				<day xmlns="" ordinal="29" name="Sunday" date="28"/>
+				<day xmlns="" ordinal="30" name="Monday" date="29"/>
+				<day xmlns="" ordinal="31" name="Tuesday" date="30"/>
+				
+				<day xmlns="" ordinal="32" name="Wednesday" date="31"/>
+				<day xmlns="" ordinal="33" name="Thursday" date=""/>
+				<day xmlns="" ordinal="34" name="Friday" date=""/>
+				<day xmlns="" ordinal="35" name="Saturday" date=""/>
+			</week>
+		</month>
+		<month xmlns="" ordinal="6" name="June">
+			<week xmlns="" ordinal="1">
+				<day xmlns="" ordinal="1" name="Sunday" date=""/>
+				<day xmlns="" ordinal="2" name="Monday" date=""/>
+				<day xmlns="" ordinal="3" name="Tuesday" date=""/>
+				<day xmlns="" ordinal="4" name="Wednesday" date=""/>
+				<day xmlns="" ordinal="5" name="Thursday" date="1"/>
+				<day xmlns="" ordinal="6" name="Friday" date="2"/>
+				<day xmlns="" ordinal="7" name="Saturday" date="3"/>
+			</week>
+			<week xmlns="" ordinal="2">
+				<day xmlns="" ordinal="8" name="Sunday" date="4"/>
+				<day xmlns="" ordinal="9" name="Monday" date="5"><job xmlns="calendar" number="100710">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_100710" #$#100710*^*span#$# WEN #00034 Morrow, GA*^*li#$# </job><job xmlns="calendar" number="100710-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_100710-1" #$#100710-1*^*span#$# WEN #00034 Morrow, GA*^*li#$# </job><job xmlns="calendar" number="101065">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101065" #$#101065*^*span#$# WEN 02910 Urbana, OH*^*li#$# </job><job xmlns="calendar" number="101377">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101377" #$#101377*^*span#$# Ted's Con/CVS #2323 West Warwick, RI*^*li#$# </job><job xmlns="calendar" number="101441">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101441" #$#101441*^*span#$# Wen 01119 Cape Coral FL*^*li#$# </job><job xmlns="calendar" number="101765">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101765" #$#101765*^*span#$# Flyers Pizza - Galloway, OH*^*li#$# </job></day>
+				<day xmlns="" ordinal="10" name="Tuesday" date="6"><job xmlns="calendar" number="101033-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101033-1" #$#101033-1*^*span#$# WEN #06841  Spruce Grove, AB*^*li#$# </job><job xmlns="calendar" number="101104">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101104" #$#101104*^*span#$# TH#5734 Shelby Tw MI*^*li#$# </job><job xmlns="calendar" number="101670">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101670" #$#101670*^*span#$# WEN #04070 Price, UT*^*li#$# </job><job xmlns="calendar" number="102116">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102116" #$#102116*^*span#$# Courtyards at Maxtown*^*li#$# </job><job xmlns="calendar" number="102137">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102137" #$#102137*^*span#$# Dog Gone Good*^*li#$# </job></day>
+				<day xmlns="" ordinal="11" name="Wednesday" date="7"><job xmlns="calendar" number="101063">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101063" #$#101063*^*span#$# Kiddie Academy - Claremont, CA*^*li#$# </job><job xmlns="calendar" number="101325-2">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101325-2" #$#101325-2*^*span#$# WEN #03086  Marion, IL*^*li#$# </job><job xmlns="calendar" number="101692">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101692" #$#101692*^*span#$# WEN #09579 Indianapolis, IN*^*li#$# </job><job xmlns="calendar" number="102094">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102094" #$#102094*^*span#$# WEN #06693  Barrie, ON*^*li#$# </job><job xmlns="calendar" number="102115">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102115" #$#102115*^*span#$# Diamond Builders*^*li#$# </job><job xmlns="calendar" number="102139">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102139" #$#102139*^*span#$# Chris Benavides*^*li#$# </job></day>
+				<day xmlns="" ordinal="12" name="Thursday" date="8"><job xmlns="calendar" number="101327">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101327" #$#101327*^*span#$# Tim Hortons #917920 - Savage MN*^*li#$# </job><job xmlns="calendar" number="101509">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101509" #$#101509*^*span#$# Manna Inc./Wendy's 01969 Cape Coral, FL*^*li#$# </job><job xmlns="calendar" number="101664">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101664" #$#101664*^*span#$# Darding Chiropractic - London, OH*^*li#$# </job><job xmlns="calendar" number="101711">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101711" #$#101711*^*span#$# Kenny Rd Family Dental - Columbus, OH*^*li#$# </job><job xmlns="calendar" number="102032">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102032" #$#102032*^*span#$# Wendy's Site #09158*^*li#$# </job><job xmlns="calendar" number="102078">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102078" #$#102078*^*span#$# Manor Homes*^*li#$# </job><job xmlns="calendar" number="102118">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102118" #$#102118*^*span#$# Danielle Sanchez*^*li#$# </job><job xmlns="calendar" number="102128">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102128" #$#102128*^*span#$# Savories Chef &amp;amp;amp; Catering Services*^*li#$# </job></day>
+				<day xmlns="" ordinal="13" name="Friday" date="9"><job xmlns="calendar" number="100194">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_100194" #$#100194*^*span#$# TH #6688 Hazel Park, MI*^*li#$# </job><job xmlns="calendar" number="100587-3">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_100587-3" #$#100587-3*^*span#$# WEN #05159 Paramus, NJ*^*li#$# </job><job xmlns="calendar" number="101652">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101652" #$#101652*^*span#$# Courtyards Hidden Ravines N. - Lewis Center, OH*^*li#$# </job><job xmlns="calendar" number="101681">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101681" #$#101681*^*span#$# WEN 03364 Jacksonville, IL*^*li#$# </job><job xmlns="calendar" number="101740">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101740" #$#101740*^*span#$# Wendy's Site #09625*^*li#$# </job><job xmlns="calendar" number="101814">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101814" #$#101814*^*span#$# WEN #05190 Emporia, VA*^*li#$# </job><job xmlns="calendar" number="101982">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_101982" #$#101982*^*span#$# WEN #10474 Dublin, OH*^*li#$# </job><job xmlns="calendar" number="102059">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102059" #$#102059*^*span#$# Outdoor/FIRST COMMUNITIES/THE ADELAIDE*^*li#$# </job><job xmlns="calendar" number="102065">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102065" #$#102065*^*span#$# Donatos - Florence, KY*^*li#$# </job><job xmlns="calendar" number="102102">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#~~span id="job_102102" #$#102102*^*span#$# Wheaton Village*^*li#$# </job></day>
+				<day xmlns="" ordinal="14" name="Saturday" date="10"/>
+			</week>
+			<week xmlns="" ordinal="3">
+				<day xmlns="" ordinal="15" name="Sunday" date="11"/>
+				<day xmlns="" ordinal="16" name="Monday" date="12"/>
+				<day xmlns="" ordinal="17" name="Tuesday" date="13"/>
+				<day xmlns="" ordinal="18" name="Wednesday" date="14"/>
+				<day xmlns="" ordinal="19" name="Thursday" date="15"/>
+				<day xmlns="" ordinal="20" name="Friday" date="16"/>
+				<day xmlns="" ordinal="21" name="Saturday" date="17"/>
+			</week>
+			<week xmlns="" ordinal="4">
+				<day xmlns="" ordinal="22" name="Sunday" date="18"/>
+				<day xmlns="" ordinal="23" name="Monday" date="19"/>
+				<day xmlns="" ordinal="24" name="Tuesday" date="20"/>
+				<day xmlns="" ordinal="25" name="Wednesday" date="21"/>
+				<day xmlns="" ordinal="26" name="Thursday" date="22"/>
+				<day xmlns="" ordinal="27" name="Friday" date="23"/>
+				<day xmlns="" ordinal="28" name="Saturday" date="24"/>
+			</week>
+			<week xmlns="" ordinal="5">
+				<day xmlns="" ordinal="29" name="Sunday" date="25"/>
+				<day xmlns="" ordinal="30" name="Monday" date="26"/>
+				<day xmlns="" ordinal="31" name="Tuesday" date="27"/>
+				<day xmlns="" ordinal="32" name="Wednesday" date="28"/>
+				<day xmlns="" ordinal="33" name="Thursday" date="29"/>
+				<day xmlns="" ordinal="34" name="Friday" date="30"/>
+				<day xmlns="" ordinal="35" name="Saturday" date=""/>
+			</week>
+		</month>
+		<month xmlns="" ordinal="7" name="July">
+			<week xmlns="" ordinal="1">
+				<day xmlns="" ordinal="1" name="Sunday" date=""/>
+				<day xmlns="" ordinal="2" name="Monday" date=""/>
+				<day xmlns="" ordinal="3" name="Tuesday" date=""/>
+				<day xmlns="" ordinal="4" name="Wednesday" date=""/>
+				<day xmlns="" ordinal="5" name="Thursday" date=""/>
+				<day xmlns="" ordinal="6" name="Friday" date=""/>
+				<day xmlns="" ordinal="7" name="Saturday" date="1"/>
+			</week>
+			<week xmlns="" ordinal="2">
+				<day xmlns="" ordinal="8" name="Sunday" date="2"/>
+				<day xmlns="" ordinal="9" name="Monday" date="3"/>
+				<day xmlns="" ordinal="10" name="Tuesday" date="4"/>
+				<day xmlns="" ordinal="11" name="Wednesday" date="5"/>
+				<day xmlns="" ordinal="12" name="Thursday" date="6"/>
+				<day xmlns="" ordinal="13" name="Friday" date="7"/>
+				<day xmlns="" ordinal="14" name="Saturday" date="8"/>
+			</week>
+			<week xmlns="" ordinal="3">
+				<day xmlns="" ordinal="15" name="Sunday" date="9"/>
+				<day xmlns="" ordinal="16" name="Monday" date="10"/>
+				<day xmlns="" ordinal="17" name="Tuesday" date="11"/>
+				<day xmlns="" ordinal="18" name="Wednesday" date="12"/>
+				<day xmlns="" ordinal="19" name="Thursday" date="13"/>
+				<day xmlns="" ordinal="20" name="Friday" date="14"/>				
+				<day xmlns="" ordinal="21" name="Saturday" date="15"/>
+			</week>
+			<week xmlns="" ordinal="4">
+				<day xmlns="" ordinal="22" name="Sunday" date="16"/>
+				<day xmlns="" ordinal="23" name="Monday" date="17"/>
+				<day xmlns="" ordinal="24" name="Tuesday" date="18"/>
+				<day xmlns="" ordinal="25" name="Wednesday" date="19"/>
+				<day xmlns="" ordinal="26" name="Thursday" date="20"/>
+				<day xmlns="" ordinal="27" name="Friday" date="21"/>
+				<day xmlns="" ordinal="28" name="Saturday" date="22"/>
+			</week>
+			<week xmlns="" ordinal="5">
+				<day xmlns="" ordinal="29" name="Sunday" date="23"/>
+				<day xmlns="" ordinal="30" name="Monday" date="24"/>
+				<day xmlns="" ordinal="31" name="Tuesday" date="25"/>
+				<day xmlns="" ordinal="32" name="Wednesday" date="26"/>
+				<day xmlns="" ordinal="33" name="Thursday" date="27"/>
+				<day xmlns="" ordinal="34" name="Friday" date="28"/>
+				<day xmlns="" ordinal="35" name="Saturday" date="29"/>
+			</week>
+			<week xmlns="" ordinal="6">
+				<day xmlns="" ordinal="36" name="Sunday" date="30"/>
+				<day xmlns="" ordinal="37" name="Monday" date="31"/>
+				<day xmlns="" ordinal="38" name="Tuesday" date=""/>
+				<day xmlns="" ordinal="39" name="Wednesday" date=""/>
+				<day xmlns="" ordinal="40" name="Thursday" date=""/>
+				<day xmlns="" ordinal="41" name="Friday" date=""/>
+				<day xmlns="" ordinal="42" name="Saturday" date=""/>
+			</week>
+		</month>
+		<month xmlns="" ordinal="8" name="August">
+			<week xmlns="" ordinal="1">
+				<day xmlns="" ordinal="1" name="Sunday" date=""/>
+				<day xmlns="" ordinal="2" name="Monday" date=""/>		
+				<day xmlns="" ordinal="3" name="Tuesday" date="1"/>
+				<day xmlns="" ordinal="4" name="Wednesday" date="2"/>
+				<day xmlns="" ordinal="5" name="Thursday" date="3"/>
+				<day xmlns="" ordinal="6" name="Friday" date="4"/>
+				<day xmlns="" ordinal="7" name="Saturday" date="5"/>
+			</week>
+			<week xmlns="" ordinal="2">
+				<day xmlns="" ordinal="8" name="Sunday" date="6"/>
+				<day xmlns="" ordinal="9" name="Monday" date="7"/>
+				<day xmlns="" ordinal="10" name="Tuesday" date="8"/>
+				<day xmlns="" ordinal="11" name="Wednesday" date="9"/>
+				<day xmlns="" ordinal="12" name="Thursday" date="10"/>
+				<day xmlns="" ordinal="13" name="Friday" date="11"/>
+				<day xmlns="" ordinal="14" name="Saturday" date="12"/>
+			</week>
+			<week xmlns="" ordinal="3">
+				<day xmlns="" ordinal="15" name="Sunday" date="13"/>
+				<day xmlns="" ordinal="16" name="Monday" date="14"/>
+				<day xmlns="" ordinal="17" name="Tuesday" date="15"/>
+				<day xmlns="" ordinal="18" name="Wednesday" date="16"/>
+				<day xmlns="" ordinal="19" name="Thursday" date="17"/>
+				<day xmlns="" ordinal="20" name="Friday" date="18"/>
+				<day xmlns="" ordinal="21" name="Saturday" date="19"/>
+			</week>
+			<week xmlns="" ordinal="4">
+				<day xmlns="" ordinal="22" name="Sunday" date="20"/>
+				<day xmlns="" ordinal="23" name="Monday" date="21"/>
+				<day xmlns="" ordinal="24" name="Tuesday" date="22"/>
+				<day xmlns="" ordinal="25" name="Wednesday" date="23"/>
+				<day xmlns="" ordinal="26" name="Thursday" date="24"/>
+				<day xmlns="" ordinal="27" name="Friday" date="25"/>
+				<day xmlns="" ordinal="28" name="Saturday" date="26"/>
+			</week>
+			<week xmlns="" ordinal="5">
+				<day xmlns="" ordinal="29" name="Sunday" date="27"/>
+				<day xmlns="" ordinal="30" name="Monday" date="28"/>
+				<day xmlns="" ordinal="31" name="Tuesday" date="29"/>
+				<day xmlns="" ordinal="32" name="Wednesday" date="30"/>
+				<day xmlns="" ordinal="33" name="Thursday" date="31"/>
+				<day xmlns="" ordinal="34" name="Friday" date=""/>
+				<day xmlns="" ordinal="35" name="Saturday" date=""/>
+			</week>			
+		</month>
+	</year>
+</calendar>

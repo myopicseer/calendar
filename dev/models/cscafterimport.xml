@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE calendar [
+<!ELEMENT calendar (year)>
+<!ATTLIST calendar xmlns CDATA #FIXED "">
+<!ATTLIST calendar id CDATA #REQUIRED>
+<!ELEMENT year (month)+>
+<!ATTLIST year xmlns CDATA #FIXED "">
+<!ATTLIST year ordinal CDATA #REQUIRED>
+<!ELEMENT month (week)+>
+<!ATTLIST month xmlns CDATA #FIXED "">
+<!ATTLIST month name NMTOKEN #REQUIRED>
+<!ATTLIST month ordinal CDATA #REQUIRED>
+<!ELEMENT week (day)+>
+<!ATTLIST week xmlns CDATA #FIXED "">
+<!ATTLIST week ordinal CDATA #REQUIRED>
+<!ELEMENT day (job)?>
+<!ATTLIST day xmlns CDATA #FIXED "">
+<!ATTLIST day date CDATA #REQUIRED>
+<!ATTLIST day name NMTOKEN #REQUIRED>
+<!ATTLIST day ordinal CDATA #REQUIRED>
+<!ELEMENT job EMPTY>
+<!ATTLIST job xmlns CDATA #FIXED "">
+<!ATTLIST job number CDATA #REQUIRED>
+<!ENTITY nbsp "&#xA0;">
+]>
+<calendar xmlns="" id="Custom Sign Center">
+	<year xmlns="" ordinal="2017">
+		<month xmlns="" ordinal="5" name="May">
+			<week xmlns="" ordinal="1">
+				<day xmlns="" ordinal="1" name="Sunday" date=""/>
+				
+				<day xmlns="" ordinal="3" name="Tuesday" date="2"/>
+				<day xmlns="" ordinal="4" name="Wednesday" date="3"/>
+				<day xmlns="" ordinal="5" name="Thursday" date="4"/>
+				<day xmlns="" ordinal="6" name="Friday" date="5"/>
+				<day xmlns="" ordinal="7" name="Saturday" date="6"/>
+			</week>
+			<week xmlns="" ordinal="2">
+				<day xmlns="" ordinal="8" name="Sunday" date="7"/>
+				<day xmlns="" ordinal="9" name="Monday" date="8"/>
+				<day xmlns="" ordinal="10" name="Tuesday" date="9"/>
+				<day xmlns="" ordinal="11" name="Wednesday" date="10"/>
+				<day xmlns="" ordinal="12" name="Thursday" date="11"/>
+				<day xmlns="" ordinal="13" name="Friday" date="12"/>
+				<day xmlns="" ordinal="14" name="Saturday" date="13"/>
+			</week>
+			<week xmlns="" ordinal="3">
+				<day xmlns="" ordinal="15" name="Sunday" date="14"/>
+				<day xmlns="" ordinal="16" name="Monday" date="15"/>
+				<day xmlns="" ordinal="17" name="Tuesday" date="16"/>
+				<day xmlns="" ordinal="18" name="Wednesday" date="17"/>
+				<day xmlns="" ordinal="19" name="Thursday" date="18"/>
+				<day xmlns="" ordinal="20" name="Friday" date="19"/>
+				<day xmlns="" ordinal="21" name="Saturday" date="20"/>
+			</week>
+			<week xmlns="" ordinal="4">
+				<day xmlns="" ordinal="22" name="Sunday" date="21"/>
+				<day xmlns="" ordinal="23" name="Monday" date="22"/>
+				<day xmlns="" ordinal="24" name="Tuesday" date="23"/>
+				<day xmlns="" ordinal="25" name="Wednesday" date="24"/>
+				<day xmlns="" ordinal="26" name="Thursday" date="25"/>
+				<day xmlns="" ordinal="27" name="Friday" date="26"/>
+				<day xmlns="" ordinal="28" name="Saturday" date="27"/>
+			</week>
+			<week xmlns="" ordinal="5">
+				<day xmlns="" ordinal="29" name="Sunday" date="28"/>
+				<day xmlns="" ordinal="30" name="Monday" date="29"/>
+				<day xmlns="" ordinal="31" name="Tuesday" date="30"/>
+				
+				<day xmlns="" ordinal="32" name="Wednesday" date="31"/>
+				<day xmlns="" ordinal="33" name="Thursday" date=""/>
+				<day xmlns="" ordinal="34" name="Friday" date=""/>
+				<day xmlns="" ordinal="35" name="Saturday" date=""/>
+			</week>
+		</month>
+		<month xmlns="" ordinal="6" name="June">
+			<week xmlns="" ordinal="1">
+				<day xmlns="" ordinal="1" name="Sunday" date=""/>
+				<day xmlns="" ordinal="2" name="Monday" date=""/>
+				<day xmlns="" ordinal="3" name="Tuesday" date=""/>
+				<day xmlns="" ordinal="4" name="Wednesday" date=""/>
+				<day xmlns="" ordinal="5" name="Thursday" date="1"><job number="98606-1"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_98606-1" #$#98606-1*^*span#$# WEN 00489 Culpeper, VA*^*li#$# </job></day>
+				<day xmlns="" ordinal="6" name="Friday" date="2"><job number="100322-3"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_100322-3" #$#100322-3*^*span#$# WEN #03068 Rainbow City, AL*^*li#$# </job></day>
+				<day xmlns="" ordinal="7" name="Saturday" date="3"/>
+			</week>
+			<week xmlns="" ordinal="2">
+				<day xmlns="" ordinal="8" name="Sunday" date="4"/>
+				<day xmlns="" ordinal="9" name="Monday" date="5"><job number="100710"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_100710" #$#100710*^*span#$# WEN #00034 Morrow, GA*^*li#$# </job></day>
+				<day xmlns="" ordinal="10" name="Tuesday" date="6"><job number="101033-1"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101033-1" #$#101033-1*^*span#$# WEN #06841  Spruce Grove, AB*^*li#$# </job></day>
+				<day xmlns="" ordinal="11" name="Wednesday" date="7"><job number="101063"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101063" #$#101063*^*span#$# Kiddie Academy - Claremont, CA*^*li#$# </job></day>
+				<day xmlns="" ordinal="12" name="Thursday" date="8"><job number="101327"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101327" #$#101327*^*span#$# Tim Hortons #917920 - Savage MN*^*li#$# </job></day>
+				<day xmlns="" ordinal="13" name="Friday" date="9"><job number="100194"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_100194" #$#100194*^*span#$# TH #6688 Hazel Park, MI*^*li#$# </job></day>
+				<day xmlns="" ordinal="14" name="Saturday" date="10"/>
+			</week>
+			<week xmlns="" ordinal="3">
+				<day xmlns="" ordinal="15" name="Sunday" date="11"/>
+				<day xmlns="" ordinal="16" name="Monday" date="12"><job number="101508-1"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101508-1" #$#101508-1*^*span#$# WEN 03122 Mt Vernon, IL*^*li#$# </job></day>
+				<day xmlns="" ordinal="17" name="Tuesday" date="13"><job number="101327-3"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101327-3" #$#101327-3*^*span#$# *^*li#$# </job></day>
+				<day xmlns="" ordinal="18" name="Wednesday" date="14"><job number="101794"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101794" #$#101794*^*span#$# WEN #08175 Madison, AL*^*li#$# </job></day>
+				<day xmlns="" ordinal="19" name="Thursday" date="15"><job number="101330"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101330" #$#101330*^*span#$# TH#7895  St. Paul, MN*^*li#$# </job></day>
+				<day xmlns="" ordinal="20" name="Friday" date="16"><job number="101634"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101634" #$#101634*^*span#$# Cell Phone Repair - Columbus, OH*^*li#$# </job></day>
+				<day xmlns="" ordinal="21" name="Saturday" date="17"/>
+			</week>
+			<week xmlns="" ordinal="4">
+				<day xmlns="" ordinal="22" name="Sunday" date="18"/>
+				<day xmlns="" ordinal="23" name="Monday" date="19"><job number="101508"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101508" #$#101508*^*span#$# WEN 03122 Mt. Vernon, IL*^*li#$# </job></day>
+				<day xmlns="" ordinal="24" name="Tuesday" date="20"><job number="101327-2"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101327-2" #$#101327-2*^*span#$# Signminds - TH #7920 - Savage, MN*^*li#$# </job></day>
+				<day xmlns="" ordinal="25" name="Wednesday" date="21"><job number="101141-2"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101141-2" #$#101141-2*^*span#$# WEN #09535 S. Yarmouth, MA*^*li#$# </job></day>
+				<day xmlns="" ordinal="26" name="Thursday" date="22"><job number="101944"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101944" #$#101944*^*span#$# The Sign Clinic*^*li#$# </job></day>
+				<day xmlns="" ordinal="27" name="Friday" date="23"><job number="101284"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101284" #$#101284*^*span#$# WEN 11827 SURPRISE, AZ*^*li#$# </job></day>
+				<day xmlns="" ordinal="28" name="Saturday" date="24"/>
+			</week>
+			<week xmlns="" ordinal="5">
+				<day xmlns="" ordinal="29" name="Sunday" date="25"/>
+				<day xmlns="" ordinal="30" name="Monday" date="26"><job number="101286"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101286" #$#101286*^*span#$# WEN #02366 W. Mifflin, PA*^*li#$# </job></day>
+				<day xmlns="" ordinal="31" name="Tuesday" date="27"><job number="101338"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101338" #$#101338*^*span#$# Noodles &amp;amp;amp; Co. - E. Lansing, MI*^*li#$# </job></day>
+				<day xmlns="" ordinal="32" name="Wednesday" date="28"><job number="101809"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101809" #$#101809*^*span#$# MaintenX/CVS #2714 Raleigh, NC*^*li#$# </job></day>
+				<day xmlns="" ordinal="33" name="Thursday" date="29"><job number="102050"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_102050" #$#102050*^*span#$# Marion/Wayne's Cleaners*^*li#$# </job></day>
+				<day xmlns="" ordinal="34" name="Friday" date="30"><job number="100209"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_100209" #$#100209*^*span#$# Courtyards at Maxtown - Westerville, OH*^*li#$# </job></day>
+				<day xmlns="" ordinal="35" name="Saturday" date=""/>
+			</week>
+		</month>
+		<month xmlns="" ordinal="7" name="July">
+			<week xmlns="" ordinal="1">
+				<day xmlns="" ordinal="1" name="Sunday" date=""/>
+				<day xmlns="" ordinal="2" name="Monday" date=""/>
+				<day xmlns="" ordinal="3" name="Tuesday" date=""/>
+				<day xmlns="" ordinal="4" name="Wednesday" date=""/>
+				<day xmlns="" ordinal="5" name="Thursday" date=""/>
+				<day xmlns="" ordinal="6" name="Friday" date=""/>
+				<day xmlns="" ordinal="7" name="Saturday" date="1"><job number="101946"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101946" #$#101946*^*span#$# Beer Barrel Pizza*^*li#$# </job></day>
+			</week>
+			<week xmlns="" ordinal="2">
+				<day xmlns="" ordinal="8" name="Sunday" date="2"/>
+				<day xmlns="" ordinal="9" name="Monday" date="3"/>
+				<day xmlns="" ordinal="10" name="Tuesday" date="4"><job number="102067"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_102067" #$#102067*^*span#$# Marion/Window World*^*li#$# </job></day>
+				<day xmlns="" ordinal="11" name="Wednesday" date="5"><job number="100563"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_100563" #$#100563*^*span#$# Wendy's International, LLC - Dublin, OH*^*li#$# </job></day>
+				<day xmlns="" ordinal="12" name="Thursday" date="6"><job number="102123"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_102123" #$#102123*^*span#$# Epcon/ Maxtown Westerville, OH*^*li#$# </job></day>
+				<day xmlns="" ordinal="13" name="Friday" date="7"><job number="101619"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101619" #$#101619*^*span#$# WEN #06805 COCHRANE, AB*^*li#$# </job></day>
+				<day xmlns="" ordinal="14" name="Saturday" date="8"/>
+			</week>
+			<week xmlns="" ordinal="3">
+				<day xmlns="" ordinal="15" name="Sunday" date="9"><job number="101913"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101913" #$#101913*^*span#$# Tim Horton's 9363 Gates, NY*^*li#$# </job></day>
+				<day xmlns="" ordinal="16" name="Monday" date="10"><job number="101622"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101622" #$#101622*^*span#$# WEN #11857 - Melbourne, FL*^*li#$# </job></day>
+				<day xmlns="" ordinal="17" name="Tuesday" date="11"><job number="101898"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101898" #$#101898*^*span#$# Wasserstrom Company Columbus, OH*^*li#$# </job></day>
+				<day xmlns="" ordinal="18" name="Wednesday" date="12"><job number="101106"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101106" #$#101106*^*span#$# WEN #11884 - W. Springfield, MA*^*li#$# </job></day>
+				<day xmlns="" ordinal="19" name="Thursday" date="13"><job number="100607"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_100607" #$#100607*^*span#$# WEN #02510 - Floral Park, NY*^*li#$# </job></day>
+				<day xmlns="" ordinal="20" name="Friday" date="14"><job number="101244"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101244" #$#101244*^*span#$# WEN 11850 Jacksonville, FL*^*li#$# </job></day>				
+				<day xmlns="" ordinal="21" name="Saturday" date="15"><job number="102016"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_102016" #$#102016*^*span#$# WEN Streetsboro, OH*^*li#$# </job></day>
+			</week>
+			<week xmlns="" ordinal="4">
+				<day xmlns="" ordinal="22" name="Sunday" date="16"/>
+				<day xmlns="" ordinal="23" name="Monday" date="17"><job number="101096"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101096" #$#101096*^*span#$# TH #916499 - Plain City, OH*^*li#$# </job></day>
+				<day xmlns="" ordinal="24" name="Tuesday" date="18"/>
+				<day xmlns="" ordinal="25" name="Wednesday" date="19"/>
+				<day xmlns="" ordinal="26" name="Thursday" date="20"/>
+				<day xmlns="" ordinal="27" name="Friday" date="21"><job number="101999"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101999" #$#101999*^*span#$# Rensko Holdings, LLC/TH 5637 Westerville, OH*^*li#$# </job></day>
+				<day xmlns="" ordinal="28" name="Saturday" date="22"/>
+			</week>
+			<week xmlns="" ordinal="5">
+				<day xmlns="" ordinal="29" name="Sunday" date="23"/>
+				<day xmlns="" ordinal="30" name="Monday" date="24"/>
+				<day xmlns="" ordinal="31" name="Tuesday" date="25"/>
+				<day xmlns="" ordinal="32" name="Wednesday" date="26"/>
+				<day xmlns="" ordinal="33" name="Thursday" date="27"/>
+				<day xmlns="" ordinal="34" name="Friday" date="28"><job number="101374"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101374" #$#101374*^*span#$# The Courtyards at Bradford Court*^*li#$# </job></day>
+				<day xmlns="" ordinal="35" name="Saturday" date="29"/>
+			</week>
+			<week xmlns="" ordinal="6">
+				<day xmlns="" ordinal="36" name="Sunday" date="30"/>
+				<day xmlns="" ordinal="37" name="Monday" date="31"/>
+				<day xmlns="" ordinal="38" name="Tuesday" date=""/>
+				<day xmlns="" ordinal="39" name="Wednesday" date=""/>
+				<day xmlns="" ordinal="40" name="Thursday" date=""/>
+				<day xmlns="" ordinal="41" name="Friday" date=""/>
+				<day xmlns="" ordinal="42" name="Saturday" date=""/>
+			</week>
+		</month>
+		<month xmlns="" ordinal="8" name="August">
+			<week xmlns="" ordinal="1">
+				<day xmlns="" ordinal="1" name="Sunday" date=""/>
+				<day xmlns="" ordinal="2" name="Monday" date=""/>		
+				<day xmlns="" ordinal="3" name="Tuesday" date="1"><job number="99666"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_99666" #$#99666*^*span#$# Palazzo Nail &amp;amp;amp; Spa Lancaster,OH*^*li#$# </job></day>
+				<day xmlns="" ordinal="4" name="Wednesday" date="2"><job number="100843"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_100843" #$#100843*^*span#$# WEN #00120 TARPON SPRINGS, FL*^*li#$# </job></day>
+				<day xmlns="" ordinal="5" name="Thursday" date="3"/>
+				<day xmlns="" ordinal="6" name="Friday" date="4"><job number="102045"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_102045" #$#102045*^*span#$# JW CUTLER &amp;amp;amp; ASSOC*^*li#$# </job></day>
+				<day xmlns="" ordinal="7" name="Saturday" date="5"/>
+			</week>
+			<week xmlns="" ordinal="2">
+				<day xmlns="" ordinal="8" name="Sunday" date="6"/>
+				<day xmlns="" ordinal="9" name="Monday" date="7"/>
+				<day xmlns="" ordinal="10" name="Tuesday" date="8"/>
+				<day xmlns="" ordinal="11" name="Wednesday" date="9"/>
+				<day xmlns="" ordinal="12" name="Thursday" date="10"/>
+				<day xmlns="" ordinal="13" name="Friday" date="11"/>
+				<day xmlns="" ordinal="14" name="Saturday" date="12"/>
+			</week>
+			<week xmlns="" ordinal="3">
+				<day xmlns="" ordinal="15" name="Sunday" date="13"/>
+				<day xmlns="" ordinal="16" name="Monday" date="14"/>
+				<day xmlns="" ordinal="17" name="Tuesday" date="15"><job number="102044"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_102044" #$#102044*^*span#$# WEN #06512 Tsawwassen, BC*^*li#$# </job></day>
+				<day xmlns="" ordinal="18" name="Wednesday" date="16"/>
+				<day xmlns="" ordinal="19" name="Thursday" date="17"/>
+				<day xmlns="" ordinal="20" name="Friday" date="18"/>
+				<day xmlns="" ordinal="21" name="Saturday" date="19"/>
+			</week>
+			<week xmlns="" ordinal="4">
+				<day xmlns="" ordinal="22" name="Sunday" date="20"/>
+				<day xmlns="" ordinal="23" name="Monday" date="21"/>
+				<day xmlns="" ordinal="24" name="Tuesday" date="22"/>
+				<day xmlns="" ordinal="25" name="Wednesday" date="23"><job number="101948"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_101948" #$#101948*^*span#$# Wendy's Site #11961*^*li#$# </job></day>
+				<day xmlns="" ordinal="26" name="Thursday" date="24"/>
+				<day xmlns="" ordinal="27" name="Friday" date="25"/>
+				<day xmlns="" ordinal="28" name="Saturday" date="26"/>
+			</week>
+			<week xmlns="" ordinal="5">
+				<day xmlns="" ordinal="29" name="Sunday" date="27"/>
+				<day xmlns="" ordinal="30" name="Monday" date="28"/>
+				<day xmlns="" ordinal="31" name="Tuesday" date="29"/>
+				<day xmlns="" ordinal="32" name="Wednesday" date="30"/>
+				<day xmlns="" ordinal="33" name="Thursday" date="31"/>
+				<day xmlns="" ordinal="34" name="Friday" date=""/>
+				<day xmlns="" ordinal="35" name="Saturday" date=""/>
+			</week>			
+		</month>
+	</year>
+</calendar>

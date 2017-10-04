@@ -1,0 +1,98 @@
+WIP Calendar
+
+
+*******************************************************************************************************************************************************
+BUGS 1 (version 1):  
+*******************************************************************************************************************************************************
+
+reported 10/3/2016 (Sam P).
+SUMMARY OF BUG
+When Moving (rescheduling) a Job Entry in the Wip Calendar to a new date, sometimes the moved entries were duplicated across multiple months in the calendar.
+EX: Move Job “x” from Oct 7 to Oct 5 sometimes would duplicate Job x, and move it to the 5th of multiple months.
+
+
+*****
+FIXED OCT 4 2016 (Proposed as RC1.01): 
+
+File: index.php
+Code: Javascript, function saveToCell()
+Lines: “var $moveToCell = $(m).find("ul[modalid=d"+moveToDate[2]+"]");”
+
+Change to:
+
+			var $moveToCell;
+			
+			if($moveToCell = $($(m).attr("ordinal", moveToDate[1])).find("ul[modalid=d"+moveToDate[2]+"]")){
+				console.log("movetocell is: " +$moveToCell);
+				console.log("jobHTML is " + jobHTML);
+				/*movetocell is: [object Object]
+				jobHTML is [object Object]*/
+				$($moveToCell).prepend(jobHTML);	
+				return; //exit the 'each' iteration.
+
+The KEY LINE is: $($(m).attr("ordinal", moveToDate[1])).find("ul[modalid=d"+moveToDate[2]+"]").
+This fix tries to limit the "find children" operation only to the month where the ordinal attr value in the class=month elements have a match for the move-to month.
+That is, <div class="month" ordinal="10"> will be searched for a date cell when the pickdate's moveToDate[2] is 10 (october).
+Prior, for EACH MONTH, we were finding a date cell that matched our moveToDate[2] and appending the cloned LI entry to each.
+
+
+
+*******************************************************************************************************************************************************
+BUGS 2 (version RC1.01):
+*******************************************************************************************************************************************************
+Self Reported.
+
+Navigation from Month Dec to Jan, the Dec Entires are showing in each of the following months: Jan - April;
+Although the XML file for those months are either (a) empty, or (b) non-existent in the XML structure.
+
+Investigate the JS math for navigating across year boundaries.
+
+
+*****
+FIXED.  Checks to see if the DOM has an element of class="month" and checks the ordinal against the month value the user is trying to navigate to.  If there is no month in the DOM, a notice shows to the user that there is no data for the requested month.
+
+*******************************************************************************************************************************************************
+BUGS 3(version 1.01):
+*******************************************************************************************************************************************************
+
+Warning: Creating default object from empty value in /home/custo299/public_html/calendar/csvimport.php on line 703
+<code>
+ln 702 function createNode($parentNode, $newNodeName, $newNodeAttribName, $newNodeAttribValue) {		
+		
+		//IF 'new month' Node...
+			// THEN Let's just Create the whole darn Month in one Shot
+			// Call the buildCalendar->createDates (for the month)
+	    if( $newNodeName == 'month' ){ //build in all dates for the missing month node
+		    $node = $this->createDates($parentNode, $newNodeName, $newNodeAttribName, $newNodeAttribValue);
+		    return $node;
+	    } else....
+
+</code>
+
+This error has to do with the script not finding a node for a month that it is trying to import data into, so it tries by calling 1st:
+function createNode().  In this instance it will try to create a new month node.  Problem also is that in my test csv file, it is also a new year (Jan new month, 2017 new year node needed too).
+
+the createDates function is then called inside of createNode.
+
+createDates uses two class properties: targetMonth and targetYear (the targeted nodes to create in the XML doc)
+
+I noticed that both of these were not consistently referenced by the required $this->property object prefix.  When that was changed, we now get a new error:
+
+
+"Success: The File Uploaded To: /home/custo299/public_html/calendar/csv/wip_csc_oct20_dec31_2016.csv
+no matching mo. Create xml Calendar with ordinal year matching the import's yr
+Fatal error: Uncaught exception 'Exception' with message 'DateTime::__construct(): Failed to parse time string (/1/) at position 0 (/): Unexpected character' in /home/custo299/public_html/calendar/csvimport.php:763 Stack trace: #0 /home/custo299/public_html/calendar/csvimport.php(763): DateTime->__construct('/1/', Object(DateTimeZone)) #1 /home/custo299/public_html/calendar/csvimport.php(711): saveToCalendar->createDates(Object(DOMElement), 'month', 'ordinal', '9') #2 /home/custo299/public_html/calendar/csvimport.php(549): saveToCalendar->createNode(Object(DOMElement), 'month', 'ordinal', '9') #3 /home/custo299/public_html/calendar/csvimport.php(260): saveToCalendar->d() #4 {main} thrown in /home/custo299/public_html/calendar/csvimport.php on line 763"
+
+line 545 echos "no matching....yr" when if(!isset($this->xmlMonthNode))...meaning no month found in xml to match the save to month in the csv row.
+
+So on the next line, we try to fix the month with:
+$this->xmlMonthNode = $this->createNode($this->xmlYearNode, 'month', 'ordinal',  $csvRow['month']);
+// The parameters above represent: (node parent obj, newNodeName, new node attrib name, new node attrib value).
+
+//speculation: looks like the parent is the current year node (ie 2016).   That may work when trying to create a new month dynamically, 
+but not a new year.  The parent would need to be  <calendar id="Custom Sign Center"> so we can create a new year, or at least locate the correct year for the new month to be written on.
+
+	 <year ordinal="2017">
+	 
+	 
+	 

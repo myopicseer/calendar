@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE calendar [
+<!ELEMENT calendar (year)>
+<!ATTLIST calendar xmlns CDATA #FIXED "">
+<!ATTLIST calendar id CDATA #REQUIRED>
+<!ELEMENT year (month)+>
+<!ATTLIST year xmlns CDATA #FIXED "">
+<!ATTLIST year ordinal CDATA #REQUIRED>
+<!ELEMENT month (week)+>
+<!ATTLIST month xmlns CDATA #FIXED "">
+<!ATTLIST month name NMTOKEN #REQUIRED>
+<!ATTLIST month ordinal CDATA #REQUIRED>
+<!ELEMENT week (day)+>
+<!ATTLIST week xmlns CDATA #FIXED "">
+<!ATTLIST week ordinal CDATA #REQUIRED>
+<!ELEMENT day (job)?>
+<!ATTLIST day xmlns CDATA #FIXED "">
+<!ATTLIST day date CDATA #REQUIRED>
+<!ATTLIST day name NMTOKEN #REQUIRED>
+<!ATTLIST day ordinal CDATA #REQUIRED>
+<!ELEMENT job EMPTY>
+<!ATTLIST job xmlns CDATA #FIXED "">
+<!ATTLIST job number CDATA #REQUIRED>
+<!ENTITY nbsp "&#xA0;">
+]>
+<calendar xmlns="" id="Custom Sign Center">
+	<year xmlns="" ordinal="2017">
+		<month xmlns="" ordinal="5" name="May">
+			<week xmlns="" ordinal="1">
+				<day xmlns="" ordinal="1" name="Sunday" date=""/>
+				
+				<day xmlns="" ordinal="3" name="Tuesday" date="2"/>
+				<day xmlns="" ordinal="4" name="Wednesday" date="3"/>
+				<day xmlns="" ordinal="5" name="Thursday" date="4"/>
+				<day xmlns="" ordinal="6" name="Friday" date="5"/>
+				<day xmlns="" ordinal="7" name="Saturday" date="6"/>
+			</week>
+			<week xmlns="" ordinal="2">
+				<day xmlns="" ordinal="8" name="Sunday" date="7"/>
+				<day xmlns="" ordinal="9" name="Monday" date="8"/>
+				<day xmlns="" ordinal="10" name="Tuesday" date="9"/>
+				<day xmlns="" ordinal="11" name="Wednesday" date="10"/>
+				<day xmlns="" ordinal="12" name="Thursday" date="11"/>
+				<day xmlns="" ordinal="13" name="Friday" date="12"/>
+				<day xmlns="" ordinal="14" name="Saturday" date="13"/>
+			</week>
+			<week xmlns="" ordinal="3">
+				<day xmlns="" ordinal="15" name="Sunday" date="14"/>
+				<day xmlns="" ordinal="16" name="Monday" date="15"/>
+				<day xmlns="" ordinal="17" name="Tuesday" date="16"/>
+				<day xmlns="" ordinal="18" name="Wednesday" date="17"/>
+				<day xmlns="" ordinal="19" name="Thursday" date="18"/>
+				<day xmlns="" ordinal="20" name="Friday" date="19"/>
+				<day xmlns="" ordinal="21" name="Saturday" date="20"/>
+			</week>
+			<week xmlns="" ordinal="4">
+				<day xmlns="" ordinal="22" name="Sunday" date="21"/>
+				<day xmlns="" ordinal="23" name="Monday" date="22"/>
+				<day xmlns="" ordinal="24" name="Tuesday" date="23"/>
+				<day xmlns="" ordinal="25" name="Wednesday" date="24"/>
+				<day xmlns="" ordinal="26" name="Thursday" date="25"/>
+				<day xmlns="" ordinal="27" name="Friday" date="26"/>
+				<day xmlns="" ordinal="28" name="Saturday" date="27"/>
+			</week>
+			<week xmlns="" ordinal="5">
+				<day xmlns="" ordinal="29" name="Sunday" date="28"/>
+				<day xmlns="" ordinal="30" name="Monday" date="29"/>
+				<day xmlns="" ordinal="31" name="Tuesday" date="30"/>
+				
+				<day xmlns="" ordinal="32" name="Wednesday" date="31"/>
+				<day xmlns="" ordinal="33" name="Thursday" date=""/>
+				<day xmlns="" ordinal="34" name="Friday" date=""/>
+				<day xmlns="" ordinal="35" name="Saturday" date=""/>
+			</week>
+		</month>
+		<month xmlns="" ordinal="6" name="June">
+			<week xmlns="" ordinal="1">
+				<day xmlns="" ordinal="1" name="Sunday" date=""/>
+				<day xmlns="" ordinal="2" name="Monday" date=""/>
+				<day xmlns="" ordinal="3" name="Tuesday" date=""/>
+				<day xmlns="" ordinal="4" name="Wednesday" date=""/>
+				<day xmlns="" ordinal="5" name="Thursday" date="1"/>
+				<day xmlns="" ordinal="6" name="Friday" date="2"/>
+				<day xmlns="" ordinal="7" name="Saturday" date="3"/>
+			</week>
+			<week xmlns="" ordinal="2">
+				<day xmlns="" ordinal="8" name="Sunday" date="4"/>
+				<day xmlns="" ordinal="9" name="Monday" date="5"/>
+				<day xmlns="" ordinal="10" name="Tuesday" date="6"/>
+				<day xmlns="" ordinal="11" name="Wednesday" date="7"/>
+				<day xmlns="" ordinal="12" name="Thursday" date="8"/>
+				<day xmlns="" ordinal="13" name="Friday" date="9"/>
+				<day xmlns="" ordinal="14" name="Saturday" date="10"/>
+			</week>
+			<week xmlns="" ordinal="3">
+				<day xmlns="" ordinal="15" name="Sunday" date="11"/>
+				<day xmlns="" ordinal="16" name="Monday" date="12"/>
+				<day xmlns="" ordinal="17" name="Tuesday" date="13"/>
+				<day xmlns="" ordinal="18" name="Wednesday" date="14"/>
+				<day xmlns="" ordinal="19" name="Thursday" date="15"/>
+				<day xmlns="" ordinal="20" name="Friday" date="16"/>
+				<day xmlns="" ordinal="21" name="Saturday" date="17"/>
+			</week>
+			<week xmlns="" ordinal="4">
+				<day xmlns="" ordinal="22" name="Sunday" date="18"/>
+				<day xmlns="" ordinal="23" name="Monday" date="19"/>
+				<day xmlns="" ordinal="24" name="Tuesday" date="20"/>
+				<day xmlns="" ordinal="25" name="Wednesday" date="21"/>
+				<day xmlns="" ordinal="26" name="Thursday" date="22"/>
+				<day xmlns="" ordinal="27" name="Friday" date="23"/>
+				<day xmlns="" ordinal="28" name="Saturday" date="24"/>
+			</week>
+			<week xmlns="" ordinal="5">
+				<day xmlns="" ordinal="29" name="Sunday" date="25"/>
+				<day xmlns="" ordinal="30" name="Monday" date="26"/>
+				<day xmlns="" ordinal="31" name="Tuesday" date="27"/>
+				<day xmlns="" ordinal="32" name="Wednesday" date="28"/>
+				<day xmlns="" ordinal="33" name="Thursday" date="29"/>
+				<day xmlns="" ordinal="34" name="Friday" date="30"/>
+				<day xmlns="" ordinal="35" name="Saturday" date=""/>
+			</week>
+		</month>
+		<month xmlns="" ordinal="7" name="July">
+			<week xmlns="" ordinal="1">
+				<day xmlns="" ordinal="1" name="Sunday" date=""/>
+				<day xmlns="" ordinal="2" name="Monday" date=""/>
+				<day xmlns="" ordinal="3" name="Tuesday" date=""/>
+				<day xmlns="" ordinal="4" name="Wednesday" date=""/>
+				<day xmlns="" ordinal="5" name="Thursday" date=""/>
+				<day xmlns="" ordinal="6" name="Friday" date=""/>
+				<day xmlns="" ordinal="7" name="Saturday" date="1"/>
+			</week>
+			<week xmlns="" ordinal="2">
+				<day xmlns="" ordinal="8" name="Sunday" date="2"/>
+				<day xmlns="" ordinal="9" name="Monday" date="3"/>
+				<day xmlns="" ordinal="10" name="Tuesday" date="4"/>
+				<day xmlns="" ordinal="11" name="Wednesday" date="5"/>
+				<day xmlns="" ordinal="12" name="Thursday" date="6"/>
+				<day xmlns="" ordinal="13" name="Friday" date="7"/>
+				<day xmlns="" ordinal="14" name="Saturday" date="8"/>
+			</week>
+			<week xmlns="" ordinal="3">
+				<day xmlns="" ordinal="15" name="Sunday" date="9"/>
+				<day xmlns="" ordinal="16" name="Monday" date="10"/>
+				<day xmlns="" ordinal="17" name="Tuesday" date="11"/>
+				<day xmlns="" ordinal="18" name="Wednesday" date="12"/>
+				<day xmlns="" ordinal="19" name="Thursday" date="13"/>
+				<day xmlns="" ordinal="20" name="Friday" date="14"/>				
+				<day xmlns="" ordinal="21" name="Saturday" date="15"/>
+			</week>
+			<week xmlns="" ordinal="4">
+				<day xmlns="" ordinal="22" name="Sunday" date="16"/>
+				<day xmlns="" ordinal="23" name="Monday" date="17"/>
+				<day xmlns="" ordinal="24" name="Tuesday" date="18"/>
+				<day xmlns="" ordinal="25" name="Wednesday" date="19"/>
+				<day xmlns="" ordinal="26" name="Thursday" date="20"/>
+				<day xmlns="" ordinal="27" name="Friday" date="21"/>
+				<day xmlns="" ordinal="28" name="Saturday" date="22"/>
+			</week>
+			<week xmlns="" ordinal="5">
+				<day xmlns="" ordinal="29" name="Sunday" date="23"/>
+				<day xmlns="" ordinal="30" name="Monday" date="24"/>
+				<day xmlns="" ordinal="31" name="Tuesday" date="25"/>
+				<day xmlns="" ordinal="32" name="Wednesday" date="26"/>
+				<day xmlns="" ordinal="33" name="Thursday" date="27"/>
+				<day xmlns="" ordinal="34" name="Friday" date="28"/>
+				<day xmlns="" ordinal="35" name="Saturday" date="29"/>
+			</week>
+			<week xmlns="" ordinal="6">
+				<day xmlns="" ordinal="36" name="Sunday" date="30"/>
+				<day xmlns="" ordinal="37" name="Monday" date="31"/>
+				<day xmlns="" ordinal="38" name="Tuesday" date=""/>
+				<day xmlns="" ordinal="39" name="Wednesday" date=""/>
+				<day xmlns="" ordinal="40" name="Thursday" date=""/>
+				<day xmlns="" ordinal="41" name="Friday" date=""/>
+				<day xmlns="" ordinal="42" name="Saturday" date=""/>
+			</week>
+		</month>
+		<month ordinal="8" name="August">
+			<week ordinal="1">
+				<day ordinal="1" name="Sunday" date=""></day>
+				<day ordinal="2" name="Monday" date=""></day>		
+				<day ordinal="3" name="Tuesday" date="1"></day>
+				<day ordinal="4" name="Wednesday" date="2"></day>
+				<day ordinal="5" name="Thursday" date="3"></day>
+				<day ordinal="6" name="Friday" date="4"></day>
+				<day ordinal="7" name="Saturday" date="5"></day>
+			</week>
+			<week ordinal="2">
+				<day ordinal="8" name="Sunday" date="6"></day>
+				<day ordinal="9" name="Monday" date="7"></day>
+				<day ordinal="10" name="Tuesday" date="8"></day>
+				<day ordinal="11" name="Wednesday" date="9"></day>
+				<day ordinal="12" name="Thursday" date="10"></day>
+				<day ordinal="13" name="Friday" date="11"></day>
+				<day ordinal="14" name="Saturday" date="12"></day>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="13"></day>
+				<day ordinal="16" name="Monday" date="14"></day>
+				<day ordinal="17" name="Tuesday" date="15"></day>
+				<day ordinal="18" name="Wednesday" date="16"></day>
+				<day ordinal="19" name="Thursday" date="17"></day>
+				<day ordinal="20" name="Friday" date="18"></day>
+				<day ordinal="21" name="Saturday" date="19"></day>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="20"></day>
+				<day ordinal="23" name="Monday" date="21"></day>
+				<day ordinal="24" name="Tuesday" date="22"></day>
+				<day ordinal="25" name="Wednesday" date="23"></day>
+				<day ordinal="26" name="Thursday" date="24"></day>
+				<day ordinal="27" name="Friday" date="25"></day>
+				<day ordinal="28" name="Saturday" date="26"></day>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="27"></day>
+				<day ordinal="30" name="Monday" date="28"></day>
+				<day ordinal="31" name="Tuesday" date="29"></day>
+				<day ordinal="32" name="Wednesday" date="30"></day>
+				<day ordinal="33" name="Thursday" date="31"></day>
+				<day ordinal="34" name="Friday" date=""></day>
+				<day ordinal="35" name="Saturday" date=""></day>
+			</week>			
+		</month>
+	</year>
+</calendar>

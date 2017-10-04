@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+<!ENTITY nbsp "&#160;">
+]>
+<calendars>
+  <calendar id="Marion Signs">	 
+	 <year ordinal="2017">
+		<month ordinal="1" name="January">
+			<week ordinal="1">
+				  <day ordinal="1" name="Sunday" date="1">
+					  
+				  </day>
+				  <day ordinal="2" name="Monday" date="2">
+					 
+				  </day>	
+				  <day ordinal="3" name="Tuesday" date="3">
+					  
+				  </day>
+				  <day ordinal="4" name="Wednesday" date="4">
+					  
+				  </day>
+				  <day ordinal="5" name="Thursday" date="5">
+					  
+				  </day>
+				  <day ordinal="6" name="Friday" date="6">
+					  
+				  </day>
+				  <day ordinal="7" name="Saturday" date="7">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="2">
+				  <day ordinal="8" name="Sunday" date="8">
+					  
+				  </day>
+				  <day ordinal="9" name="Monday" date="9">
+					  
+				  </day>
+				  <day ordinal="10" name="Tuesday" date="10">
+					  
+				  </day>
+				  <day ordinal="11" name="Wednesday" date="11">
+					  
+				  </day>
+				  <day ordinal="12" name="Thursday" date="12">
+					  
+				  </day>
+				  <day ordinal="13" name="Friday" date="13">
+					  
+				  </day>
+				  <day ordinal="14" name="Saturday" date="14">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="3">
+				  <day ordinal="15" name="Sunday" date="15">
+					  
+				  </day>
+				  <day ordinal="16" name="Monday" date="16">
+					  
+				  </day>
+				  <day ordinal="17" name="Tuesday" date="17">
+					  
+				  </day>
+				  <day ordinal="18" name="Wednesday" date="18">
+					  
+				  </day>
+				  <day ordinal="19" name="Thursday" date="19">
+					  
+				  </day>
+				  <day ordinal="20" name="Friday" date="20">
+					  
+				  </day>
+				  <day ordinal="21" name="Saturday" date="21">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="4">
+				  <day ordinal="22" name="Sunday" date="22">
+					  
+				  </day>
+				  <day ordinal="23" name="Monday" date="23">
+					  
+				  </day>
+				  <day ordinal="24" name="Tuesday" date="24">
+					  
+				  </day>
+				  <day ordinal="25" name="Wednesday" date="25">
+					  
+				  </day>
+				  <day ordinal="26" name="Thursday" date="26">
+					  
+				  </day>
+				  <day ordinal="27" name="Friday" date="27">
+					  
+				  </day>
+				  <day ordinal="28" name="Saturday" date="28">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="5">
+				  <day ordinal="29" name="Sunday" date="29">
+					  
+				  </day>
+				  <day ordinal="30" name="Monday" date="30">
+					  
+				  </day>
+				  <day ordinal="31" name="Tuesday" date="31">
+					  
+				  </day>
+				  <day ordinal="32" name="Wednesday" date="">
+					  
+				  </day>
+				  <day ordinal="33" name="Thursday" date="">
+					  
+				  </day>
+				  <day ordinal="34" name="Friday" date="">
+					  
+				  </day>
+				  <day ordinal="0" name="Saturday" date="">
+				  	
+				  </day>		  
+			  </week>
+		</month>			
+		<month ordinal="2" name="February">
+			  <week ordinal="1">
+				  <day ordinal="1" name="Sunday" date=""/>
+				  <day ordinal="2" name="Monday" date=""/>	
+				  <day ordinal="3" name="Tuesday" date=""/>
+				  <day ordinal="4" name="Wednesday" date="1"/>
+				  <day ordinal="5" name="Thursday" date="2"/>
+				  <day ordinal="6" name="Friday" date="3"/>
+				  <day ordinal="7" name="Saturday" date="4"/>
+			</week>
+			<week ordinal="2">
+				  <day ordinal="8" name="Sunday" date="5"/>
+				  <day ordinal="9" name="Monday" date="6"/>	
+				  <day ordinal="10" name="Tuesday" date="7"/>
+				  <day ordinal="11" name="Wednesday" date="8"/>				  
+				  <day ordinal="12" name="Thursday" date="9"/>
+				<day ordinal="13" name="Friday" date="10"/>
+				<day ordinal="14" name="Saturday" date="11"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="12"/>
+				<day ordinal="16" name="Monday" date="13"/>
+				<day ordinal="17" name="Tuesday" date="14"/>
+				<day ordinal="18" name="Wednesday" date="15"/>
+				<day ordinal="19" name="Thursday" date="16"/>
+				<day ordinal="20" name="Friday" date="17"/>"
+				<day ordinal="21" name="Saturday" date="18"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="19"/>
+				<day ordinal="23" name="Monday" date="20"/>
+				<day ordinal="24" name="Tuesday" date="21"/>
+				<day ordinal="25" name="Wednesday" date="22"/>
+				<day ordinal="26" name="Thursday" date="23"/>
+				<day ordinal="27" name="Friday" date="24"/>
+				<day ordinal="28" name="Saturday" date="25"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="26"/>
+				<day ordinal="30" name="Monday" date="27"/>
+				<day ordinal="31" name="Tuesday" date="28"/>
+				<day ordinal="32" name="Wednesday" date=""/>
+				<day ordinal="33" name="Thursday" date=""/>
+				<day ordinal="34" name="Friday" date=""/>
+				<day ordinal="35" name="Saturday" date=""/>		
+			</week>					
+		</month>
+		<month ordinal="3" name="March">
+			  <week ordinal="1">
+				  <day ordinal="1" name="Sunday" date=""/>
+				  <day ordinal="2" name="Monday" date=""/>	
+				  <day ordinal="3" name="Tuesday" date=""/>
+				  <day ordinal="4" name="Wednesday" date="1"/>
+				  <day ordinal="5" name="Thursday" date="2"/>
+				  <day ordinal="6" name="Friday" date="3"/>
+				  <day ordinal="7" name="Saturday" date="4"/>
+			</week>
+			<week ordinal="2">
+				  <day ordinal="8" name="Sunday" date="5"/>
+				  <day ordinal="9" name="Monday" date="6"/>	
+				  <day ordinal="10" name="Tuesday" date="7"/>
+				  <day ordinal="11" name="Wednesday" date="8"/>				  
+				  <day ordinal="12" name="Thursday" date="9"/>
+				<day ordinal="13" name="Friday" date="10"/>
+				<day ordinal="14" name="Saturday" date="11"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="12"/>
+				<day ordinal="16" name="Monday" date="13"/>
+				<day ordinal="17" name="Tuesday" date="14"/>
+				<day ordinal="18" name="Wednesday" date="15"/>
+				<day ordinal="19" name="Thursday" date="16"/>
+				<day ordinal="20" name="Friday" date="17"/>"
+				<day ordinal="21" name="Saturday" date="18"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="19"/>
+				<day ordinal="23" name="Monday" date="20"/>
+				<day ordinal="24" name="Tuesday" date="21"/>
+				<day ordinal="25" name="Wednesday" date="22"/>
+				<day ordinal="26" name="Thursday" date="23"/>
+				<day ordinal="27" name="Friday" date="24"/>
+				<day ordinal="28" name="Saturday" date="25"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="26"/>
+				<day ordinal="30" name="Monday" date="27"/>
+				<day ordinal="31" name="Tuesday" date="28"/>
+				<day ordinal="32" name="Wednesday" date="29"/>
+				<day ordinal="33" name="Thursday" date="30"/>
+				<day ordinal="34" name="Friday" date="31"/>
+				<day ordinal="35" name="Saturday" date=""/>	
+			</week>					
+		</month>
+		<month ordinal="4" name="April">
+			  <week ordinal="1">
+				  <day ordinal="1" name="Sunday" date=""/>
+				  <day ordinal="2" name="Monday" date=""/>	
+				  <day ordinal="3" name="Tuesday" date=""/>
+				  <day ordinal="4" name="Wednesday" date=""/>
+				  <day ordinal="5" name="Thursday" date=""/>
+				  <day ordinal="6" name="Friday" date=""/>
+				  <day ordinal="7" name="Saturday" date="1"/>
+			</week>
+			<week ordinal="2">
+				  <day ordinal="8" name="Sunday" date="2"/>
+				  <day ordinal="9" name="Monday" date="3"/>	
+				  <day ordinal="10" name="Tuesday" date="4"/>
+				  <day ordinal="11" name="Wednesday" date="5"/>				  
+				  <day ordinal="12" name="Thursday" date="6"/>
+				<day ordinal="13" name="Friday" date="7"/>
+				<day ordinal="14" name="Saturday" date="8"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="9"/>
+				<day ordinal="16" name="Monday" date="10"/>
+				<day ordinal="17" name="Tuesday" date="11"/>
+				<day ordinal="18" name="Wednesday" date="12"/>
+				<day ordinal="19" name="Thursday" date="13"/>
+				<day ordinal="20" name="Friday" date="14"/>"
+				<day ordinal="21" name="Saturday" date="15"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="16"/>
+				<day ordinal="23" name="Monday" date="17"/>
+				<day ordinal="24" name="Tuesday" date="28"/>
+				<day ordinal="25" name="Wednesday" date="19"/>
+				<day ordinal="26" name="Thursday" date="20"/>
+				<day ordinal="27" name="Friday" date="21"/>
+				<day ordinal="28" name="Saturday" date="22"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="23"/>
+				<day ordinal="30" name="Monday" date="24"/>
+				<day ordinal="31" name="Tuesday" date="25"/>
+				<day ordinal="32" name="Wednesday" date="26"/>
+				<day ordinal="33" name="Thursday" date="27"/>
+				<day ordinal="34" name="Friday" date="28"/>
+				<day ordinal="35" name="Saturday" date="29"/>	
+			</week>
+			<week ordinal="6">
+				<day ordinal="36" name="Sunday" date="30"/>
+				<day ordinal="37" name="Monday" date=""/>
+				<day ordinal="38" name="Tuesday" date=""/>
+				<day ordinal="39" name="Wednesday" date=""/>
+				<day ordinal="40" name="Thursday" date=""/>
+				<day ordinal="41" name="Friday" date=""/>
+				<day ordinal="42" name="Saturday" date=""/>	
+			</week>							
+		</month>
+		<month ordinal="5" name="May">
+			<week ordinal="1">
+				<day ordinal="1" name="Sunday" date="">
+					
+				</day>
+				<day ordinal="2" name="Monday" date="1">
+						
+				</day>		
+				<day ordinal="3" name="Tuesday" date="2">
+								
+				</day>
+				<day ordinal="4" name="Wednesday" date="3">
+								
+				</day>
+				<day ordinal="5" name="Thursday" date="4">
+					
+				</day>
+				<day ordinal="6" name="Friday" date="5">
+				</day>
+				<day ordinal="7" name="Saturday" date="6">
+					
+				</day>
+			</week>
+			<week ordinal="2">
+				<day ordinal="8" name="Sunday" date="7">
+					
+				</day>
+				<day ordinal="9" name="Monday" date="8">
+			</day>
+				<day ordinal="10" name="Tuesday" date="9"/>
+				<day ordinal="11" name="Wednesday" date="10"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12860" #$#12860*^*span#$# Anchor Sign / Outback Steakhouse #2015*^*li#$# </day>
+				<day ordinal="12" name="Thursday" date="11">
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12751" #$#12751*^*span#$# Circle K / Shell #2721291*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12861" #$#12861*^*span#$# Anchor Sign / Mattress Firm #053047*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12862" #$#12862*^*span#$# Anchor Sign / The Mattress Firm #053049*^*li#$# </day>
+				<day ordinal="13" name="Friday" date="12">
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12849" #$#12849*^*span#$# Florida Medical Associates*^*li#$# </day>
+				<day ordinal="14" name="Saturday" date="13"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="14">
+					
+				</day>
+				<day ordinal="16" name="Monday" date="15">
+					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1028" #$#1028*^*span#$# LB McLeod Properties/McLeod Business Pard*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1060" #$#1060*^*span#$# City Of Edgewood*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12749-1" #$#12749-1*^*span#$# Federal Heath / Shell-CK #2726093*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12859" #$#12859*^*span#$# Federal Heath / Shell/CK #2726219*^*li#$# </day>
+				<day ordinal="17" name="Tuesday" date="16">
+					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_854" #$#854*^*span#$# Pattison Sign Group / KFC*^*li#$# </day>
+				<day ordinal="18" name="Wednesday" date="17">
+					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1042" #$#1042*^*span#$# Ruggles Sign / Brookstone #459*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12835" #$#12835*^*span#$# White's Furniture #12835 Summerfield*^*li#$# </day>
+				<day ordinal="19" name="Thursday" date="18"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12852" #$#12852*^*span#$# Federal Heath / Shell-CK #2722005*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12864" #$#12864*^*span#$# Federal Heath / Shell-CK #2722105*^*li#$# </day>
+				<day ordinal="20" name="Friday" date="19"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1024" #$#1024*^*span#$# Aloma Pharmacy #1024 Winter Park*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1032" #$#1032*^*span#$# Coastal Construction*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1051-2" #$#1051-2*^*span#$# Bill Moore </day>
+				<day ordinal="21" name="Saturday" date="20">
+					
+				</day>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="21">					
+				</day>
+				<day ordinal="23" name="Monday" date="22"/>
+				<day ordinal="24" name="Tuesday" date="23">					
+				</day>
+				<day ordinal="25" name="Wednesday" date="24">					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12836" #$#12836*^*span#$# La-Z-Boy Furniture Gallery #12836 Ocala*^*li#$# </day>
+				<day ordinal="26" name="Thursday" date="25">					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1057" #$#1057*^*span#$# First Class Dry Cleaners*^*li#$# </day>
+				<day ordinal="27" name="Friday" date="26">					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12832" #$#12832*^*span#$# Federal Heath / Shell - CK #2722103*^*li#$# </day>
+				<day ordinal="28" name="Saturday" date="27">					
+				</day>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="28">					
+				</day>
+				<day ordinal="30" name="Monday" date="29"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1040" #$#1040*^*span#$# Custom Sign Center, Inc. / Wendy's #01737*^*li#$# </day>
+				<day ordinal="31" name="Tuesday" date="31">					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_990" #$#990*^*span#$# Walton Signage / Dignity Memorial (Baldwin Fairchild)*^*li#$# </day>
+				<day ordinal="32" name="Wednesday" date="31"/>
+				<day ordinal="33" name="Thursday" date="">					
+				</day>
+				<day ordinal="34" name="Friday" date="">					
+				</day>
+				<day ordinal="35" name="Saturday" date="">					
+				</day>
+			</week>			
+		<day date=""/></month>
+				<month ordinal="6" name="June">
+			<week ordinal="1">
+				<day ordinal="1" name="Sunday" date="">
+					
+				</day>
+				<day ordinal="2" name="Monday" date="">
+						
+				</day>		
+				<day ordinal="3" name="Tuesday" date="">
+								
+				</day>
+				<day ordinal="4" name="Wednesday" date="">
+								
+				</day>
+				<day ordinal="5" name="Thursday" date="1">
+					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12822" #$#12822*^*span#$# Velocity, Inc. / FedEx Freight*^*li#$# </day>
+				<day ordinal="6" name="Friday" date="2">
+				
+				</day>
+				<day ordinal="7" name="Saturday" date="3">
+					
+				</day>
+			</week>
+			<week ordinal="2">
+				<day ordinal="8" name="Sunday" date="4">
+					
+				</day>
+				<day ordinal="9" name="Monday" date="5">
+					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1029" #$#1029*^*span#$# Blue Jacket Bar and Grille #1029 Orlando*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_985" #$#985*^*span#$# Pattison Sign Group, Inc. (Edmundston)*^*li#$# </day>
+				<day ordinal="10" name="Tuesday" date="6">
+				
+				</day>
+				<day ordinal="11" name="Wednesday" date="7">
+				
+				</day>
+				<day ordinal="12" name="Thursday" date="8">
+				
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1002" #$#1002*^*span#$# Principal Global / Cricket*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_952" #$#952*^*span#$# Bill Moore &amp;amp; Associates*^*li#$# </day>
+				<day ordinal="13" name="Friday" date="9">
+				
+				</day>
+				<day ordinal="14" name="Saturday" date="10">
+					
+				</day>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="11">
+					
+				</day>
+				<day ordinal="16" name="Monday" date="12">
+					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1013" #$#1013*^*span#$# Jones Sign / Save A Lot #00316*^*li#$# </day>
+				<day ordinal="17" name="Tuesday" date="13">
+					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1054" #$#1054*^*span#$# Walton Signage / Noodles &amp;amp; Company*^*li#$# </day>
+				<day ordinal="18" name="Wednesday" date="14">
+					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1055" #$#1055*^*span#$# Walton Signage / Noodles #250*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_987-2" #$#987-2*^*span#$# TDI Signs / Billabong - Beachworks Outlet*^*li#$# </day>
+				<day ordinal="19" name="Thursday" date="15">
+					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1061" #$#1061*^*span#$# Vixxo/Sally's #3121 Winter Park*^*li#$# </day>
+				<day ordinal="20" name="Friday" date="16">
+					
+				</day>
+				<day ordinal="21" name="Saturday" date="17">
+					
+				</day>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="18">					
+				</day>
+				<day ordinal="23" name="Monday" date="19">					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1051" #$#1051*^*span#$# Bill Moore &amp;amp; Associates / ROSS #1961*^*li#$# </day>
+				<day ordinal="24" name="Tuesday" date="20">					
+				</day>
+				<day ordinal="25" name="Wednesday" date="21">					
+				</day>
+				<day ordinal="26" name="Thursday" date="22">					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_1036" #$#1036*^*span#$# Pattison Sign Group (Toronto) / Auto Nation Toyota*^*li#$# </day>
+				<day ordinal="27" name="Friday" date="23">					
+				</day>
+				<day ordinal="28" name="Saturday" date="24">					
+				</day>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="25">					
+				</day>
+				<day ordinal="30" name="Monday" date="26">					
+				 ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_12585" #$#12585*^*span#$# Wendys #01768*^*li#$# </day>
+				<day ordinal="31" name="Tuesday" date="27">					
+				</day>
+				<day ordinal="32" name="Wednesday" date="28">					
+				</day>
+				<day ordinal="33" name="Thursday" date="29">					
+				</day>
+				<day ordinal="34" name="Friday" date="30">					
+				</day>
+				<day ordinal="35" name="Saturday" date="">					
+				</day>
+			</week>			
+		</month>
+		<month ordinal="7" name="July">
+			  <week ordinal="1">
+				  <day ordinal="1" name="Sunday" date=""/>
+				  <day ordinal="2" name="Monday" date=""/>	
+				  <day ordinal="3" name="Tuesday" date=""/>
+				  <day ordinal="4" name="Wednesday" date=""/>
+				  <day ordinal="5" name="Thursday" date=""/>
+				  <day ordinal="6" name="Friday" date=""/>
+				  <day ordinal="7" name="Saturday" date="1"/>
+			</week>
+			<week ordinal="2">
+				  <day ordinal="8" name="Sunday" date="2"/>
+				  <day ordinal="9" name="Monday" date="3"/>	
+				  <day ordinal="10" name="Tuesday" date="4"/>
+				  <day ordinal="11" name="Wednesday" date="5"/>				  
+				  <day ordinal="12" name="Thursday" date="6"/>
+				<day ordinal="13" name="Friday" date="7"/>
+				<day ordinal="14" name="Saturday" date="8"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="9"/>
+				<day ordinal="16" name="Monday" date="10"/>
+				<day ordinal="17" name="Tuesday" date="11"/>
+				<day ordinal="18" name="Wednesday" date="12"/>
+				<day ordinal="19" name="Thursday" date="13"/>
+				<day ordinal="20" name="Friday" date="14"/>"
+				<day ordinal="21" name="Saturday" date="15"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="16"/>
+				<day ordinal="23" name="Monday" date="17"/>
+				<day ordinal="24" name="Tuesday" date="18"/>
+				<day ordinal="25" name="Wednesday" date="19"/>
+				<day ordinal="26" name="Thursday" date="20"/>
+				<day ordinal="27" name="Friday" date="21"/>
+				<day ordinal="28" name="Saturday" date="22"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="23"/>
+				<day ordinal="30" name="Monday" date="24"/>
+				<day ordinal="31" name="Tuesday" date="25"/>
+				<day ordinal="32" name="Wednesday" date="26"/>
+				<day ordinal="33" name="Thursday" date="27"/>
+				<day ordinal="34" name="Friday" date="28"/>
+				<day ordinal="35" name="Saturday" date="29"/>	
+			</week>
+			<week ordinal="6">
+				<day ordinal="36" name="Sunday" date="30"/>
+				<day ordinal="37" name="Monday" date="31"/>
+				<day ordinal="38" name="Tuesday" date=""/>
+				<day ordinal="39" name="Wednesday" date=""/>
+				<day ordinal="40" name="Thursday" date=""/>
+				<day ordinal="41" name="Friday" date=""/>
+				<day ordinal="42" name="Saturday" date=""/>	
+			</week>							
+		</month>
+			<month ordinal="8" name="August">
+			<week ordinal="1">
+				<day ordinal="1" name="Sunday" date="">
+					
+				</day>
+				<day ordinal="2" name="Monday" date="">
+						
+				</day>		
+				<day ordinal="3" name="Tuesday" date="1">
+								
+				</day>
+				<day ordinal="4" name="Wednesday" date="2">
+								
+				</day>
+				<day ordinal="5" name="Thursday" date="3">
+					
+				</day>
+				<day ordinal="6" name="Friday" date="4">
+				
+				</day>
+				<day ordinal="7" name="Saturday" date="5">
+					
+				</day>
+			</week>
+			<week ordinal="2">
+				<day ordinal="8" name="Sunday" date="6">
+					
+				</day>
+				<day ordinal="9" name="Monday" date="7">
+					
+				</day>
+				<day ordinal="10" name="Tuesday" date="8">
+				
+				</day>
+				<day ordinal="11" name="Wednesday" date="9">
+				
+				</day>
+				<day ordinal="12" name="Thursday" date="10">
+				
+				</day>
+				<day ordinal="13" name="Friday" date="11">
+				
+				</day>
+				<day ordinal="14" name="Saturday" date="12">
+					
+				</day>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="13">
+					
+				</day>
+				<day ordinal="16" name="Monday" date="14">
+					
+				</day>
+				<day ordinal="17" name="Tuesday" date="15">
+					
+				</day>
+				<day ordinal="18" name="Wednesday" date="16">
+					
+				</day>
+				<day ordinal="19" name="Thursday" date="17">
+					
+				</day>
+				<day ordinal="20" name="Friday" date="18">
+					
+				</day>
+				<day ordinal="21" name="Saturday" date="19">
+					
+				</day>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="20">
+					
+				</day>
+				<day ordinal="23" name="Monday" date="21">
+					
+				</day>
+				<day ordinal="24" name="Tuesday" date="22">
+					
+				</day>
+				<day ordinal="25" name="Wednesday" date="23">
+					
+				</day>
+				<day ordinal="26" name="Thursday" date="24">
+					
+				</day>
+				<day ordinal="27" name="Friday" date="25">
+					
+				</day>
+				<day ordinal="28" name="Saturday" date="26">
+					
+				</day>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="27">
+					
+				</day>
+				<day ordinal="30" name="Monday" date="28">
+					
+				</day>
+				<day ordinal="31" name="Tuesday" date="29">
+					
+				</day>
+				<day ordinal="32" name="Wednesday" date="30">
+					
+				</day>
+				<day ordinal="33" name="Thursday" date="31">
+					
+				</day>
+				<day ordinal="34" name="Friday" date="">
+					
+				</day>
+				<day ordinal="35" name="Saturday" date="">
+					
+				</day>
+			</week>			
+		</month>
+		<month ordinal="9" name="September">
+			<week ordinal="1">
+				<day ordinal="1" name="Sunday" date="">
+					
+				</day>
+				<day ordinal="2" name="Monday" date="">
+						
+				</day>		
+				<day ordinal="3" name="Tuesday" date="">
+								
+				</day>
+				<day ordinal="4" name="Wednesday" date="">
+								
+				</day>
+				<day ordinal="5" name="Thursday" date="">
+					
+				</day>
+				<day ordinal="6" name="Friday" date="1"/>
+				<day ordinal="7" name="Saturday" date="2"/>
+			</week>
+			<week ordinal="2">
+				<day ordinal="8" name="Sunday" date="3"/>
+				<day ordinal="9" name="Monday" date="4"/>
+				<day ordinal="10" name="Tuesday" date="5"/>
+				<day ordinal="11" name="Wednesday" date="6"/>
+				<day ordinal="12" name="Thursday" date="7"/>
+				<day ordinal="13" name="Friday" date="8"/>
+				<day ordinal="14" name="Saturday" date="9"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="10"/>
+				<day ordinal="16" name="Monday" date="11"/>
+				<day ordinal="17" name="Tuesday" date="12"/>
+				<day ordinal="18" name="Wednesday" date="13"/>
+				<day ordinal="19" name="Thursday" date="14"/>
+				<day ordinal="20" name="Friday" date="15"/>
+				<day ordinal="21" name="Saturday" date="16"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="17"/>
+				<day ordinal="23" name="Monday" date="18"/>
+				<day ordinal="24" name="Tuesday" date="19"/>
+				<day ordinal="25" name="Wednesday" date="20"/>
+				<day ordinal="26" name="Thursday" date="21"/>
+				<day ordinal="27" name="Friday" date="22"/>
+				<day ordinal="28" name="Saturday" date="23"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="24"/>
+				<day ordinal="30" name="Monday" date="25"/>
+				<day ordinal="31" name="Tuesday" date="26"/>
+				<day ordinal="32" name="Wednesday" date="27"/>
+				<day ordinal="33" name="Thursday" date="28"/>
+				<day ordinal="34" name="Friday" date="29"/>
+				<day ordinal="35" name="Saturday" date="30"/>
+			</week>
+			<week ordinal="6">
+				<day ordinal="36" name="Sunday" date=""/>
+				<day ordinal="37" name="Monday" date="">
+					
+				</day>
+				<day ordinal="38" name="Tuesday" date="">
+					
+				</day>
+				<day ordinal="39" name="Wednesday" date="">
+					
+				</day>
+				<day ordinal="40" name="Thursday" date="">
+					
+				</day>
+				<day ordinal="41" name="Friday" date="">
+					
+				</day>
+				<day ordinal="42" name="Saturday" date="">
+					
+				</day>
+			</week>
+		</month>
+		<month ordinal="10" name="October">
+			<week ordinal="1">
+				  <day ordinal="1" name="Sunday" date="1">
+					  
+				  </day>
+				  <day ordinal="2" name="Monday" date="2">
+					 
+				  </day>	
+				  <day ordinal="3" name="Tuesday" date="3">
+					  
+				  </day>
+				  <day ordinal="4" name="Wednesday" date="4">
+					  
+				  </day>
+				  <day ordinal="5" name="Thursday" date="5">
+					  
+				  </day>
+				  <day ordinal="6" name="Friday" date="6">
+					  
+				  </day>
+				  <day ordinal="7" name="Saturday" date="7">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="2">
+				  <day ordinal="8" name="Sunday" date="8">
+					  
+				  </day>
+				  <day ordinal="9" name="Monday" date="9">
+					  
+				  </day>
+				  <day ordinal="10" name="Tuesday" date="10">
+					  
+				  </day>
+				  <day ordinal="11" name="Wednesday" date="11">
+					  
+				  </day>
+				  <day ordinal="12" name="Thursday" date="12">
+					  
+				  </day>
+				  <day ordinal="13" name="Friday" date="13">
+					  
+				  </day>
+				  <day ordinal="14" name="Saturday" date="14">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="3">
+				  <day ordinal="15" name="Sunday" date="15">
+					  
+				  </day>
+				  <day ordinal="16" name="Monday" date="16">
+					  
+				  </day>
+				  <day ordinal="17" name="Tuesday" date="17">
+					  
+				  </day>
+				  <day ordinal="18" name="Wednesday" date="18">
+					  
+				  </day>
+				  <day ordinal="19" name="Thursday" date="19">
+					  
+				  </day>
+				  <day ordinal="20" name="Friday" date="20">
+					  
+				  </day>
+				  <day ordinal="21" name="Saturday" date="21">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="4">
+				  <day ordinal="22" name="Sunday" date="22">
+					  
+				  </day>
+				  <day ordinal="23" name="Monday" date="23">
+					  
+				  </day>
+				  <day ordinal="24" name="Tuesday" date="24">
+					  
+				  </day>
+				  <day ordinal="25" name="Wednesday" date="25">
+					  
+				  </day>
+				  <day ordinal="26" name="Thursday" date="26">
+					  
+				  </day>
+				  <day ordinal="27" name="Friday" date="27">
+					  
+				  </day>
+				  <day ordinal="28" name="Saturday" date="28">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="5">
+				  <day ordinal="29" name="Sunday" date="29">
+					  
+				  </day>
+				  <day ordinal="30" name="Monday" date="30">
+					  
+				  </day>
+				  <day ordinal="31" name="Tuesday" date="31">
+					  
+				  </day>
+				  <day ordinal="32" name="Wednesday" date="">
+					  
+				  </day>
+				  <day ordinal="33" name="Thursday" date="">
+					  
+				  </day>
+				  <day ordinal="34" name="Friday" date="">
+					  
+				  </day>
+				  <day ordinal="0" name="Saturday" date="">
+				  	
+				  </day>		  
+			  </week>
+		</month>
+		<month ordinal="11" name="November">
+			  <week ordinal="1">
+				  <day ordinal="1" name="Sunday" date="">
+					  
+				  </day>
+				  <day ordinal="2" name="Monday" date="">
+						  
+				  </day>		
+				  <day ordinal="3" name="Tuesday" date="">
+					  			
+				  </day>
+				  <day ordinal="4" name="Wednesday" date="1"/>
+				  <day ordinal="5" name="Thursday" date="2"/>
+				  <day ordinal="6" name="Friday" date="3"/>
+				  <day ordinal="7" name="Saturday" date="4"/>
+			  </week>
+			  <week ordinal="2">
+				  <day ordinal="8" name="Sunday" date="5"/>
+				  <day ordinal="9" name="Monday" date="6"/>
+				  <day ordinal="10" name="Tuesday" date="7"/>
+				  <day ordinal="11" name="Wednesday" date="8"/>
+				  <day ordinal="12" name="Thursday" date="9"/>
+				  <day ordinal="13" name="Friday" date="10"/>
+				  <day ordinal="14" name="Saturday" date="11"/>
+			  </week>
+			  <week ordinal="3">
+				  <day ordinal="15" name="Sunday" date="12"/>
+				  <day ordinal="16" name="Monday" date="13"/>
+				  <day ordinal="17" name="Tuesday" date="14"/>
+				  <day ordinal="18" name="Wednesday" date="15"/>
+				  <day ordinal="19" name="Thursday" date="16"/>
+				  <day ordinal="20" name="Friday" date="17"/>
+				  <day ordinal="21" name="Saturday" date="18"/>
+			  </week>
+				  <week ordinal="4">
+				  <day ordinal="22" name="Sunday" date="19"/>
+				  <day ordinal="23" name="Monday" date="20"/>
+				  <day ordinal="24" name="Tuesday" date="21"/>
+				  <day ordinal="25" name="Wednesday" date="22"/>
+				  <day ordinal="26" name="Thursday" date="23"/>
+				  <day ordinal="27" name="Friday" date="24"/>
+				  <day ordinal="28" name="Saturday" date="25"/>
+			  </week>
+			  <week ordinal="5">
+				  <day ordinal="29" name="Sunday" date="26"/>
+				  <day ordinal="30" name="Monday" date="27"/>
+				  <day ordinal="31" name="Tuesday" date="28"/>
+				  <day ordinal="32" name="Wednesday" date="29"/>
+				  <day ordinal="33" name="Thursday" date="30"/>
+				  <day ordinal="34" name="Friday" date="">					  
+				  </day>
+				  <day ordinal="35" name="Saturday" date="">					  
+				  </day>
+			  </week>
+		  </month>
+		  <month ordinal="12" name="December">
+			  <week ordinal="1">
+				  <day ordinal="1" name="Sunday" date=""/>
+				  <day ordinal="2" name="Monday" date=""/>	
+				  <day ordinal="3" name="Tuesday" date=""/>
+				  <day ordinal="4" name="Wednesday" date=""/>
+				  <day ordinal="5" name="Thursday" date=""/>
+				  <day ordinal="6" name="Friday" date=""/>
+				  <day ordinal="7" name="Saturday" date="1"/>
+			</week>
+			<week ordinal="2">
+				  <day ordinal="8" name="Sunday" date="2"/>
+				  <day ordinal="9" name="Monday" date="3"/>	
+				  <day ordinal="10" name="Tuesday" date="4"/>
+				  <day ordinal="11" name="Wednesday" date="5"/>				  
+				  <day ordinal="12" name="Thursday" date="6"/>
+				<day ordinal="13" name="Friday" date="7"/>
+				<day ordinal="14" name="Saturday" date="8"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="9"/>
+				<day ordinal="16" name="Monday" date="10"/>
+				<day ordinal="17" name="Tuesday" date="11"/>
+				<day ordinal="18" name="Wednesday" date="12"/>
+				<day ordinal="19" name="Thursday" date="13"/>
+				<day ordinal="20" name="Friday" date="14"/>"
+				<day ordinal="21" name="Saturday" date="15"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="16"/>
+				<day ordinal="23" name="Monday" date="17"/>
+				<day ordinal="24" name="Tuesday" date="18"/>
+				<day ordinal="25" name="Wednesday" date="19"/>
+				<day ordinal="26" name="Thursday" date="20"/>
+				<day ordinal="27" name="Friday" date="21"/>
+				<day ordinal="28" name="Saturday" date="22"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="23"/>
+				<day ordinal="30" name="Monday" date="24"/>
+				<day ordinal="31" name="Tuesday" date="25"/>
+				<day ordinal="32" name="Wednesday" date="26"/>
+				<day ordinal="33" name="Thursday" date="27"/>
+				<day ordinal="34" name="Friday" date="28"/>
+				<day ordinal="35" name="Saturday" date="29"/>	
+			</week>
+			<week ordinal="6">
+				<day ordinal="36" name="Sunday" date="30"/>
+				<day ordinal="37" name="Monday" date="31"/>
+				<day ordinal="38" name="Tuesday" date=""/>
+				<day ordinal="39" name="Wednesday" date=""/>
+				<day ordinal="40" name="Thursday" date=""/>
+				<day ordinal="41" name="Friday" date=""/>
+				<day ordinal="42" name="Saturday" date=""/>	
+			</week>							
+		</month>			
+	</year>
+  </calendar>
+</calendars>

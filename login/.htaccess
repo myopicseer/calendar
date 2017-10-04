@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName "MANAGE WIP Calendar"
+AuthGroupFile /dev/null
+AuthUserFile /home/custo299/public_html/.htpasswd
+Require valid-user

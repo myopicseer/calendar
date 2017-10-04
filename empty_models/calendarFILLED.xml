@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+<!ENTITY nbsp "&#160;">
+]>
+<calendars>
+  <calendar id="Custom Sign Center">
+	 <year ordinal="2016">
+		  <month ordinal="1" name="January">
+		  </month>
+		  <month ordinal="2" name="February">
+		  </month>
+		  <month ordinal="3" name="March">
+		  </month>
+		  <month ordinal="4" name="April">
+		  </month>
+		  <month ordinal="5" name="May">
+			  <week ordinal="1">
+				  <day ordinal="1" name="Sunday" date="1"/>
+				  <day ordinal="2" name="Monday" date="2"/>	
+				  <day ordinal="3" name="Tuesday" date="3"/>
+				  <day ordinal="4" name="Wednesday" date="4"/>
+				  <day ordinal="5" name="Thursday" date="5"/>
+				  <day ordinal="6" name="Friday" date="6"/>
+				  <day ordinal="7" name="Saturday" date="7"/>
+			  </week>
+			  <week ordinal="2">
+				  <day ordinal="8" name="Sunday" date="8"/>
+				  <day ordinal="9" name="Monday" date="9"/>
+				  <day ordinal="10" name="Tuesday" date="10"/>
+				  <day ordinal="11" name="Wednesday" date="11"/>
+				  <day ordinal="12" name="Thursday" date="12"/>
+				  <day ordinal="13" name="Friday" date="13"/>
+				  <day ordinal="14" name="Saturday" date="14"/>
+			  </week>
+			  <week ordinal="3">
+				  <day ordinal="15" name="Sunday" date="15"/>
+				  <day ordinal="16" name="Monday" date="16"/>
+				  <day ordinal="17" name="Tuesday" date="17"/>
+				  <day ordinal="18" name="Wednesday" date="18"/>
+				  <day ordinal="19" name="Thursday" date="19"/>
+				  <day ordinal="20" name="Friday" date="20"/>
+				  <day ordinal="21" name="Saturday" date="21"/>
+			  </week>
+			  <week ordinal="4">
+				  <day ordinal="22" name="Sunday" date="22"/>
+				  <day ordinal="23" name="Monday" date="23"/>
+				  <day ordinal="24" name="Tuesday" date="24"/>
+				  <day ordinal="25" name="Wednesday" date="25"/>
+				  <day ordinal="26" name="Thursday" date="26"/>
+				  <day ordinal="27" name="Friday" date="27"/>
+				  <day ordinal="28" name="Saturday" date="28"/>
+			  </week>
+			  <week ordinal="5">
+				  <day ordinal="29" name="Sunday" date="29"/>
+				  <day ordinal="30" name="Monday" date="30"/>
+				  <day ordinal="31" name="Tuesday" date="31"/>
+				  <day ordinal="32" name="Wednesday" date="">
+					  
+				  </day>
+				  <day ordinal="33" name="Thursday" date="">
+					  
+				  </day>
+				  <day ordinal="34" name="Friday" date="">
+					  
+				  </day>
+				  <day ordinal="0" name="Saturday" date="">
+				  	
+				  </day>		  
+			  </week>
+		  </month>
+		  <month ordinal="6" name="June">
+			  <week ordinal="1">
+				  <day ordinal="1" name="Sunday" date="">
+					  
+				  </day>
+				  <day ordinal="2" name="Monday" date="">
+						  
+				  </day>		
+				  <day ordinal="3" name="Tuesday" date="">
+					  			
+				  </day>
+				  <day ordinal="4" name="Wednesday" date="1"/>
+				  <day ordinal="5" name="Thursday" date="2"/>
+				  <day ordinal="6" name="Friday" date="3"/>
+				  <day ordinal="7" name="Saturday" date="4"/>
+			  </week>
+			  <week ordinal="2">
+				  <day ordinal="8" name="Sunday" date="5"/>
+				  <day ordinal="9" name="Monday" date="6"/>
+				  <day ordinal="10" name="Tuesday" date="7"/>
+				  <day ordinal="11" name="Wednesday" date="8"/>
+				  <day ordinal="12" name="Thursday" date="9"/>
+				  <day ordinal="13" name="Friday" date="10"/>
+				  <day ordinal="14" name="Saturday" date="11"/>
+			  </week>
+			  <week ordinal="3">
+				  <day ordinal="15" name="Sunday" date="12"/>
+				  <day ordinal="16" name="Monday" date="13"/>
+				  <day ordinal="17" name="Tuesday" date="14"/>
+				  <day ordinal="18" name="Wednesday" date="15"/>
+				  <day ordinal="19" name="Thursday" date="16"/>
+				  <day ordinal="20" name="Friday" date="17"/>
+				  <day ordinal="21" name="Saturday" date="18"/>
+			  </week>
+				  <week ordinal="4">
+				  <day ordinal="22" name="Sunday" date="19"/>
+				  <day ordinal="23" name="Monday" date="20"/>
+				  <day ordinal="24" name="Tuesday" date="21"/>
+				  <day ordinal="25" name="Wednesday" date="22"/>
+				  <day ordinal="26" name="Thursday" date="23"/>
+				  <day ordinal="27" name="Friday" date="24"/>
+				  <day ordinal="28" name="Saturday" date="25"/>
+			  </week>
+			  <week ordinal="5">
+				  <day ordinal="29" name="Sunday" date="26"/>
+				  <day ordinal="30" name="Monday" date="27"/>
+				  <day ordinal="31" name="Tuesday" date="28"/>
+				  <day ordinal="32" name="Wednesday" date="29"/>
+				  <day ordinal="33" name="Thursday" date="30"/>
+				  <day ordinal="34" name="Friday" date="">
+					  
+				  </day>
+				  <day ordinal="35" name="Saturday" date="">
+					  
+				  </day>
+			  </week>
+		  </month>
+		  <month ordinal="7" name="July">
+			<week ordinal="1">
+				<day ordinal="1" name="Sunday" date="">
+					
+				</day>
+				<day ordinal="2" name="Monday" date="">
+						
+				</day>		
+				<day ordinal="3" name="Tuesday" date="">
+								
+				</day>
+				<day ordinal="4" name="Wednesday" date="">
+								
+				</day>
+				<day ordinal="5" name="Thursday" date="">
+					
+				</day>
+				<day ordinal="6" name="Friday" date="1"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#96427 Red Roof*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97426 Tim Hortons 5663*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98246 John Gavin*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98323 Haman Midwest*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98380 Golden Pond*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98381 Fairways at Boulder Creek*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98416 HER Pickerington*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98418 Skinner, Greg*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98421 Hydro Force Inc.*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98423 Rush Idealease*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98429 KELLER WILLIAMS CONSULTANTS*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98430 The Courtyards at O'Kelly Chapel*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98432 Epcon Communities*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98438 KELLER WILLIAMS CONSULTANTS*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98455 Lynn Saul*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98460 KELLER WILLIAMS CONSULTANTS*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98462 Lynn Saul*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98463 The Potters House Church of God*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98469 King Thompson*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98471 JAK REAL ESTATE*^*li#$# </day>
+				<day ordinal="7" name="Saturday" date="2"/>
+			</week>
+			<week ordinal="2">
+				<day ordinal="8" name="Sunday" date="3"/>
+				<day ordinal="9" name="Monday" date="4"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#93799 Kiddie Academy of Nesconset*^*li#$# </day>
+				<day ordinal="10" name="Tuesday" date="5"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98428 Wendy's Site #03434*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98453 Boyer Signs/O'Neill Foundation*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98479 Wendy's Site #04449*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98484 KELLER WILLIAMS CONSULTANTS*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98487 KELLER WILLIAMS CAPITAL PARTNERS*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98490 KELLER WILLIAMS CONSULTANTS*^*li#$# </day>
+				<day ordinal="11" name="Wednesday" date="6"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97973 Bridgeman Foods Storage Facility*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98065 Best Lighting Products*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98227 Coughlin Realty*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98338 Courtryards at Pepper Creek*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98339 Maples at Sonatas*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98444 El Petate*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98449 Best  Homes Real Estate*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98450 JBE AUTO SALES LLC*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98452 Trustin Lawn Care*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98457 Zulfi Ahmad*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98459 KELLER WILLIAMS CAPITAL PARTNERS*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98465 Remax Right Now*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98466 Universal Processing Company*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98480 Cruisin Classics*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98500 Cutler Real Estate*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98503 Caldwell Construction*^*li#$# </day>
+				<day ordinal="12" name="Thursday" date="7"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98195 Mills Realty*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98289 Outdoor Cocoa/Florida Farm Bureau Ins.*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98354 Duke Mfg*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98357 Duke Mfg*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98363 Duke Mfg*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98365 Duke Mfg*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98366 Duke Mfg*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98388 Robert Paul*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98445 Kiddie Academy of Cupertino*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98447 Breathing Air Systems*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98456 Wendy's Site #10547*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98458 Madison County Junior Fair Sale Committee*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98470 Unlimited Transportation*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98472 CROWN REAL ESTATE*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98481 B and B Forklift/towlift*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98511 Lifestyle Real Estate Services*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98512 REMAX METRO PLUS*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98519 SIGNATURE REAL ESTATE*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98520 REMAX ELITE SERVICE*^*li#$# </day>
+				<day ordinal="13" name="Friday" date="8"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97582 Wendy's Site #00891*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97583 Wendy's Site #00891*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97584 Wendy's Site #00891*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97643 Boyer Signs/Fred's Home Service*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97680 Wendy's Site #00891*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97843 Scioto Valley*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97998 Advance Home Care LLC*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98005 Huntington Bank*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98256 Wendy's Site #11727*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98292 Huntington Bank*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98389 Boyer Signs/Utilicon Corp.*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98415 Wendy's Site #00996*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98451 Donato's*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98461 Aim Realty Advisors*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98489 Providence Christian Center*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98495 Rush Idealease*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98496 Rush Idealease*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98524 Wendy's Site #11728*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98525 Greg Skinner*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98527 KELLER WILLIAMS CLASSIC PROPERTIES*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98528 KELLER WILLIAMS CLASSIC PROPERTIES*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98529 Remax Achivers*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98531 Core Ohio Realty Advisors*^*li#$# </day>
+				<day ordinal="14" name="Saturday" date="9"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="10"/>
+				<day ordinal="16" name="Monday" date="11"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#92501 Wendy's Site #00467*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97763 Wendy's Site #03722*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97764 Wendy's Site #03722*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97836 Elder Beerman #128*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97878 Bista Brothers*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98070 Manna, Inc. Warehouse (BF South)*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98102 Wendy's Site #02669*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98123 Villas at Glenealy*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98132 Wendy's Site #01865*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98132-1 Wendy's Site #01865*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98213 Tim Hortons 11109*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98224 SP Plus Signs*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98328 Direct Medical Transportation*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98344 CubeSmart*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98407 Anshul Patel*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98411 Wendy's Site #11097*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98412 Wendy's Site #11216*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98413 The Wasserstrom Company*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98414 CDC Head Start*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98474 Wendy's Site #04699*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98477 Wendy's Site #02309*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98482 KELLER WILLIAMS CLASSIC PROPERTIES*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98483 CDC Head Start*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98493 Alban Realty*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98497 Greg Skinner*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98502 KELLER WILLIAMS CONSULTANTS*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98504 Bista Brothers*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98522 Harr's Fork Lift*^*li#$# </day>
+				<day ordinal="17" name="Tuesday" date="12"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#96691 Wendy's Site #09599*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97578 Wendy's Site #02141*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97925 Red Roof Inn of Goodlettsville, TN*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98197 Healthy Smile*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98199 METRO FITNESS*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98247 Donatos #215*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98373 Wendy's*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98374 Wendy's*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98501 Three-C Body Shop*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98506 G Home Improvement*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98508 El Petate*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98509 RD Management LLC*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98513 REALTY INVEST*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98521 SIGNATURE REAL ESTATE*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98526 Hidden Lakes Condos*^*li#$# </day>
+				<day ordinal="18" name="Wednesday" date="13">~~li class="lineEntry t8" title="Right Click for Options" contenteditable="false"#$#New Job*^*li#$#~~li class="lineEntry unassigned" title="Right Click for Options" contenteditable="false"#$#New Job*^*li#$# ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97981 The Middlefield Banking Company*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98260 Bedford Place*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98332 Wendy's Site #03589*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98420 Victorious Living Christian Center*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98436 CVS Store #2702*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98523 Genpak, LLC*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98532 ROSS REALTORS*^*li#$# </day>
+				<day ordinal="19" name="Thursday" date="14"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98009 Stevenson Service Experts*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98283 Courtyards at Village Crossing*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98285 The Courtyards at Hidden Ravines North*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98367 Wendy's Site #11766*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98372 Wendy's Site #03328*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98467 Duke Mfg*^*li#$# </day>
+				<day ordinal="20" name="Friday" date="15"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98370 Wendy's Site #07827*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98371 Wendy's Site #07827*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98398 Wendy's Site #07827*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98399 Wendy's Site #07827*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98473 Wendy's Site #02015*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98476 Wendy's Site #00960*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98478 Wendy's Site #03957*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98486 Wendy's Site #08456*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98488 Unlimited Transportation*^*li#$# </day>
+				<day ordinal="21" name="Saturday" date="16"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="17"/>
+				<day ordinal="23" name="Monday" date="18"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97154 Wendy's Site #11671*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97449 Wendy's Site #06485*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97450 Wendy's Site #06485*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98313 Little Bear*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98321 Kiddie Academy of Park Ridge*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98464 Berlin Sign Co. WEN #02524*^*li#$# </day>
+				<day ordinal="24" name="Tuesday" date="19"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97519 Tim Horton's # 5748*^*li#$# </day>
+				<day ordinal="25" name="Wednesday" date="20"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98331 The Courtyards at Jerome Village*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98468 Tim Horton's #4759*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98507 Boyer/Dalad Group*^*li#$# </day>
+				<day ordinal="26" name="Thursday" date="21"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98491 Duke Mfg*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98492 Duke Mfg*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98494 Duke Mfg*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98498 Duke Mfg*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98499 Duke Manufacturing*^*li#$# </day>
+				<day ordinal="27" name="Friday" date="22"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97861 Boyer Signs/Balin Law*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98098 Outdoor Cocoa/Flag Wharf/Lake Fredrica Shopping Center*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98109 DeArini's*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98351 Wendy's Site #00956*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98446 Wendy's Site #06393*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98514 Wendy's Site #08456*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98517 Wendy's Site #08162*^*li#$# </day>
+				<day ordinal="28" name="Saturday" date="23"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="24"/>
+				<day ordinal="30" name="Monday" date="25"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97097 Boyer Signs/Mid America/Parma Plaza*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98352 Area 809 Multiservices*^*li#$# </day>
+				<day ordinal="31" name="Tuesday" date="26"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98422 Tim Hortons 4518*^*li#$# </day>
+				<day ordinal="32" name="Wednesday" date="27"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98106 Red Roof Plus #265*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98201 Bridgeman Foods Storage Facility*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98206 Boyer Signs/Incredible Foodz*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98439 Donatos*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98442 Allen Industries*^*li#$# </day>
+				<day ordinal="33" name="Thursday" date="28"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97010 Wendy's Site #11590*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98143 Wendy's Site #06881*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98485 Flyer's Pizza Corporate Office*^*li#$# </day>
+				<day ordinal="34" name="Friday" date="29"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#91413 Wendy's Site #11535*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#93584 Kiddie Academy of Cupertino*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#96205 CUSTOM SIGN CENTER (WILSON)*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#96808 Wendy's Site #03397*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#96830 CUSTOM SIGN CENTER (WILSON)*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#96872 CUSTOM SIGN CENTER (WILSON)*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#96976 Red Roof Inn, Inc.*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97201 Baesman Printing*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97235 Kiddie Academy of Katy*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97465 Red Roof Inn, Inc.*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97627 Courtyards at Village Crossing*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97819 Wendy's Site #07951*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97905 Wendy's Site #02310*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#97926 Gyro City*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98131 Wendy's Site #08162*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98263 City Center Childcare*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98275 Boyer Signs/Dalad Rockside Center III*^*li#$#  ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#98392 JG/Persona/Quality Inn*^*li#$# </day>
+				<day ordinal="35" name="Saturday" date="30"/>
+			</week>
+			<week ordinal="6">
+				<day ordinal="36" name="Sunday" date="31"/>
+				<day ordinal="37" name="Monday" date="">
+					
+				</day>
+				<day ordinal="38" name="Tuesday" date="">
+					
+				</day>
+				<day ordinal="39" name="Wednesday" date="">
+					
+				</day>
+				<day ordinal="40" name="Thursday" date="">
+					
+				</day>
+				<day ordinal="41" name="Friday" date="">
+					
+				</day>
+				<day ordinal="42" name="Saturday" date="">
+					
+				</day>
+			</week>
+		</month>
+		<month ordinal="8" name="August">
+			<week ordinal="1">
+				<day ordinal="1" name="Sunday" date="">
+					
+				</day>
+				<day ordinal="2" name="Monday" date="1"/>		
+				<day ordinal="3" name="Tuesday" date="2"/>
+				<day ordinal="4" name="Wednesday" date="3"/>
+				<day ordinal="5" name="Thursday" date="4"/>
+				<day ordinal="6" name="Friday" date="5"/>
+				<day ordinal="7" name="Saturday" date="6"/>
+			</week>
+			<week ordinal="2">
+				<day ordinal="8" name="Sunday" date="7"/>
+				<day ordinal="9" name="Monday" date="8"/>
+				<day ordinal="10" name="Tuesday" date="9"/>
+				<day ordinal="11" name="Wednesday" date="10"/>
+				<day ordinal="12" name="Thursday" date="11"/>
+				<day ordinal="13" name="Friday" date="12"/>
+				<day ordinal="14" name="Saturday" date="13"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="14"/>
+				<day ordinal="16" name="Monday" date="15"/>
+				<day ordinal="17" name="Tuesday" date="16"/>
+				<day ordinal="18" name="Wednesday" date="17"/>
+				<day ordinal="19" name="Thursday" date="18"/>
+				<day ordinal="20" name="Friday" date="19"/>
+				<day ordinal="21" name="Saturday" date="20"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="21"/>
+				<day ordinal="23" name="Monday" date="22"/>
+				<day ordinal="24" name="Tuesday" date="23"/>
+				<day ordinal="25" name="Wednesday" date="24"/>
+				<day ordinal="26" name="Thursday" date="25"/>
+				<day ordinal="27" name="Friday" date="26"/>
+				<day ordinal="28" name="Saturday" date="27"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="28"/>
+				<day ordinal="30" name="Monday" date="29"/>
+				<day ordinal="31" name="Tuesday" date="31"/>
+				<day ordinal="32" name="Wednesday" date="31"/>
+				<day ordinal="33" name="Thursday" date="">
+					
+				</day>
+				<day ordinal="34" name="Friday" date="">
+					
+				</day>
+				<day ordinal="35" name="Saturday" date="">
+					
+				</day>
+			</week>			
+		</month>
+		<month ordinal="9" name="September">
+			<week ordinal="1">
+				<day ordinal="1" name="Sunday" date="">
+					
+				</day>
+				<day ordinal="2" name="Monday" date="">
+						
+				</day>		
+				<day ordinal="3" name="Tuesday" date="">
+								
+				</day>
+				<day ordinal="4" name="Wednesday" date="">
+								
+				</day>
+				<day ordinal="5" name="Thursday" date="1"/>
+				<day ordinal="6" name="Friday" date="2"/>
+				<day ordinal="7" name="Saturday" date="3"/>
+			</week>
+			<week ordinal="2">
+				<day ordinal="8" name="Sunday" date="4"/>
+				<day ordinal="9" name="Monday" date="5"/>
+				<day ordinal="10" name="Tuesday" date="6"/>
+				<day ordinal="11" name="Wednesday" date="7"/>
+				<day ordinal="12" name="Thursday" date="8"/>
+				<day ordinal="13" name="Friday" date="9"/>
+				<day ordinal="14" name="Saturday" date="10"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="11"/>
+				<day ordinal="16" name="Monday" date="12"/>
+				<day ordinal="17" name="Tuesday" date="13"/>
+				<day ordinal="18" name="Wednesday" date="14"/>
+				<day ordinal="19" name="Thursday" date="15"/>
+				<day ordinal="20" name="Friday" date="16"/>
+				<day ordinal="21" name="Saturday" date="17"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="18"/>
+				<day ordinal="23" name="Monday" date="19"/>
+				<day ordinal="24" name="Tuesday" date="20"/>
+				<day ordinal="25" name="Wednesday" date="21"/>
+				<day ordinal="26" name="Thursday" date="22"/>
+				<day ordinal="27" name="Friday" date="23"/>
+				<day ordinal="28" name="Saturday" date="24"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="25"/>
+				<day ordinal="30" name="Monday" date="26"/>
+				<day ordinal="31" name="Tuesday" date="27"/>
+				<day ordinal="32" name="Wednesday" date="28"/>
+				<day ordinal="33" name="Thursday" date="29"/>
+				<day ordinal="34" name="Friday" date="30"/>
+				<day ordinal="35" name="Saturday" date="">
+					
+				</day>
+			</week>			
+		</month>
+		<month ordinal="10" name="October">
+			<week ordinal="1">
+				<day ordinal="1" name="Sunday" date="">
+					
+				</day>
+				<day ordinal="2" name="Monday" date="">
+						
+				</day>		
+				<day ordinal="3" name="Tuesday" date="">
+								
+				</day>
+				<day ordinal="4" name="Wednesday" date="">
+								
+				</day>
+				<day ordinal="5" name="Thursday" date="">
+					
+				</day>
+				<day ordinal="6" name="Friday" date="">
+				
+				</day>
+				<day ordinal="7" name="Saturday" date="1"/>
+			</week>
+			<week ordinal="2">
+				<day ordinal="8" name="Sunday" date="2"/>
+				<day ordinal="9" name="Monday" date="3"/>
+				<day ordinal="10" name="Tuesday" date="4"/>
+				<day ordinal="11" name="Wednesday" date="5"/>
+				<day ordinal="12" name="Thursday" date="6"/>
+				<day ordinal="13" name="Friday" date="7"/>
+				<day ordinal="14" name="Saturday" date="8"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="9"/>
+				<day ordinal="16" name="Monday" date="10"/>
+				<day ordinal="17" name="Tuesday" date="11"/>
+				<day ordinal="18" name="Wednesday" date="12"/>
+				<day ordinal="19" name="Thursday" date="13"/>
+				<day ordinal="20" name="Friday" date="14"/>
+				<day ordinal="21" name="Saturday" date="15"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="16"/>
+				<day ordinal="23" name="Monday" date="17"/>
+				<day ordinal="24" name="Tuesday" date="18"/>
+				<day ordinal="25" name="Wednesday" date="19"/>
+				<day ordinal="26" name="Thursday" date="20"/>
+				<day ordinal="27" name="Friday" date="21"/>
+				<day ordinal="28" name="Saturday" date="22"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="23"/>
+				<day ordinal="30" name="Monday" date="24"/>
+				<day ordinal="31" name="Tuesday" date="25"/>
+				<day ordinal="32" name="Wednesday" date="26"/>
+				<day ordinal="33" name="Thursday" date="27"/>
+				<day ordinal="34" name="Friday" date="28"/>
+				<day ordinal="35" name="Saturday" date="29"/>
+			</week>
+			<week ordinal="6">
+				<day ordinal="29" name="Sunday" date="30"/>
+				<day ordinal="30" name="Monday" date="31"/>
+				<day ordinal="31" name="Tuesday" date=""/>
+				<day ordinal="32" name="Wednesday" date=""/>
+				<day ordinal="33" name="Thursday" date=""/>
+				<day ordinal="34" name="Friday" date=""/>
+				<day ordinal="35" name="Saturday" date=""/>
+			</week>					
+		</month>
+		<month ordinal="11" name="November">
+			<week ordinal="1">
+				<day ordinal="1" name="Sunday" date="">
+					
+				</day>
+				<day ordinal="2" name="Monday" date="">
+						
+				</day>		
+				<day ordinal="3" name="Tuesday" date="1"/>
+				<day ordinal="4" name="Wednesday" date="2"/>
+				<day ordinal="5" name="Thursday" date="3"/>
+				<day ordinal="6" name="Friday" date="4"/>
+				<day ordinal="7" name="Saturday" date="5"/>
+			</week>
+			<week ordinal="2">
+				<day ordinal="8" name="Sunday" date="6"/>
+				<day ordinal="9" name="Monday" date="7"/>
+				<day ordinal="10" name="Tuesday" date="8"/>
+				<day ordinal="11" name="Wednesday" date="9"/>
+				<day ordinal="12" name="Thursday" date="10"/>
+				<day ordinal="13" name="Friday" date="11"/>
+				<day ordinal="14" name="Saturday" date="12"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="13"/>
+				<day ordinal="16" name="Monday" date="14"/>
+				<day ordinal="17" name="Tuesday" date="15"/>
+				<day ordinal="18" name="Wednesday" date="16"/>
+				<day ordinal="19" name="Thursday" date="17"/>
+				<day ordinal="20" name="Friday" date="18"/>
+				<day ordinal="21" name="Saturday" date="19"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="20"/>
+				<day ordinal="23" name="Monday" date="21"/>
+				<day ordinal="24" name="Tuesday" date="22"/>
+				<day ordinal="25" name="Wednesday" date="23"/>
+				<day ordinal="26" name="Thursday" date="24"/>
+				<day ordinal="27" name="Friday" date="25"/>
+				<day ordinal="28" name="Saturday" date="26"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="27"/>
+				<day ordinal="30" name="Monday" date="28"/>
+				<day ordinal="31" name="Tuesday" date="29"/>
+				<day ordinal="32" name="Wednesday" date="30"/>
+				<day ordinal="33" name="Thursday" date="">
+					
+				</day>
+				<day ordinal="34" name="Friday" date="">
+					
+				</day>
+				<day ordinal="35" name="Saturday" date="">
+					
+				</day>
+			</week>			
+		</month>
+		<month ordinal="12" name="December">
+			<week ordinal="1">
+				<day ordinal="1" name="Sunday" date="">
+					
+				</day>
+				<day ordinal="2" name="Monday" date="">
+						
+				</day>		
+				<day ordinal="3" name="Tuesday" date="">
+								
+				</day>
+				<day ordinal="4" name="Wednesday" date="">
+								
+				</day>
+				<day ordinal="5" name="Thursday" date="1"/>
+				<day ordinal="6" name="Friday" date="2"/>
+				<day ordinal="7" name="Saturday" date="3"/>
+			</week>
+			<week ordinal="2">
+				<day ordinal="8" name="Sunday" date="4"/>
+				<day ordinal="9" name="Monday" date="5"/>
+				<day ordinal="10" name="Tuesday" date="6"/>
+				<day ordinal="11" name="Wednesday" date="7"/>
+				<day ordinal="12" name="Thursday" date="8"/>
+				<day ordinal="13" name="Friday" date="9"/>
+				<day ordinal="14" name="Saturday" date="10"/>
+			</week>
+			<week ordinal="3">
+				<day ordinal="15" name="Sunday" date="11"/>
+				<day ordinal="16" name="Monday" date="12"/>
+				<day ordinal="17" name="Tuesday" date="13"/>
+				<day ordinal="18" name="Wednesday" date="14"/>
+				<day ordinal="19" name="Thursday" date="15"/>
+				<day ordinal="20" name="Friday" date="16"/>
+				<day ordinal="21" name="Saturday" date="17"/>
+			</week>
+			<week ordinal="4">
+				<day ordinal="22" name="Sunday" date="18"/>
+				<day ordinal="23" name="Monday" date="19"/>
+				<day ordinal="24" name="Tuesday" date="20"/>
+				<day ordinal="25" name="Wednesday" date="21"/>
+				<day ordinal="26" name="Thursday" date="22"/>
+				<day ordinal="27" name="Friday" date="23"/>
+				<day ordinal="28" name="Saturday" date="24"/>
+			</week>
+			<week ordinal="5">
+				<day ordinal="29" name="Sunday" date="25"/>
+				<day ordinal="30" name="Monday" date="26"/>
+				<day ordinal="31" name="Tuesday" date="27"/>
+				<day ordinal="32" name="Wednesday" date="28"/>
+				<day ordinal="33" name="Thursday" date="29"/>
+				<day ordinal="34" name="Friday" date="30"/>
+				<day ordinal="35" name="Saturday" date="31"/>
+			</week>			
+		</month>
+	 </year>
+	 <year ordinal="2017">
+		<month ordinal="1" name="January">
+			<week ordinal="1">
+				  <day ordinal="1" name="Sunday" date="1">
+					  
+				  </day>
+				  <day ordinal="2" name="Monday" date="2">
+					 
+				  </day>	
+				  <day ordinal="3" name="Tuesday" date="3">
+					  
+				  </day>
+				  <day ordinal="4" name="Wednesday" date="4">
+					  
+				  </day>
+				  <day ordinal="5" name="Thursday" date="5">
+					  
+				  </day>
+				  <day ordinal="6" name="Friday" date="6">
+					  
+				  </day>
+				  <day ordinal="7" name="Saturday" date="7">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="2">
+				  <day ordinal="8" name="Sunday" date="8">
+					  
+				  </day>
+				  <day ordinal="9" name="Monday" date="9">
+					  
+				  </day>
+				  <day ordinal="10" name="Tuesday" date="10">
+					  
+				  </day>
+				  <day ordinal="11" name="Wednesday" date="11">
+					  
+				  </day>
+				  <day ordinal="12" name="Thursday" date="12">
+					  
+				  </day>
+				  <day ordinal="13" name="Friday" date="13">
+					  
+				  </day>
+				  <day ordinal="14" name="Saturday" date="14">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="3">
+				  <day ordinal="15" name="Sunday" date="15">
+					  
+				  </day>
+				  <day ordinal="16" name="Monday" date="16">
+					  
+				  </day>
+				  <day ordinal="17" name="Tuesday" date="17">
+					  
+				  </day>
+				  <day ordinal="18" name="Wednesday" date="18">
+					  
+				  </day>
+				  <day ordinal="19" name="Thursday" date="19">
+					  
+				  </day>
+				  <day ordinal="20" name="Friday" date="20">
+					  
+				  </day>
+				  <day ordinal="21" name="Saturday" date="21">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="4">
+				  <day ordinal="22" name="Sunday" date="22">
+					  
+				  </day>
+				  <day ordinal="23" name="Monday" date="23">
+					  
+				  </day>
+				  <day ordinal="24" name="Tuesday" date="24">
+					  
+				  </day>
+				  <day ordinal="25" name="Wednesday" date="25">
+					  
+				  </day>
+				  <day ordinal="26" name="Thursday" date="26">
+					  
+				  </day>
+				  <day ordinal="27" name="Friday" date="27">
+					  
+				  </day>
+				  <day ordinal="28" name="Saturday" date="28">
+					  
+				  </day>
+			  </week>
+			  <week ordinal="5">
+				  <day ordinal="29" name="Sunday" date="29">
+					  
+				  </day>
+				  <day ordinal="30" name="Monday" date="30">
+					  
+				  </day>
+				  <day ordinal="31" name="Tuesday" date="31">
+					  
+				  </day>
+				  <day ordinal="32" name="Wednesday" date="">
+					  
+				  </day>
+				  <day ordinal="33" name="Thursday" date="">
+					  
+				  </day>
+				  <day ordinal="34" name="Friday" date="">
+					  
+				  </day>
+				  <day ordinal="0" name="Saturday" date="">
+				  	
+				  </day>		  
+			  </week>
+		</month>
+	 </year>
+  </calendar>
+</calendars>
