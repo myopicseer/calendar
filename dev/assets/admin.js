@@ -3,7 +3,7 @@ $(document).ready(function (){
 	
 var contextMenu = $('<div id="divContextMenu" style="display:none">'+ 
 	'<input id="reschedule" type="text" placeholder="reschedule" />'+	
-	'<div class="container"><div class="nav"><ul id="ulContextMenu">'+	
+	'<div class="nav-container"><div class="nav"><ul id="ulContextMenu">'+	
 	    '<li id="t0" onclick="jobAssignment(0, this)" option="0" style="text-align:right;color:red">x Close</li>'+
 	    '<li>ASSIGN<ul><li id="t1" onclick="jobAssignment(1, this)" option="1">Team 1</li>'+
 	    '<li id="t2" onclick="jobAssignment(2, this)" option="2">Team 2</li>'+
@@ -27,6 +27,34 @@ var contextMenu = $('<div id="divContextMenu" style="display:none">'+
 						formatSubmit: 'mm/dd/yyyy',
 					}
 				);
+	
+	
+	   var clipboard = new Clipboard('.copy',{
+	  target: function(trigger) {        	
+		  if( trigger.hasAttribute('data-clipboard-target')){				  
+			  return trigger.nextElementSibling;
+		  } else {			  
+			  trigger.text('Insert Copied Job');
+			  trigger.className = "paste";			  
+			  //return the text content of the LI element that is subject to the opened Actions Menu.
+			  return editableLI;
+		  }
+		  
+	    }		
+	});
+
+    clipboard.on('success', function(e) {
+	   console.info('Action:', e.action);
+	   console.info('Text:', e.text);
+	   console.info('Trigger:', e.trigger);
+    
+	   e.clearSelection();
+    });
+    
+    clipboard.on('error', function(e) {
+	   console.error('Action:', e.action);
+	   console.error('Trigger:', e.trigger);
+    });
 }); // doc ready.
 
 //admin only func
@@ -103,8 +131,25 @@ function contextMenuHandler(newList){
 /* option is the numeric index location of LI clicked in contextMenu, obj is the LI DOM object clicked from the MENU */
 function jobAssignment(opt, obj){
 	
-	wait('start');	
-	//editableLI = $(obj);
+	wait('start');
+	
+	/* old version
+	if( opt === 21 ){
+		
+		if( $(editableLI).hasClass("due") ){			
+			$(editableLI).removeClass("due");
+			$(editableLI).removeClass("t21"); //this class is used in checkbox controls to hide/show entry
+			$(editableLI).addClass('context-style');
+		} else {
+			$(editableLI).addClass("due");
+			$(editableLI).removeClass('context-style');
+			$(editableLI).addClass("t21");
+		}
+		//keep any other styling (team assignment, etc...), so return now.
+		wait('end');
+		return;
+	}
+	*/
 	if( opt === 21 ){
 		//alert("Option to change overdue status chosen.");
 		if( $(editableLI).hasClass("due") ){
@@ -117,9 +162,12 @@ function jobAssignment(opt, obj){
 		return;
 	}
 	
-	if( $(editableLI).hasClass("unassigned") &&  opt !== 0 ){	
-		   // if unassigned, unless this is a close cmd, we are going to change it to assigned.
-		   removeUnassigned(opt);							 
+	if( $(editableLI).hasClass("unassigned") &&  opt !== 0 && opt !== 13 && $(obj).attr("id") !== 'delete' ){	
+		
+		   removeUnassigned(opt);
+		   return;
+		
+		   
 	} 
 	//some new option was selected, so clean LI assignment classes if this action is an assignment:
 	if( parseInt(opt) >= 1 && parseInt(opt) <= 8){		
@@ -196,7 +244,7 @@ function jobAssignment(opt, obj){
 			$(contextMenu).remove();
 			//$(editableLI).removeClass('context-style');
 			//TODO: add a trigger to focus on the error message ctr at top of page
-			//giveNotice('<span style="color: #FF0000">Failed</span>: A problem was encountered trying to parse your date change request.');
+			giveNotice('<span style="color: #FF0000">Failed</span>: A problem was encountered trying to parse your date change request.');
 		}
 		     $(contextMenu).remove();
 		//if($(editableLI).hasClass("context-style")){
@@ -251,8 +299,9 @@ function jobAssignment(opt, obj){
     				$(editableLI).remove();
 			}
 		 } else {
-			 if( $(editableLI).hasClass("due") ) { $(editableLI).removeClass("due"); }
+			 
 			 $(editableLI).addClass( 'completed' );
+			 if($(editableLI).hasClass("due")) {$(editableLI).removeClass("due");}
 		 }
 		 		
 	 }
@@ -267,23 +316,36 @@ function jobAssignment(opt, obj){
 		
 		if( $(obj).text() === "Copy This Job"){
 			//copy to the clipboard, else paste
-			$(obj).text() = "Insert The Copied Job";
+			$(obj).text("Insert Copied Job");
 		
-		var JobLiClone = $(editableLI).clone(true,true);//includes LI, its events and inner html.
-	
-	
-		
-		var span = $(JobLiClone).children('span').first();			
-		span.removeAttribute('id');//remove the id="job_10000"
-		$(span).addClass( 'copyof' + $(span).text() ); //flag it with a class we can use to delete all jobs later.
-		
+		     var JobLiClone = $(editableLI).clone(true);//includes LI, dont't want event handlers as they refer to the original job obj.	
+			$(JobLiClone).removeClass('context-style');
+			var span = $(JobLiClone).children('span').first();			
+			$(span).removeAttr('id');//remove the id="job_10000"
+			$(span).addClass( 'copyof' + $(span).text() ); //flag it with a class we can use to delete all jobs later.	
+			
+			// if we copy a copy, then [COPIED] gets duplicated each time. 
+			// Check that there is no COPIED text, add if not.
+			var ptrn =  /(?:\[CONT\.\])/g;
+			if( ptrn.exec( $(span).text() ) === null  ){
 				
+				$(span).append(' [CONT.] ');
+				
+			}
+			
+			
+			$("#hiddenClipboard").html('');
+			$("#hiddenClipboard").html(JobLiClone);	
 		
 		//if more than one span, we prepend the 1st one, and append the others.
 		} else {
 			//paste the job
-			$(obj).text() = "Copy This Job"
-			
+			$(obj).text("Copy This Job");
+		     var LIST = $("#hiddenClipboard").children('li').first();
+			var clonedLI = $(LIST).clone(true);		
+			$(editableLI).closest('.edit').append(clonedLI);
+			bindListeners4EachList( $(editableLI).closest('.edit') );
+			return;
 		}
 		
 		
@@ -374,7 +436,7 @@ function jobAssignment(opt, obj){
 			
 		if(ico !== true){
 		 
-		 var CSSid = $(obj).attr("id"); //the id of the clicked menu item (e.g, t1, t2, etc.)
+ 		var CSSid = $(obj).attr("id"); //the id of the clicked menu item (e.g, t1, t2, etc.)
 			console.log("CSSid is "+CSSid);
 			//global boxIDs = ['t0','t1','t2','t3','t4','t5','t6','t7','t8','t9','t10']
 		 if('t0' !== CSSid){ //not an 'exit menu' click.
@@ -806,380 +868,6 @@ function  bindListeners4EachList(ULtags)
 
 }
 
-//admin and mgr vers are diff: admin adds the teams to the context menu.
-function teamNamesHTML()
-{	
-	
-	
-	var li0 = '<li id="';
-	var liCl = '" Class="';
-	var li1 = '" onclick="jobAssignment(';
-	var li2 = ', this)" option="';
-	var li3 = '">';
-	var li4 = '</li>';
-	
-	
-	if(curCompany == "Custom Sign Center")
-	{	
-		
-		assignLabels = [
-			'RobertC',
-			'DennisH',
-			'',
-			'',
-			'Install',
-			'SubInstall',
-			'CSC Transp',
-			'Shipping',
-			'Cust PU',
-			' UPS', 
-			' Unassigned',			
-			' Service',
-			' 2-Man',
-			' 100ft Crane',
-			' Part Needed',
-			' Completed',
-			' Completed &amp; Invoiced',
-			' Info Needed',
-			' Inspection Required',
-			' Inspection Approved',						
-			' Prmt Compl/Not Required',
-			'Overdue'
-		];	
-		
-		teamAssignment = [
-		
-				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
-		
-				/*'<div class="tooltip">Bob-Michael<span class="tooltiptext">Contact Info Can Be Displayed Here!</span></div></li>',*/
-		
-				li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,		
-				'',
-				'',				
-				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,
-				li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
-				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
-				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
-				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
-			
-				// iconmoon elements
-				li0 + 'ic-ups' + liCl +'na' + li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
-				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
-			
-				
-			
-				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
-				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
-				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
-				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
-				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
-				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
-				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
-				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
-				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
-				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4,			
-				//css style only, no icon for Overdue (class .due)
-				li0 + 'due' + liCl +'due' + li1 + '21' +li2 + '21' + li3 + assignLabels[21] + li4
-			];	
-	
-		
-	} 
-	else if(curCompany == "MarionOutdoor")
-	{		
-		
-		
-		assignLabels = [
-			'ChadL',
-			'CurtisS',			
-			'DavidS',
-			'',
-			'Install', 
-				'', 
-			'Rec CSC Transp',
-			'Rec Shipping',
-			'Cust PU',
-			' Rec UPS',
-			' Unassigned',
-			' Service',
-			' 2-Man',
-			' 100ft Crane',
-			' Part Needed',
-			' Completed',
-			' Completed &amp; Invoiced',
-			' Info Needed',
-			' Inspection Required',
-			' Inspection Approved',						
-			' Prmt Compl/Not Required'				
-		];	
-		
-		teamAssignment = [
-				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
-				li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
-				
-				li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,		
-				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
-				'',
-				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
-			
-				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
-				'',
-				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
-				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
-				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
-				// iconmoon elements
-				li0 + 'ic-ups' + liCl +'t5' + li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
-				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
-				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
-				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
-				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
-				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
-				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
-				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
-				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
-				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
-				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
-				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
-			];	
-		
-	
-	}
-	else if(curCompany == "Marion Signs")
-	{		
-		
-			assignLabels = [
-				
-			'ChadL',
-			'CurtisS',			
-			'DavidS',
-			'',//team reserved
-			'Install', //unassigned
-				'', //subinstall
-			'Rec CSC Transp',
-			'Rec Shipping',
-			'Cust PU',
-			' Rec UPS',
-			' Unassigned',
-			' Service',
-			' 2-Man',
-			' 100ft Crane',
-			' Part Needed',
-			' Completed',
-			' Completed &amp; Invoiced',
-			' Info Needed',
-			' Inspection Required',
-			' Inspection Approved',						
-			' Prmt Compl/Not Required'
-				
-		
-		];
-		
-		teamAssignment = [
-				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
-				li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
-				
-				li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,		
-				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
-				'',
-				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
-			
-				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
-				'',
-				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
-				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
-				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
-				// iconmoon elements
-				li0 + 'ic-ups' + liCl +'t5' + li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
-				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
-				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
-				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
-				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
-				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
-				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
-				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
-				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
-				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
-				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
-				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
-			];	
-			
-		
-		
-	}
-	else if(curCompany == "Outdoor Images")
-	{	
-		assignLabels = [
-			'ChadL',
-			'',			
-			'DavidS',
-			'',
-			'Install', 
-				'', 
-			'Rec CSC Transp',
-			'Rec Shipping',
-			'Cust PU',
-			' Rec UPS',
-			' Unassigned',
-			' Service',
-			' 2-Man',
-			' 100ft Crane',
-			' Part Needed',
-			' Completed',
-			' Completed &amp; Invoiced',
-			' Info Needed',
-			' Inspection Required',
-			' Inspection Approved',						
-			' Prmt Compl/Not Required'
-			];
-		
-			teamAssignment = [
-		
-				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
-				//li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
-				'',
-				li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,		
-				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
-				'',
-				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
-			
-				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
-				'',
-				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
-				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
-				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
-				// iconmoon elements
-				li0 + 'ic-ups' +  li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
-				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
-				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
-				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
-				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
-				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
-				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
-				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
-				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
-				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
-				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
-				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
-			];	
-	
-	} else if(curCompany == "JG Signs")
-	{	
-		assignLabels = [
-			'',
-			'',			
-			'',
-			'',
-			'Install', 
-				'', 
-			'Rec CSC Transp',
-			'Rec Shipping',
-			'Cust PU',
-			' Rec UPS',
-			' Unassigned',
-			' Service',
-			' 2-Man',
-			' 100ft Crane',
-			' Part Needed',
-			' Completed',
-			' Completed &amp; Invoiced',
-			' Info Needed',
-			' Inspection Required',
-			' Inspection Approved',						
-			' Prmt Compl/Not Required'
-			];
-		
-			teamAssignment = [
-		
-				//li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
-				'',
-				//li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
-				'',
-				//li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,	
-				'',
-				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
-				'',
-				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
-			
-				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
-				'',
-				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
-				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
-				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
-				// iconmoon elements
-				li0 + 'ic-ups' +  li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
-				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
-				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
-				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
-				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
-				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
-				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
-				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
-				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
-				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
-				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
-				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
-			];	
-	
-	}
-	else if(curCompany == "Boyer Signs")
-	{	
-		assignLabels = [
-			'',
-			'',			
-			'',
-			'',
-			'Install', 
-				'', 
-			'Rec CSC Transp',
-			'Rec Shipping',
-			'Cust PU',
-			' Rec UPS',
-			' Unassigned',
-			' Service',
-			' 2-Man',
-			' 100ft Crane',
-			' Part Needed',
-			' Completed',
-			' Completed &amp; Invoiced',
-			' Info Needed',
-			' Inspection Required',
-			' Inspection Approved',						
-			' Prmt Compl/Not Required'
-			];
-		
-			teamAssignment = [
-		
-				
-				//li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
-				'',
-				//li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
-				'',
-				//li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,	
-				'',
-				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
-				'',
-				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
-			
-				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
-				'',
-				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
-				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
-				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
-				// iconmoon elements
-				li0 + 'ic-ups' +  li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
-				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
-				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
-				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
-				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
-				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
-				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
-				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
-				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
-				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
-				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
-				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
-			];	
-	
-	}
 	
 	
 	
@@ -1201,7 +889,7 @@ function teamNamesHTML()
 			$("#l21").parent('div.iconrow').removeClass('hide');
 			$("#l21").html(team);
 			i--;
-			alert("menu item is overdue and the iterator is " +i);
+			//alert("menu item is overdue and the iterator is " +i);
 		
 			
 		} else {
@@ -1240,7 +928,7 @@ function teamNamesHTML()
 	
 	contextMenu = $('<div id="divContextMenu" style="display:none">'+ 
 	'<input id="reschedule" type="text" placeholder="reschedule" />'+	
-	'<div class="container"><nav class="navbar"><ul id="ulContextMenu">'+	
+	'<div class="nav-container"><nav class="navbar"><ul id="ulContextMenu">'+	
 	    '<li id="t0" onclick="jobAssignment(0, this)" option="0" style="text-align:right;color:red">x Close</li>'+
 	    '<li style="padding:12px 5px;color:#000000">ASSIGN<ul>'+	    
 		menuOptAssign +
@@ -1259,6 +947,7 @@ function teamNamesHTML()
 	    teamAssignment[19]+
 	    teamAssignment[20]+
 	    '</ul></li>'+
+				 '<li id="copy" data-clipboard-target="" data-clipboard-action="copy" onclick="jobAssignment(13, this)" class="copy" option="copy">Copy This Job</li>'+
 	    '<li style="padding:12px 5px" id="delete" class="delete" onclick="jobAssignment(11, this)" option="11">Delete Entry</li>'+
 	'</ul></nav></div>');
 	
@@ -1319,16 +1008,34 @@ function setOverDueJob(){
 	if( isEmpty(overdueJobs) === false ){
 
 		//first erase all the content of the overdue job list in the view:
-		//$('#OverDueJobsList').html('');
+		$('#OverDueJobsList').html('');
 
 		//write all the updated overdue jobs to the view:
 		//by iterating through the overdueJobs properties:
 		Object.keys(overdueJobs).forEach(function(key) {
 			$('#OverDueJobsList').append(overdueJobs[key]);
 		});		
-		$('#OverDueJobsList').prepend('<p><span class="due" style="padding: 3px 8px !important; font-size: 18px">Overdue Jobs</span></p>');
-	}//if			
+		/*$('#OverDueJobsList').prepend('<p><span class="due" style="padding: 3px 8px !important; font-size: 18px">Overdue Jobs</span></p>');*/
+	} else {
+		$('#OverDueJobsList').html('<p>Excellent! All WIPs are On-Schedule.</p>');
+	}			
 				
+}
+
+function unsetOverDueJob(){
+	//alert("UnSet this as overdue");
+	//called when user assigns a job "overdue";
+	$(editableLI).removeClass("due");
+	$(editableLI).removeClass("t21"); //this class is used in checkbox controls to hide/show entry
+	$(editableLI).addClass('context-style');
+	//remove this job from the global obj 'overdueJobs'
+	//1. get the job # of current edited job in dom
+		var jobNmbr = $(editableLI).children('span').first().text(); //the job number parent span is always the first one in the LI.
+	//2. delete that property
+		delete overdueJobs[jobNmbr]; 
+	//3. Delete the job from the overdue display in the DOM.
+		$("#"+jobNmbr).remove();	
+	
 }
 
 

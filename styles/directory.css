@@ -273,30 +273,41 @@ used like:
 	border-color:aquamarine;
 }
 .row:nth-child(odd) {background: #E3EEF0}
-.sixt{
+.sixt{	
+	width:15%;	
+}
+.sevent{
+	width:17.8%;
+}
+.fift{
+	width:14%;
+}
+.sixt,.fift,.sevent
+{
 	box-sizing:border-box;
-	width:15.5%;
-	
 	padding: 5px;
 }
 label.sixt{
 	display:inline-block;
 }
-.six{
-	
-	width:6%;
+.seventy{	
+	width:70px;
 }
-.three{
-	width:3%;
+.eighty{	
+	width:80px;
+}
+.fifty{
+	width:50px;
 	
 }
-.four{
-	width:4%;
+.sixty{
+	width:60px;
 	
 }
 .inline{
 	display:inline-block;
 }
+.inline,input{overflow: hidden}
 .ghosted, .ghosted .p{
 	color: #8AC0A3 !important;
 }
@@ -317,4 +328,5 @@ label.sixt{
 	border-color:#E0E0E0;	
 }
 #pageTitle{color:#1889B8}
+#btnEditGroup{padding: 6px 0; box-sizing: border-box;}
 

@@ -1,38 +1,49 @@
 <?php 
-	//require_once('../classes/security.php');
-	//libxml_use_internal_errors(true);
-
-	// initialize uri parameter variables.
-/*	$userURI = $sesURI = $roleURI = '&';
-
-	$url = "{$_SERVER['HTTP_HOST']}/{$_SERVER['REQUEST_URI']}";
-	$parts = parse_url($url);
-	if(isset($parts['query'])){
-		
-			parse_str($parts['query'], $query);
-		//start session:
-			if(!isset($_SESSION)){
-				require_once('classes/session.php');
-				$s = new Session;
-			}
-			*/
-		//print_r($_SESSION);
-			//if( $sesID = session_id() ){
-
-
-			if(!isset($_SESSION)){
-				require_once('classes/session.php');
-				$s = new Session;
-			}
-
-				
-		
-			//if($query['user']){
-				//$username =  $query['user'];
-				$username = $_SESSION['user']['name'];	
-				session_id() != NULL ? $sesID = session_id() : $sesID = '' ;
+header("Expires: Sat, 1 Jan 2005 00:00:00 GMT");
+header("Last-Modified: ".gmdate( "D, d M Y H:i:s")."GMT");
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+require_once('classes/security.php');
+if(!isset($_SESSION)){	
+	$s = new Session;
+}
+if($_SESSION['user']['name'])
+{
+	//if($query['user']){
+		//$username =  $query['user'];
+		$username = $_SESSION['user']['name'];	
+	//echo "username is " .$username;
+		session_id() != NULL ? $sesID = session_id() : $sesID = '' ;
+} elseif(empty($_SESSION['user']['name'])) {
+	header("location: login.php");
+}			
 			
-
+if( $_SESSION['user']['role'] === 'user' || !empty($_SESSION['user']['role']) || $_SESSION['user']['role'] !== 'guest' )
+{
+	$role = 'user';	
+}
+$ua = new userAuthenticate; //session start should be called by its parent, Session.
+if(!isset($_SESSION)){	
+	$s = new Session;
+	//echo 'Developer Notification: A new Session created and session.php loaded.';
+}
+//get array of all logged in users:
+//returns empty array, or users with assoc indices of 'username','email',
+$loggedUserList = $ua->getLoggedUsersList();
+$loggedUsers = '';
+if(!empty( $loggedUserList )){
+	$loggedUsers .= "<h4>Logged In</h4><p>";
+	//var_dump($loggedUserList);
+	/*array(1) { [0]=> array(3) { [0]=> array(3) { ["username"]=> string(5) "traci" ["email"]=> string(26) "traci@customsigncenter.com" ["role"]=> string(4) "user" } 
+	
+	[1]=> array(3) { ["username"]=> string(9) "Developer" ["email"]=> string(26) "chris@customsigncenter.com" ["role"]=> string(5) "admin" } 
+	
+	[2]=> array(3) { ["username"]=> string(8) "courtney" ["email"]=> string(29) "courtney@customsigncenter.com" ["role"]=> string(4) "user" } } } */
+	foreach($loggedUserList[0] as $lu){
+		$loggedUsers .= "username: " . $lu['username'] . ", " . $lu['email']. ", ". $lu['role']."<br/>";
+	}
+	$loggedUsers .= "</p>";
+}
 	
 	//session_start();
   	//$_SESSION['counter']++;
@@ -47,8 +58,11 @@
  *  @param $file  The file to be loaded.  Must be an absolute path (i.e.
  *                starting with slash).
  */
+//clear the remote cached file info from prior filemtime operations.
+clearstatcache();
 function auto_version($file)
 {
+  
   if(strpos($file, '/') !== 0 || !file_exists($_SERVER['DOCUMENT_ROOT'] . $file))
     return $file;
 
@@ -68,155 +82,320 @@ function auto_version($file)
   <meta charset="utf-8">
   <title></title> 
    <!--styles-->  
-   <!-- eventually have a calendarcommon.css, for shared styles between index and view calendars -->
-   <link href="styles/calendarview.css" rel="stylesheet" media="screen">
-  <!-- <link href="styles/print.css" rel="stylesheet" media="print"> -->
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-   <link rel="stylesheet" href="assets/pickadate.js-3.5.6/default.css">
-   <link rel="stylesheet" href="assets/pickadate.js-3.5.6/default.date.css">
+  <!--styles-->   
+   <link rel="stylesheet" href="<?php echo auto_version('styles/bootstrap.min.css'); ?>" type="text/css" media="screen" />
+   
+   <link rel="stylesheet" href="<?php echo auto_version('styles/calendarview.css'); ?>" type="text/css" media="screen" />
+   
+   <link rel="stylesheet" href="<?php echo auto_version('styles/print.css'); ?>" type="text/css" media="print" />   
+	
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">   
    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script&effect=3d-float' rel='stylesheet' type='text/css'> 
+ 
+   <link rel="stylesheet" href="assets/icomoon/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="styles/nav.css">	
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  
+   <link href='https://fonts.googleapis.com/css?family=Kaushan+Script&effect=3d-float' rel='stylesheet' type='text/css'> 
+ 
+   <link rel="stylesheet" href="assets/icomoon/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="styles/nav.css">
+ <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
    <style>
    .addNewLine{display:none;}
    </style>
     
 </head>
 <body>
-<div class="content-row">
-<pre style="text-align:center"><span style="font-size: 12px; background:#FEFFF3;padding:5px 8px;color:#419200; border: 1px dotted #8AC72D">Today: <span id="date"></span> [ <span id="curTime"></span> ]</span><br><br><span  style="text-align:center; margin: 8px auto 2px auto">Compatible Browsers (avoid Internet Explorer)</span><span> <a href="contact.php" target="_blank" title="Opens Email Form in a New Window or Tab">REPORT BUGS</a> | <a href="help.html" target="_blank" title="WIP Support">HELP</a></span><br>
-<img src="assets/compatible_browsers.png" title="Compatible Browsers for This Calendar App" style="text-align:center; margin: 0px auto 5px auto" />
+<div class="container-fluid" style="padding:15px;">
+<pre style="text-align:center"><span style="font-size: 12px; background:#FEFFF3;padding:5px 8px;color:#419200; border: 1px dotted #8AC72D">Today: <span id="date"></span> [ <span id="curTime"></span> ]</span> <br>
+<span><a href="contact.php" target="_blank" title="Opens Email Form in a New Window or Tab">REPORT BUGS</a> | <a href="help.html" target="_blank" title="WIP Support">HELP</a> | <a href="directory.php" target="_parent" title="Employee Phone Directory">EMPLOYEE DIRECTORY</a></span><br><br><span  style="text-align:center; margin: 8px auto 2px auto">Recommended Browsers (Avoid IE; MS Edge is OK)</span><br><img src="assets/compatible_browsers.png" title="Compatible Browsers for This Calendar App" style="text-align:center; margin: 0px auto 5px auto" />
 </pre>
+
 <h1 id="pageTitle" class="cursive font-effect-3d-float" style="margin: 6px auto;text-align:center;color:#000"></h1>
-<?php if($username) { 
-	echo "<span style=\"margin: 2px auto 5px auto;color:#000000\" class=\"cursive\">Welcome <span id=\"username\">". $username ."</span>.</span>  
-	<form action=\"login.php\" method=\"POST\" >
-		<input type=\"hidden\" value=\"".$username."\" name=\"loggedOutUser\" />
-		<input type=\"submit\" value=\"logout\" name=\"logout\" />
-	</form>
-	<!--
-	<form action=\"register.php?sid={$sesID}\" method=\"POST\" >
-		<input type=\"hidden\" value=\"".$_SESSION['user']['role']."\" name=\"role\" />
-		<input type=\"submit\" value=\"Register a User\" name=\"logout\" />
-	</form>
-	-->
-	";
-} ?>
-<form>
-	<input type="text" id="search" class="form form-control" placeholder="Search For Jobs" style="background-color: lightyellow;height:22px;margin:10px 0;padding:5px">
-	<div id="srchResult" class="hide" style="background-color: #86C73A; color:#0B6F93; padding:10px 25px"></div>
-</form>
+	<!--<h3 style="margin: 14px auto;text-align:center;color:#4642A8;background:#DDE95B;padding:18px; text-align:center;font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'DejaVu Sans', Verdana, 'sans-serif'">
+		APP DEVELOPMENT PLAYGROUND: This calendar is NOT SHARING nor SAVING Job Data with the Live Calendar.
+		
+	</h3>-->
+	
 <br />
-<div class="clearfix">
-<div class="fifty-pct">
-<h3 style="margin: 2px auto 5px auto;color:#8AC72D" class="cursive">Choose a Company Calendar</h3>
 
-<form action="" method="post" name="loadCalendar" id="loadCalendarForm">
-	<select name="companyCalendar" id="companyCalendar" >
-     	<option value="Custom Sign Center" selected>Custom Sign Center</option>
-          <option value="JG Signs">JG Signs</option>
-          <option value="Marion Signs">Marion Signs</option>          
-          <option value="Boyer Signs">Boyer Signs</option>
-          <option value="Outdoor Images">Outdoor Images</option>
-          <option value="MarionOutdoor">Marion-Outdoor</option>
-       </select>
-       <!--<input type="hidden" name="company" id="company" value="Custom Sign Center" />-->
-       <button class="smBtn" name="submitBtn" style="margin-left: 15px">Submit</button>
- </form>
- </div>
- <div class="fifty-pct" style="padding-left: 50px">
- </div>
- </div> <!--end clearfix-->
- <br/>
- <div class="clearfix">
-       <!-- <button class="morPad center btn save" name="update" onClick="saveMonth()">SAVE UPDATES</button>
-        <button class="morPad center btn undo" name="undo" onClick="editHistory('undo')">UNDO</button>
-        <button class="morPad center btn undoall" name="undoall" onClick="editHistory('undoall')">UNDO ALL</button>
-        <button class="morPad center btn redo" name="redo" onClick="editHistory('redo')">REDO</button>        
-        <a style="float:left;margin-left:7px" href="csvimport.php" target="_blank"><button class="morPad center btn import" name="import">IMPORT CSV</button></a>
-       
-        <!--<button class="morPad center btn" name="export" onClick="exportCSV()">EXPORT</button>-->
+
+<br />
+
+<div class="row">
+	<div class="col-lg-3 col-md-offset-1">		
+		<div style="margin: 2px auto 8px auto;font-size:18px;color:#8AC72D" class="cursive">Choose a Company Calendar</div>
+	
+	<form action="" method="post" name="loadCalendar" id="loadCalendarForm">
+		<select name="companyCalendar" id="companyCalendar" >
+			<option value="Custom Sign Center" selected>Custom Sign Center</option>
+			<option value="JG Signs">JG Signs</option>
+			<option value="Marion Signs">Marion Signs</option>          
+			<option value="Boyer Signs">Boyer Signs</option>
+			<option value="Outdoor Images">Outdoor Images</option>			
+		  </select>
+		  <!--<input type="hidden" name="company" id="company" value="Custom Sign Center" />-->
+		  <button class="smBtn" name="submitBtn" style="margin-left: 15px">Submit</button>
+	 </form>
+	 </div><!--/col-lg-4, select-company-form wrapper-->
+	 
+	 <div class="col-lg-3 col-md-offset-1">
+		 <form class="form-group"><label style="color:#8AC72D; font-weight: normal;font-size:18px" class="cursive">Search (Job Number or ANY text)</label>
+			<input type="text" id="search" class="form-control form-control-lg" placeholder="Search and Click" style="background-color: lightyellow; margin-top:6px">
+			<div id="srchResult" class="hide" style="background-color: #86C73A; color:#0B6F93; padding:10px 25px"></div>
+		</form>	 
+	</div><!--/col-lg-4, search jobs form-->	 
+	 
+	 <div class="col-lg-3 col-md-offset-1">
+		<?php if($username) { 
+			echo "<div style=\"margin: 2px auto 8px auto;;font-size:18px;color:#8AC72D\" class=\"cursive\">Welcome <span id=\"username\">". $username ." <span style='font-family:san-serif'>&nbsp;(".$role.").</span></span></div>
+			<form action=\"login.php\" method=\"POST\" >
+				<input type=\"hidden\" value=\"".$username."\" name=\"loggedOutUser\" />
+				<input class=\"smBtn\" type=\"submit\" value=\"logout\" name=\"logout\" />
+			</form>
+			<br/>";
+			echo $loggedUsers;
+	        echo "
+			<!-- Show this for admins?
+			<form action=\"register.php?sid={$sesID}\" method=\"POST\" >
+				<input type=\"hidden\" value=\"".$_SESSION['user']['role']."\" name=\"role\" />
+				<input type=\"submit\" value=\"Register a User\" name=\"logout\" />
+			</form>
+			-->
+			";
+		} else {
+			$username = 'user';
+		} ?>
+	 </div><!--/col-lg-3, Welcome user, logout form-->
+ </div> <!--end row-->
+ <div id="icons">
+ <div class="row">
+      
+        <!-- BACKUP
+        
+        <button class="morPad center btn backup" name="backup" onClick="toggleVisibility('#backup')">CREATE RESTORE POINT</button>
+        <form id="backup" name="backup" class="hide">
+		   <p>Backup File Name (leave as defined below, or enhance the name.)</p>
+		   <label>File Name: 
+			   <span>
+
+			   <?php //$filename = date('Y-m-d', strtotime('now')) + '_' + $username;  echo $filename; ?>
+			   
+			   </span>
+		   
+		   </label> <input type="text" name="filenameSuffix" value="" />
+		            <input type="hidden" name="filename" value="<?php // echo  $filename ?>" />
+			       <input type="submit" value="Backup Now" onclick='backUpCal()'>
+	  </form>
+       -->
         <!-- lengend -->
-        <div class="clearfix">
-        <div style="float:right; display:inline-block" id="icons">
-       <div name="teamdata" action="" id="teamSelection"> 
-       <span style="padding-top:12px;float:left">Assignment: &nbsp;</span>
-       <div class="iconrow">
-              <div class="icon-box b1"></div>
-              <input type="checkbox" id="select-1" name="t1" value="t1" checked="checked">
-              <div class="box-label t1" id="l1">Team 1</div>
-          </div>
-          <div class="iconrow">
-              <div class="icon-box b2"></div>
-              <input type="checkbox" id="select-2" name="t2" value="t2" checked="checked">
-              <div class="box-label t2" id="l2">Team 2</div>
-          </div>
-          <div class="iconrow">
-              <div class="icon-box b3"></div>
-              <input type="checkbox" id="select-3" name="t3" value="t3" checked="checked">
-              <div class="box-label t3" id="l3">Team 3</div>
-          </div>          
-           <div class="iconrow">
-               <div class="icon-box b4"></div>
-               <input type="checkbox" id="select-4" name="t4" value="t4" checked="checked">
-               <div class="box-label t4" id="l4">Team 4</div>
-           </div>                    
-           <div class="iconrow">
-               <div class="icon-box b5"></div>
-               <input type="checkbox" id="select-5" name="t5" value="t5" checked="checked">
-               <div class="box-label t5" id="l5">Team 5</div>
-           </div>                              
-          <div class="iconrow">
-          	<div class="icon-box b6"></div>
-               <input type="checkbox" id="select-6" name="t6" value="t6" checked="checked">
-               <div class="box-label t6" id="l6">Team 6</div>
-          </div>                                        
-         <div class="iconrow">
-              <div class="icon-box b7"></div>
-              <input type="checkbox" id="select-7" name="t7" value="t7" checked="checked">
-              <div class="box-label t7" id="l7">Team 7</div>
-         </div>                                                  
-         <div class="iconrow">
-         		<div class="icon-box b8"></div>
-               <input type="checkbox" id="select-8" name="t8" value="t8" checked="checked">
-               <div class="box-label t8" id="l8">Team 8</div>
-         </div> <br />
-         <span style="padding-top:12px;float:left">Status: &nbsp;</span>
-        <!-- <div class="iconrow">
-          	<div class="icon-box b9"></div>
-               <input type="checkbox" id="select-9" name="completed" value="t9" checked="checked">
-               <div class="box-label completed" id="l9">Completed</div>
-          </div>        
-          -->
-          <div class="iconrow">
-          	<div class="icon-box b10"></div>
-               <input type="checkbox" id="select-10" name="unassigned" value="t10" checked="checked">
-               <div class="box-label unassigned" id="l10">Unassigned</div>
-          </div>
-          <div class="iconrow">
-          	<div class="icon-box b11"></div>
-               <input type="checkbox" id="select-11" name="hold" value="t11" checked="checked">
-               <div class="box-label hold" id="l11">On Hold</div>
-          </div>
-          </div>        
-          </div>
-          </div> 
-          
-          <div class="clearfix"><br/>
-          <button class="smBtn" onclick="teamsShowAll()">Show All</button> &nbsp;
-          <button class="smBtn" onclick="teamsHideAll()">Hide All</button> &nbsp;
-          <button class="smBtn" id="btnPrint">Print</button> &nbsp;
-          <!--<button class="smBtn" id="btnEmail" title="Emails PDF Attachment to Distribution List">Email</button> &nbsp;-->
-         <!-- <button data-clipboard-target="div#copyemails" data-clipboard-action="copy" class="copy smBtn" id="previewEmails" > Preview Recipients</button>
-          <div id="prevEmailPopUp" class="hide" style="background:#3C8CB8; color:#ECC585; padding:12px; position:absolute; z-index:9999;">          
-          </div>-->
-          
-         </div>
-       
-  </div><!--end clearfix-->
+        
+        
+		
+			   <!-- column #1: listing of overdue jobs -->        
+			   <!-- show here, if any, jobs marked as OVERDUE -->
+		
+		<div class="col-lg-3 col-md-offset-1">
+			<div style="color:#8AC72D;font-size:18px" class="cursive" >Overdue Jobs</div>	  
+			<div id="OverDueJobsList">
+			</div>		
+		</div>   
+			   
+		
+		<!-- column #2: The Job Assignment Checkbox Groups --> 
+		
+		<div class="col-lg-8"> 
+	   
+	    		<div class="container-fluid">
+	    		  <div name="teamdata" action="" id="teamSelection"> <!--js id to show/hide ticked checkbox assignments-->
+				<div class="row">		   
+				    <div class="iconrow alert alert-success">      
+					    <!--chkbx attrib is used to show / hide jobs having matched css class (i.e. t21) -->    	
+						<input style="float:left" type="checkbox" id="select-21" name="t21" value="t21" checked="checked">               
+						<div class="box-label due"> Overdue</div>
+					</div>
+				</div><!--/row-->
+				<div class="row">					  
+					  <span style="padding-top:12px;float:left; clear:left">Assignment: &nbsp;</span>
+						  <div class="iconrow">             
+							<input style="float:left" type="checkbox" id="select-1" name="t1" value="t1" checked="checked">
+
+						    <div class="box-label t1" id="l1"></div>
+						</div>
+						<div class="iconrow">              
+						    <input style="float:left" type="checkbox" id="select-2" name="t2" value="t2"  checked="checked">
+
+						    <div class="box-label t2" id="l2"></div>
+						</div>
+						  <div class="iconrow">              
+						    <input style="float:left" type="checkbox" id="select-3" name="t3" value="t3"  checked="checked">
+
+						    <div class="box-label t3" id="l3"></div>
+						</div>          
+
+						  <div class="iconrow">              
+						    <input style="float:left" type="checkbox" id="select-4" name="t4" value="t4"  checked="checked">
+
+						    <div class="box-label t4" id="l4"></div>
+						</div>      
+
+						<div class="iconrow">              
+						    <input style="float:left" type="checkbox" id="select-5" name="t5" value="t5"  checked="checked">
+
+						    <div class="box-label t5" id="l5"></div>
+						</div>          
+						 <div class="iconrow">               
+							<input style="float:left" type="checkbox" id="select-6" name="t6" value="t6"  checked="checked">
+
+							<div class="box-label t6" id="l6"></div>
+						 </div>      
+						 <div class="iconrow">              
+							<input style="float:left" type="checkbox" id="select-7" name="t7" value="t7" checked="checked">
+							<div class="box-label" id="l7"></div>
+						 </div>                                
+						<div class="iconrow">
+							<input style="float:left" type="checkbox" id="select-8" name="t8" value="t8" checked="checked">               
+
+							<div class="box-label t8" id="l8"></div>
+						</div>                                        
+					    <div class="iconrow">              
+						    <input style="float:left" type="checkbox" id="select-9" name="t9" value="t9" checked="checked">
+						   <!--<div class="icon-box b7"></div>-->
+						    <div class="box-label t9" id="l9"></div>
+					    </div>                                                  
+					    <div class="iconrow">         		
+							<input style="float:left" type="checkbox" id="select-10" name="t10" value="t10"  checked="checked">
+
+							<div class="box-label t10" id="l10"></div>
+					    </div> 
+
+						<div class="iconrow">          	
+							<input style="float:left" type="checkbox" id="select-11" name="unassigned" value="unassigned" checked="checked">               
+							<div class="box-label" id="l11"> Unassigned</div>
+						</div>         
+						 
+				</div><!--/row-->
+		         </div><!--/#teamselection -- used by js to collect array of checkboxes for show/hide click events-->
+			    <div class="j row">
+				    <span style="padding-top:12px;float:left; color:#0d58a1;">Job Status: &nbsp;</span>
+				   <!-- <div class="iconrow">
+						<div class="icon-box b9"></div>
+						<input type="checkbox" id="select-9" name="completed" value="t9" checked="checked">
+						<div class="box-label completed" id="l9">Completed</div>
+					</div>        
+					-->         
+
+					<!-- Adding New Status Icons for Install Status and Permitting -->
+					<!-- Partially Completed Job, Return Trip Required - half-filled circle -->
+					<div class="iconrow">
+					  <!--  <input style="float:left" type="checkbox" id="select-12" name="inst-return" value="t12" checked="checked">-->
+						<div class="box-label" id="l12"></div>
+					</div>
+
+					<!-- Completed Job - Fully-filled Circle -->
+					<div class="iconrow">
+						 <!--<input style="float:left" type="checkbox" id="select-13" name="inst-compl" value="t13" checked="checked">-->
+						<div class="box-label" id="l13"></div>
+					</div>
+
+					<!-- Completed and Invoiced Job - Fully-filled Circle + 'chmark' -->
+					<div class="iconrow">
+					   <!--  <input style="float:left" type="checkbox" id="select-14" name="inst-invoice" value="t14" checked="checked">-->
+						<div class="box-label ic-i-comp" id="l14"> Completed+Invoiced</div>
+					</div>
+
+					<!-- Job Requirement "2-man team" - dumbbell-like icon -->
+					<div class="iconrow">
+					    <!--  <input style="float:left" type="checkbox" id="select-15" name="inst-team" value="t15" checked="checked">-->
+						<div class="box-label" id="l15"> 2-Man Crew</div>
+					</div>
+
+					<!-- Job Requirement "100-ft Crane" - Triangle Crane icon -->
+					<div class="iconrow">
+						<!-- <input style="float:left" type="checkbox" id="select-16" name="inst-crane" value="t16" checked="checked">-->
+						<div class="box-label" id="l16"> 100ft Crane</div>
+					</div>
+
+					<!-- Job Requirement "Parts Needed" - Barcode icon -->
+					<div class="iconrow">
+						<!-- <input style="float:left" type="checkbox" id="select-17" name="inst-parts" value="t17" checked="checked">  -->             
+						<div class="box-label" id="l17"> Awaiting Parts</div>      
+					</div>
+			  </div><!--/row-->
+
+			  <div class="p row">
+				<span style="padding-top:12px;float:left;color:#0f8040">Permit Status: </span>
+				 <div class="iconrow">
+					<!--<input style="float:left" type="checkbox" id="select-18" name="perm-info" value="t18" checked="checked">-->
+					<div class="box-label" id="l18"> Permit Info</div>
+				</div>
+
+				<div class="iconrow">
+					<!--<input style="float:left" type="checkbox" id="select-18" name="perm-info" value="t19" checked="checked">-->
+					<div class="box-label" id="l19"> Permit Info</div>
+				</div>
+
+				<!-- Permit Inspection Approved - Green Eye icon -->
+				<div class="iconrow">
+					<!-- <input style="float:left" type="checkbox" id="select-19" name="perm-insp-req" value="t20" checked="checked">-->
+					<div class="box-label" id="l20"> Inspection Required </div>
+				</div>
+
+				<!-- Permit Info Needed - Question-mark icon -->
+				<div class="iconrow">          	
+					<!-- <input style="float:left" type="checkbox" id="select-20" name="perm-insp-appr" value="t21" checked="checked">-->
+					<div class="box-label" id="l21"> Inspection Approved</div>
+				</div>    
+
+
+				<!-- Permit Approved or Not Required - Solid Green Square icon -->
+			    <!--  <div class="iconrow">
+				   <!--   <input style="float:left" type="checkbox" id="select-21" name="ic-p-appr" value="t22" checked="checked">
+					<div class="box-label" id="l20"> </div>
+				</div>-->
+				<!-- Permit Inspection Required - Red Eye icon -->
+			    <!--  <div class="iconrow">          	
+					<!-- <input style="float:left" type="checkbox" id="select-11" name="hold" value="t11" checked="checked">
+					<div class="box-label" id="l16">On Hold</div>
+				</div>-->
+
+			    <!-- Permit Required - Half Green Square icon 
+				<div class="iconrow">
+				    <!--  <input type="checkbox" id="select-21" name="perm-req" value="t21" checked="checked">
+					<div class="box-label hold" id="l21"> Permit Required</div> 
+				</div>-->
+
+			  </div><!--/row, permitting checkboxes-->
+
+			
+			 </div><!--container-fluid for checkboxes-->
+		 </div><!--/col-8 for job-assignment checkboxes-->
+		
+		
+	   </div><!--/row, overdue jobs and job assignment selector columns-->
+	</div><!--/#icons styling-->
+          <br/>
+          <div class="row">
+           	<div class="col-md-10">
+           	<div class="pull-right"> 
+			
+			
+          		<button class="smBtn" onclick="teamsShowAll()">Show All</button> &nbsp;
+			
+          		<button class="smBtn" onclick="teamsHideAll()">Hide All</button> &nbsp;	
+         		
+          		<button class="smBtn" id="btnPrint">Print</button> &nbsp;
+          	
+				</div><!--/bootstrap's pull-right-->
+			</div><!--/col-md-9, button group-->
+			<div class="col-md-2">&nbsp; <!-- right gutter space--></div>
+			
+  </div><!--/row, buttons-->
 
 
 
-</div>
-
+</div><!--/container-fluid, bootstrap4-->
 <div class="content-row" id="message">
 </div>
 
@@ -227,7 +406,7 @@ function auto_version($file)
              
                <div class="btnNext" ><a href="#" onClick="next('yr')"><img id="prevYear" src="assets/nex-yr.png"></a></div>     
           </div> -->
-          <div class="row">
+          <div class="calRow">
              <div id="btnPrev"><img  id="prevMonth" src="assets/prev-mo.png"></div>              
               <div style="width:49.5%; display:inline-block; text-align:center; margin: 0px; box-sizing:border-box;"><span class="cursive" id="mo" oridnal=""><!-- e.g., ordinal="12" for december --></span> <span class="year cursive" id="yr" ordinal=""><!-- e.g., 2016, etc --></span></div>
               <div id="btnNext" ><img id="nextMonth" src="assets/nex-mo.png"></div>             
@@ -263,11 +442,7 @@ function auto_version($file)
 	</div>
      <img class="hide" id="wait" src="assets/preloader_blue.png" />
 </div>
-<!--scripts-->
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
-<script  src="assets/pickadate.js-3.5.6/picker.js" type="text/javascript" charset="utf-8"></script>
-<script src="assets/pickadate.js-3.5.6/picker.date.js" type="text/javascript" charset="utf-8"></script>
+
 <script src="assets/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
 <!--<script src="assets/pickadate.js-3.5.6/legacy.js" type="text/javascript" charset="utf-8"></script>-->
 <script type="text/javascript">
@@ -316,9 +491,9 @@ function auto_version($file)
 			"Team 7",
 			"Team 8"			
 			];
-	var justReloaded = 0;
-		
+	var justReloaded = 1;
 	
+	var overdueJobs = {};		
 
 function clearAlert() {
   window.clearTimeout(timeoutID);
@@ -371,28 +546,28 @@ $(document).ready(function (){
 	//dispay the cal from xml when page first loads
 	
 	
-	curCompany=$( "#companyCalendar option:selected" ).val();
-	$("#pageTitle").html(curCompany + " WIP Calendar");
-	$('#companyCalendar').on('change', function() {
-  		//$("#company" ).val( this.value ); // or $(this).val()
+$('#companyCalendar').on('change', function() {
+  		//$("#company" ).val( this.value ); // or $(this).val()		
+		justReloaded = 1;
 		curCompany=$( "#companyCalendar option:selected" ).val();
 		$("#pageTitle").html(curCompany + " WIP Calendar");
-		teamNamesHTML();
-		
+		teamNamesHTML();		
+		loadCalendar( curCompany,-1,-1 ); //load calendar calls addListenersToDom func.
+		//addListenersToDom("true");		
 		
 		/*if(curCompany !== "Custom Sign Center"){
 			alert('Planned Update: Calendar Jobs Will Change for Each Company.');
 		}*/
 	});
-	//event trigger submit a company cal request
-	$("#loadCalendarForm").on("submit", function(e){
-		e.preventDefault();
-		var str = $("#loadCalendarForm").serialize(); //selected company name
-		loadCalendar(str['companyCalendar'],-1,-1);
-		addListenersToDom();
-	});
-
+	
+	
+	
+	curCompany=$( "#companyCalendar option:selected" ).val();
 	loadCalendar(curCompany,-1,-1);
+	
+	$("#pageTitle").html(curCompany + " WIP Calendar");
+	
+	
 	
 	
 	$("#btnPrev").on('click', function(){
@@ -408,7 +583,12 @@ $(document).ready(function (){
 		
 	});
 	
-	
+	//printing calendar
+  $("#btnPrint").on("click", function () { 
+ 		cleanCalendarLayout();
+		printWindow();
+          
+   });
 	
 	
 	
@@ -438,7 +618,7 @@ function wait(status){
 	else { $( "#wait" ).addClass( "hide" ); }
 }
 
-function addListenersToDom()
+function addListenersToDom(showTeamsBool = "true")
 {
 	 var editboxes = document.getElementsByClassName('edit');	
 	  $.each(editboxes, function(i, elem){		 
@@ -491,14 +671,14 @@ function addListenersToDom()
 	for(x;len>x;x++){	
 		editboxes[x].addEventListener("click", childClicked, false);
 		//listElements[x].addEventListener("dblclick", getClickPosition, false);		
-	}
+	}*/
 	 //remove hide class from any hidden LI elements with a new loading of the page.
 	 if(justReloaded === 1)
 	 {	//reset the toggling variable to false
 		 justReloaded = 0;
-		 //remove hide class		 		 
+		 onloadSetOverdueDisplay();		 		 
 	 }
-	 */
+	
 	/*   //hide the first and last div in each .row (sundays and saturday columns)
     var eachMonth =  $("#weeks").find(".month");
     $(eachMonth).each(function(i,el)
@@ -513,7 +693,9 @@ function addListenersToDom()
 	   });	  
     });	
     */
-    teamsShowAll();  	
+	if(showTeamsBool === "true"){
+    		teamsShowAll();  	
+	}
 }
 
 // assign each lineEntry LI to the global listElements Obj
@@ -597,22 +779,25 @@ function getPosition(el) {
  */
 function loadCalendar(co, m, y){
 	//console.log('load calendar func called. CurCompany is: '+ co['companyCalendar']);
-	if(typeof co === 'undefined') co = curCompany;
+	//reset the overdue jobs obj to empty.
+	overdueJobs = {};
+	$("#OverDueJobsList").html('');
+	if(typeof co === 'undefined') { co = curCompany;}
 	wait('start');
 	var today = new Date(); //date obj
 	var cDate = today.getDate(); //current date.
 	
 	//if month and yr not passed in...
 	if(m<0){//set month to cur month		
-		var m = today.getMonth()+1; //month is zero-based (+1)
+		m = today.getMonth()+1; //month is zero-based (+1)
 	}
 	if(y<0){//set year to cur year .. by default, load cur yr on first load.			
-			var y = today.getFullYear();		
+		y = today.getFullYear();		
 	}
 	
 	
 	//date = current date to highlight, month=req mo, year=req yr.
-	var data = {"content":'',"year":y,"month":m,"theDate":cDate,"company":co,"method":"display",}; 
+	var data = {"content":'',"year":y,"month":m,"theDate":cDate,"company":co,"method":"display"}; 
 	
 	$.ajax({	
 		  url : "classes/calendar.php",
@@ -630,14 +815,18 @@ function loadCalendar(co, m, y){
 		  curMonthCounter = month;
 		  //monthName = respData.activeMonthName;	
 		 
-		  todayOrdinalCell =respData.activeOrdinalCell;
+		  todayOrdinalCell = respData.activeOrdinalCell;
 		 $("#weeks").html(respData.html);
 		 //for "undo all" operations, preserve copy of html
 		 var respDataHtml = toString(respData.html);
 		 $("#yr").html(year);
+		 $("#yr").attr('ordinal', year);
 		 $("#mo").html(monthName[month]);		 
-		 $("#mo").attr('ordinal', month);	
-		 $(".month").attr('yr', year);	 
+		 $("#mo").attr('ordinal', month);
+		 //the company the user has access rights for:
+		 // "developer" = no user session; user is within the /dev directory. No 'admin' login blocking applies.
+		 userCompany = respData.userCompany;
+		 //$(".month").attr('yr', year);	 
 		 
 	   },
 	   error: function (jqXHR, textStatus, errorThrown)
@@ -648,6 +837,7 @@ function loadCalendar(co, m, y){
 	timeoutID = window.setTimeout(addListenersToDom, 300);	
 	justReloaded = 1;
 }
+
 
 function giveNotice(message){
 	
@@ -679,7 +869,7 @@ function closeModal(){
 	
 
 function teamsShowAll(){
-	console.log("teamsshowall loaded!");
+	
 	$(listElements).each(function(i,entry)
 	{
 		$(entry).removeClass('hide');
@@ -717,7 +907,6 @@ function teamsHideAll(){
 	});
 }
 
-
 //back and forward through the month navigation
 function displayNewMonth(action)
 {
@@ -726,149 +915,203 @@ function displayNewMonth(action)
 	
 	if(action==='next') //display next month
 	{
-	
-		
-		// parseInt(month); //global cur mo as string (e.g. "7" for July). Convert to int. for math.
-		
+		// parseInt(month); //global cur mo as string (e.g. "7" for July). Convert to int. for math.		
 		// Check 1st if there is HTML available for job listings for the next month being requested
 		// if ! class="month" ordinal="12" (if the DOM does not find that attr == to month+1 (12), 
 		// then giveNotice that there is no job scheduled in that month yet.
-		// +1 for next, -1 for previous month being requested.
-		
-		var validMonth = monthHTMLexists( action); //does next mo exist in the DOM?
-		console.log(validMonth);
-		
-		if( validMonth !== 'ok'){
-			giveNotice('<span style="color: #FF0000">There is No Job Data Stored for that Month.</span>');
-		
-			wait('end'); //hide the animated processing graphic
-			return; //get outta town
-		}
-		
-		if( parseInt(month) < 12 ){ //stay on the same year.
-			nextMonth =  parseInt(month) + 1;
-			$(allMonths).each(function(i,mo){
+		// +1 for next, -1 for previous month being requested.	 We need to track YEAR as well for multiyear navigation.	
 				
+		if( parseInt(month) < 12 ){ //stay on the same year.
+			var nextMonth =  String(parseInt(month) + 1);
+			//console.log('the month is not dec.');
+			var validMonth = monthHTMLexists( allMonths, nextMonth, year ); //does next mo exist in the DOM?
+					//console.log(validMonth,allMonths);
+		
+		   if( validMonth !== 'ok'){
+			   giveNotice('<span style="color: #FF0000">There is No Job Data Stored for that Month.</span>');
+
+			   wait('end'); //hide the animated processing graphic
+			   return; //get outta town
+		   }
+			
+			$(allMonths).each(function(i,mo){
+				/*
 				if($(mo).attr("ordinal") == month){ //this is the current month we want to hide.
 					$(mo).addClass("hide");
-				}
+				}*/
+				 /* hide all instead.. except the one we are nav to */
+				$(mo).addClass("hide");   
 				
-				if($(mo).attr("ordinal") == parseInt(nextMonth)){
+				if($(mo).attr("ordinal") == nextMonth && $(mo).attr("yr") == String(year) ){
 					$(mo).removeClass("hide");
 					month = String(nextMonth); //set the month var to the new month displayed.
 					curMonthCounter = month;
 					 //$("#mo").html(monthName);
 					$("#mo").html(monthName[month]);
 					$("#mo").attr("ordinal",month);
-					$("#mo").removeClass("hide");
-				}
+					$("#mo").removeClass("hide");					
+				} 
+					
 			});
-			
+			wait('end'); //hide the animated processing graphic
+			   return; //get outta town
 			//loadCalendar(curCompany, month, year);
 		} 
-		else 
+		else //the month is dec (12)
 		{ //need to roll over to next yr
-			month = "1";		
-			year = parseInt(year) +1; 
-			$("#yr").html(year);
-		 	$("#mo").html(monthName[month]);							
-			//load the previous month
-			//loadCalendar(curCompany, month, year);
-		}
-		
-	}
+				
+			
+			//console.log('the month is dec and the year is ' + year);	
+			//all .month, ordinal month to search DOM, yr attrib val to seach DOM		
+			var validMonth = monthHTMLexists( allMonths, "1", String( parseInt(year) +1 ) ); //does next mo exist in the DOM for the year requested?
+					
+		   	if( validMonth !== 'ok'){
+				//there is not a DOM element for that year/mo combination.			   	
+			   	giveNotice('<span style="color: #FF0000">There is No Job Data Stored for that Month.</span>');
+			  	wait('end'); //hide the animated processing graphic
+			   	return; //get outta town
+		   	} else {
+				nextMonth = "1";
+				year = String( parseInt(year) +1 );				
+				$(allMonths).each(function(i,mo){				
+				    /*if($(mo).attr("ordinal") == "12"){ //this is the current month we want to hide.
+					    $(mo).addClass("hide");
+				    }*/
+				     /* hide all instead.. except the one we are nav to */
+				    $(mo).addClass("hide");   
+				    
+				    if($(mo).attr("ordinal") == nextMonth && $(mo).attr("yr") == String(year)){
+					    $(mo).removeClass("hide");
+					    month = String(nextMonth); //set the month var to the new month displayed.
+					    curMonthCounter = month;
+						//$("#mo").html(monthName);
+					    $("#mo").html(monthName[month]);
+					    $("#mo").attr("ordinal",month);
+					    $("#mo").removeClass("hide");	
+					   $("#yr").html(year);
+					   $("#yr").attr('ordinal', year);		 			 
+					   //$(mo).attr('yr', year);						
+				    } 					
+			}); 			   						
+			    wait('end');
+			    return;
+			}// else is a valid month/yr combo in the DOM
+		}		
+	} //if nav is "next" month
 	else //action is to display the 'prev' month
 	{		
 		if( parseInt(month) > 1 ){
-			nextMonth =  parseInt(month) - 1;
-			$(allMonths).each(function(i,mo){
-				
-				if($(mo).attr("ordinal") == month){ //this is the current month we want to hide.
-					$(mo).addClass("hide");
-				}
-				
-				if($(mo).attr("ordinal") == parseInt(nextMonth)){
-					$(mo).removeClass("hide");
-					
-					curMonthCounter = month;
-					 //$("#mo").html(monthName);
-					$("#mo").html(monthName[nextMonth]);
-					$("#mo").attr("ordinal",nextMonth);
-					$("#mo").removeClass("hide");
-				}
-			});
-			month = String(nextMonth); //set the month var to the new month displayed.
-		} else { //need to roll back to prev yr
-		
-			if(year == 2016)
-			{
-				alert("Rolling Back to Prior Year Currently Disabled on CSC Calendar.  Feature will be added before Jan 2017.");
-				wait('end');
-			}
+			//no need to roll back the year
+			var nextMonth = parseInt(month) - 1;
+			var validMonth = monthHTMLexists( allMonths, nextMonth, year ); 
+			//does next mo exist in the DOM for on the year requested?					
+		   	if( validMonth !== 'ok'){
+				//there is not a DOM element for that year/mo combination.
+				 
+			     giveNotice('<span style="color: #FF0000">There is No Job Data Stored for that Month.</span>');
+			     wait('end'); //hide the animated processing graphic
+			     return; //get outta town
+		   	} else {
+			    
+			    $(allMonths).each(function(i,mo){				
+				    /*if($(mo).attr("ordinal") == month){ //this is the current month we want to hide.
+					    $(mo).addClass("hide");
+				    }*/
+				     /* hide all instead.. except the one we are nav to */
+				    $(mo).addClass("hide");   				
+				    if($(mo).attr("ordinal") == String(nextMonth) && $(mo).attr("yr") == String(year)){
+					    $(mo).removeClass("hide");					
+					    curMonthCounter = month;
+						//$("#mo").html(monthName);
+					    $("#mo").html(monthName[nextMonth]);
+					    $("#mo").attr("ordinal",nextMonth);
+					    $("#mo").removeClass("hide");
+				    }
+			    });
+			    month = String(nextMonth); //set the month var to the new month displayed.
+			}//end else is validMonth
+		} else if(parseInt(month) == 1) { //need to roll back to prev yr				
 			
-			month = "12";		
-			year = parseInt(year) -1; 
-			$("#yr").html(year);
-		 	$("#mo").html(monthName[month]);	
+			//console.log('the month is dec and the year is ' + year);	
+			//all .month, ordinal month to search DOM, yr attrib val to seach DOM	
+			var prevYr = parseInt(year) -1;	
+			//console.log("prevYr is " + prevYr);
+			var validMonth = monthHTMLexists( allMonths, "12", prevYr ); 
+			//does next mo exist in the DOM for the prior year?					
+		   	if( validMonth !== 'ok'){
+				//there is not a DOM element for that year/mo combination.				 
+			     giveNotice('<span style="color: #FF0000">There is No Job Data Stored for that Month.</span>');
+			     wait('end'); //hide the animated processing graphic
+			     return; //get outta town
+		   	} else {			
 			
-			/*
-			if( parseInt(year) < parseInt(y) ) { //if trying 2 years back, keep to 1 year back.
-				//do nothing.  cannot go back more than 2 yrs.
-			} else {				
-				year = parseInt(year)-1; //go back 1 yr
-				month = parseInt("12");
-			}			
-			//load the previous month
-			loadCalendar(curCompany, month, year);
-			*/
-		}
+			var nextMonth = "12";
+				year = String( parseInt(year) -1 );				
+				$(allMonths).each(function(i,mo){				
+				    /*if($(mo).attr("ordinal") == "12"){ //this is the current month we want to hide.
+					    $(mo).addClass("hide");
+				    }*/
+				     /* hide all instead.. except the one we are nav to */
+				    $(mo).addClass("hide");  
+				});
+				 $(allMonths).each(function(i,mo){	   
+				    if($(mo).attr("yr") == prevYr && $(mo).attr("ordinal") == nextMonth ){
+					    $(mo).removeClass("hide");
+					    month = String(nextMonth); //set the month var to the new month displayed.
+					    curMonthCounter = month;
+						//$("#mo").html(monthName);
+					    $("#mo").html(monthName[month]);
+					   // $("#mo").attr("ordinal",month);
+					   // $("#mo").removeClass("hide");	
+					    $("#yr").html(year);
+					    //$("#yr").attr('ordinal', year);		 			 
+					   //$(mo).attr('yr', year);						
+				    } 					
+			}); 				
+			
+		}//else validmonth ok
 		
-	}
+	}//else try roll back one year from month 1 to 12
 	wait('end');
-	window.setTimeout(addListenersToDom, 100);
+	var func = addListenersToDom("false");
+	window.setTimeout(func, 100);
 	
+}//else prev
 }
 
 // verify DOM contains HTML of job listings for a user navigated month
 // allMonths is all DOM els of class "month"
-// direction is "next" or "prev" 
-function monthHTMLexists(action){
-	var allMonths = $(".month");
-	var result;
-	 var checkMonth;
+// action is "next" or "prev" nav request 
+//the month to check
+function monthHTMLexists(allMonths,checkMonth,yr){
+	
+	 var result = false;	 
 	// TODO: Check allMonths is not null, empty
-	if(action ==='next'){ 
 	
-	
-		checkMonth = parseInt(month) +1; //current month on the calendar + 1
-		
-		
-		
-		checkMonth = String(checkMonth);
-		
-	}	
-	else{ //this is navigating calendar back one month
-		checkMonth = parseInt(month) -1; //current month on the calendar - 1
-		//if checkMonth is 13, need to set it to 1 (jan)
-		
-		checkMonth = String(checkMonth);	
-	 }
-	//console.log('checkMonth is: ' + checkMonth);
+	checkMonth = String(checkMonth);	
+	 
+	//console.log('checkMonth is: ' + checkMonth + ' and yr is: ' + yr );
 	$(allMonths).each(function(i,el){
 		//get the value from the element's "ordinal" attribute that matches the
 		//requested month to navigate to.  If it doesn't exist in DOM, then return false;	
 		//console.log("EACH has fired!");
-		if(  $(el).attr("ordinal")  === checkMonth ){
-			//console.log($(el).attr("ordinal"));
-			result = 'ok';	
-			
+		if( $(el).attr("yr") === String(yr) ){
+			if(  $(el).attr("ordinal")  === String(checkMonth) ){			
+			  //e.g. el looks like: <div class="month" ordinal="10" yr="2016">
+			  //we found a DOM el with the requested month and having the same (current) year.
+			  //console.log($(el).attr("ordinal"));
+			  result = 'ok';	
+			}
 		} 
 	});
 	
-	return result; //if false, there is not DOM for that month
+	return result; //if undefined, there is not a DOM for that month+yr
 		
 }
 
+
+	
+	
 function claimJob(opt,obj){
 	//options 0=close, 1 = start claim, 2 = continue claim, 3=complete (clockout)
 	
@@ -884,94 +1127,519 @@ function claimJob(opt,obj){
 		
 	}
 }
-function teamNamesHTML()
-{	
-	if(curCompany == "Custom Sign Center"){
-		teamAssignment = [];
+function teamNamesHTML(){	
+	
+	
+	var li0 = '<li id="';
+	var liCl = '" Class="';
+	var li1 = '" onclick="jobAssignment(';
+	var li2 = ', this)" option="';
+	var li3 = '">';
+	var li4 = '</li>';
+	
+	
+	if(curCompany == "Custom Sign Center")
+	{	
+		
+		assignLabels = [
+			'RobertC',
+			'DennisH',
+			'',
+			'',
+			'Install',
+			'SubInstall',
+			'CSC Transp',
+			'Shipping',
+			'Cust PU',
+			' UPS', 
+			' Unassigned',
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required',
+			'Overdue'
+		];	
+		
 		teamAssignment = [
-			"Bob-Michael",//red
-			"Dennis",//violet
-			"Install",//black
-			"SubInstall",
-			"n/a",
-			"CSC Trans",
-			"Shipping",
-			"Cust PU"			
-			];
+		
+				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+		
+				/*'<div class="tooltip">Bob-Michael<span class="tooltiptext">Contact Info Can Be Displayed Here!</span></div></li>',*/
+		
+				li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,
+		
+				'',
+				'',
+				
+				
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,
+		
 			
-			
-	} else if(curCompany == "Marion Signs"){
-		teamAssignment = [];
-		teamAssignment = [
-			"Curtis-Stock",
-			"Shawn-King",
-			"no-team",
-			"no-team",
-			"no-team",
-			"CSC Trans",
-			"Shipping",
-			"Cust PU"	
-			];
-	}
-	else 
+				li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+
+				// iconmoon elements
+				li0 + 'ic-ups' + liCl +'na' + li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4,
+				//css style only, no icon for Overdue (class .due)
+				li0 + 'due' + liCl +'due' + li1 + '21' +li2 + '21' + li3 + assignLabels[21] + li4
+			];	
+	
+		
+	} 
+	else if(curCompany == "MarionOutdoor")
 	{		
-		teamAssignment = [];		
+		
+		
+		assignLabels = [
+			'ChadL',
+			'CurtisS',			
+			'DavidS',
+			'',
+			'Install', 
+				'', 
+			'Rec CSC Transp',
+			'Rec Shipping',
+			'Cust PU',
+			' Rec UPS',
+			' Unassigned',
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required'				
+		];	
+		
 		teamAssignment = [
-			"Team 1",
-			"Team 2",
-			"Team 3",
-			"Team 4",
-			"Team 5",
-			"Team 6",
-			"Team 7",
-			"Team 8"			
-			];
+				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+				li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
+				
+				li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,		
+				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
+				'',
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
+			
+				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				'',
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+				// iconmoon elements
+				li0 + 'ic-ups' + liCl +'t5' + li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
+			];	
+		
+	
+	}
+	else if(curCompany == "Marion Signs")
+	{		
+		
+			assignLabels = [
+				
+			'ChadL',
+			'CurtisS',			
+			'DavidS',
+			'',//team reserved
+			'Install', //unassigned
+				'', //subinstall
+			'Rec CSC Transp',
+			'Rec Shipping',
+			'Cust PU',
+			' Rec UPS',
+			' Unassigned',
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required'
+				
+		
+		];
+		
+		teamAssignment = [
+				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+				li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
+				
+				li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,		
+				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
+				'',
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
+			
+				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				'',
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+				// iconmoon elements
+				li0 + 'ic-ups' + liCl +'t5' + li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
+			];	
+			
+		
 		
 	}
+	else if(curCompany == "Outdoor Images")
+	{	
+		assignLabels = [
+			'ChadL',
+			'',			
+			'DavidS',
+			'',
+			'Install', 
+				'', 
+			'Rec CSC Transp',
+			'Rec Shipping',
+			'Cust PU',
+			' Rec UPS',
+			' Unassigned',
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required'
+			];
+		
+			teamAssignment = [
+		
+				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+				//li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
+				'',
+				li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,		
+				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
+				'',
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
+			
+				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				'',
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+// iconmoon elements
+				li0 + 'ic-ups' +  li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
+			];	
+	
+	} else if(curCompany == "JG Signs")
+	{	
+		assignLabels = [
+			'',
+			'',			
+			'',
+			'',
+			'Install', 
+				'', 
+			'Rec CSC Transp',
+			'Rec Shipping',
+			'Cust PU',
+			' Rec UPS',
+			' Unassigned',
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required'
+			];
+		
+			teamAssignment = [
+		
+				//li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+				'',
+				//li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
+				'',
+				//li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,	
+				'',
+				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
+				'',
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
+			
+				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				'',
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+				// iconmoon elements
+				li0 + 'ic-ups' +  li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
+			];	
+	
+	}
+	else if(curCompany == "Boyer Signs")
+	{	
+		assignLabels = [
+			'',
+			'',			
+			'',
+			'',
+			'Install', 
+				'', 
+			'Rec CSC Transp',
+			'Rec Shipping',
+			'Cust PU',
+			' Rec UPS',
+			' Unassigned',
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required'
+			];
+		
+			teamAssignment = [
+		
+				
+				//li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+				'',
+				//li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
+				'',
+				//li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,	
+				'',
+				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
+				'',
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
+			
+				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				'',
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+				// iconmoon elements
+				li0 + 'ic-ups' +  li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
+			];	
+	
+	}
+	
+	
+	
+	
+	
 	$(teamAssignment).each(function(i,team){
 			
 		i++;
-		$("#l"+i).html(team);
-		//$("#t"+(i-1)).html(team);
-		//popup opt menu on r-clk of job entry	
+		var l = $("#l"+i);
+		var lpar = $(l).parent('div.iconrow');
+		
+		if( team !== '' && team !== 'Overdue' ){
+			//console.log(i + " will be a LIST")
+			$(l).html(team);
+			$(lpar).removeClass('hide');
+			//$("#t"+(i-1)).html(team);
+			//popup opt menu on r-clk of job entry	
+		} else if( team == 'Overdue' ) { 
+			$("#l21").parent('div.iconrow').removeClass('hide');
+			$("#l21").html(team);
+			i--;
+			//alert("menu item is overdue and the iterator is " +i);
+		
+			
+		} else {
+			
+			$(lpar).addClass('hide');
+			
+		}
+		
+	});
+	
 	
 			
-	});
+			
+	
+	
+	var menuOptAssign = '';
+	var menuOptJob = '';
+	var menuOptPermt = '';
+	
+	//assignment menu with up to 12 options
+	for($g=0; 11 >= $g; $g++){
+		
+		if(teamAssignment[$g] !== '' && $g !== 11){
+			menuOptAssign += teamAssignment[$g];
+		}
+		else if($g == 11){
+			//this would be the 1st item in the STATUS submenu, but needs to be Overdue item.
+			menuOptAssign += teamAssignment[21];
+		}
+	}
+	
+	
+	
 	contextMenu = $('<div id="divContextMenu" style="display:none">'+ 
 	'<input id="reschedule" type="text" placeholder="reschedule" />'+	
-	'<ul id="ulContextMenu">'+	
+	'<div class="container"><nav class="navbar"><ul id="ulContextMenu">'+	
 	    '<li id="t0" onclick="jobAssignment(0, this)" option="0" style="text-align:right;color:red">x Close</li>'+
-	    '<li id="t1" onclick="jobAssignment(1, this)" option="1">'+
-	    teamAssignment[0]+
-	    '</li>'+
-	    '<li id="t2" onclick="jobAssignment(2, this)" option="2">'+
-	    teamAssignment[1]+
-	    '</li>'+
-	    '<li id="t3" onclick="jobAssignment(3, this)" option="3">'+
-	    teamAssignment[2]+
-	    '</li>'+
-	    '<li id="t4" onclick="jobAssignment(4, this)" option="4">'+
-	    teamAssignment[3]+
-	    '</li>'+
-	    '<li id="t5" onclick="jobAssignment(5, this)" option="5">'+
-	    teamAssignment[4]+
-	    '</li>'+
-	    '<li id="t6" onclick="jobAssignment(6, this)" option="6">'+
-	    teamAssignment[5]+
-	    '</li>'+
-	    '<li id="t7" onclick="jobAssignment(7, this)" option="7">'+
-	    teamAssignment[6]+
-	    '</li>'+
-	    '<li id="t8" onclick="jobAssignment(8, this)" option="8">'+
-	    teamAssignment[7]+
-	    '</li>'+
-	    '<li id="hold" class="hold_small" onclick="jobAssignment(12, this)" option="12">On Hold</li>'+
-	    '<li id="unassigned" class="unassigned" onclick="jobAssignment(9, this)" option="9">Unassigned</li>'+
-	    '<li id="completed" class="completed" style="font-weight:normal" onclick="jobAssignment(10, this)" option="10">In/Complete</li>'+	 
-	    '<li id="delete" class="delete" onclick="jobAssignment(11, this)" option="11">Delete Entry</li>'+
-	'</ul></div>');
+	    '<li style="padding:12px 5px;color:#000000">ASSIGN<ul>'+	    
+		menuOptAssign +
+	    '</ul></li>'+
+	    '<li style="padding:12px 5px"><span style="color:#236FBF">STATUS</span><ul>'+    
+	    teamAssignment[11]+	
+	    teamAssignment[12]+
+	    teamAssignment[13]+	     
+	    teamAssignment[14]+
+         teamAssignment[15]+
+	    teamAssignment[16]+ //Ready to Invoice
+	    '</ul></li>'+
+	    '<li style="padding:12px 5px"><span style="color:#007F16">PERMIT</span><ul style="color:#007F16">'+    
+	    teamAssignment[17]+
+	    teamAssignment[18]+
+	    teamAssignment[19]+
+	    teamAssignment[20]+
+	    '</ul></li>'+
+	    '<li style="padding:12px 5px" id="delete" class="delete" onclick="jobAssignment(11, this)" option="11">Delete Entry</li>'+
+	'</ul></nav></div>');
 	
 }
+	
+	
+	
+	
+function cleanCalendarLayout(){
+	 $( "#pageTitle" ).clone().appendTo('#print');	
+	 $( "span#date" ).clone().appendTo('#print');			
+	 $( "span#curTime" ).clone().appendTo('#print');
+	 $( "#icons" ).clone().appendTo('#print');
+	 $( "span#mo" ).clone().appendTo('#print');
+	 $( "span#yr" ).clone().appendTo('#print');
+	 $( "#headerDays" ).clone().appendTo('#print');
+	 $( ".month" ).clone().appendTo('#print');
+}
+	
+	function printWindow(){
+	$( "#print" ).removeClass( "hide" );
+	 var printWindow = window.open('', '_blank', 'scrollbars=yes,resizable=yes,top=20,left=5,height=900,width=1200');
+	 printWindow.document.write('<html><head><title>Print Calendar</title><link href="styles/print_1.css" media="all" rel="stylesheet" /> <link rel="stylesheet" href="assets/icomoon/style.css"><link rel="stylesheet" href="styles/bootstrap.min.css">');
+	 
+	 var $editULs = $("#print").find(".edit");
+		
+	//hide empty ul.edit -- this works, but the calendar does not really save any space
+	//with the current layout used for printing.
+	/*	$( $editULs ).each(function(i,ulEl){
+			
+			if( $(ulEl).find('li').length < 1){
+				$(ulEl).parent('.date').addClass('hide');				
+			}
+			
+		});
+	*/
+	
+	$( $editULs ).each(function(i,ulEl){
+		 
+		 if( $(ulEl).find('li').length < 1){
+			 $(ulEl).parent('.date').attr('style', 'border:none');				
+		 }
+		 
+	 });
+ 
+	 //add clearfix class to wrappers to hold floats on a single line.		
+	 var floatWraps = ['#headerDays','.row'];
+	 
+	 $(floatWraps).each(function(i,el){
+		 $('#print ' + el ).addClass("clearfix");
+	 });
+	 	 
+	 printWindow.document.write('</head><body id="printBody">');
+	 printWindow.document.write( $( "#print" ).html() );
+	 printWindow.document.write('</body></html>');
+	 printWindow.document.close();
+	 printWindow.print(); 
+	 $( "#print" ).html('');
+	 $( "#print" ).addClass( "hide" );
+	
+}
+	
+	
 
 	//the img icon button click = clickedObj
 function modalOpen(clickedObj) {
@@ -1112,7 +1780,7 @@ function modalClose(clickedObj)
 		   
 		   
 		   		$( modalContent ).replaceWith( $( modalUL ).clone(true, true) );
-		   	   
+		   	     addListenersToDom("false");
 		   
 		   		// add listeners afresh to the calendar target UL, modalContent:
 		   		$(modalUL).siblings('.cursive').remove();
@@ -1122,99 +1790,14 @@ function modalClose(clickedObj)
 				$('.blocker').addClass('hide');
 		   		
 		   
-		   /*
-		   var overlay = '<div class="blocker" style="display:none; width:100%; position:absolute; z-index:99999"> U P D A T I N G . . .</div>';
-		   	
-*/
-		   		
-		   
-				/*
-		   		setTimeout(
-						function(){
-							addListenersToDom("false");							
-							//$("body").append(overlay);
-							giveNotice("Please Wait for Calendar UPDATE...");							
-						}, 3500);
-						*/
-		   		//$("body").find(".blocker").remove();
-				//modalSave(saveTarget, modalSource);
-				//saveTarget is a .month div, where it contains attr values 'yr' & 'ordinal'
-				//that match the exact DOM element with cell date (attr->modalid) value == to 
-				//the original date that was the html source for the popup modal.
-				
-				//used to see if the popup model html (modalSource) is identical to the
-				//original source, to determine if the modalSource needs to be written to the original source
-				//upon closing the modal.
-				
-		
-			//}
-		    
-		   // });
-	//var objUl = $('div.month').attr('ordinal')$('.edit[modalid="'+modalId+'"]');
-	
-	
-	 
-	//console.log("Modal ID is " + modalId);
-	//$('.edit[modalid="'+modalId+'"]');
-	//console.log("modalId is "+modalId);
-	
-	//modalSource is html dom contents in the calendar
-	//modalContent is the html dom contents in the modal popup
-	//compare to see if they are different; save modal content to the source if true.
-	
-		   
-	// Forego comparison.  The actions in the modal or non-action can be updated to the calendar cell.
-	//if( modalContent !== modalSource )
-	//{
-		// compared contents are different; let's save new content to the calendar
-				
-		//addListenersToDom();
-		// alert('Updates Saved');
-	//}
+		  
 
 	
 	   }// else
 }
 
-function modalSave(destination, source)
-{
-	//clone it back to the source with event listeners intact.
-	//need to add in your contextmenu event handler.  Clone could not 
-	//copy those for some reason:
-	
-	//if the modal source contains contextMenu html, remove it first.
-	/*if( $(source).find('#divContextMenu') ){
-		$(source).find('#divContextMenu').remove();
-	}*/
-	
-	//now save the modal content to the original date cell of the calendar
-	//console.log("Source: " + source);
-	destination.html(source);
-	//console.log("The HTML to copy to the cal is: "+ $(source).html() );
-	//addListenersToDom();
-	
-	
-		 
-	// alert("editboxes is: " + editboxes);
-	 
-	 $.each(destination, function(i, elem){		 
-		 destination[i].addEventListener('click', startEdit, true);
-		 //var dateBox = editboxes[i].parentNode; //parent of the edit box.
-		//evt.stopImmediatePropagation();stopPropagation()
+
 		
-		bindListeners4EachList(destination);
-		//listsIntoObjects(destination,i);
-	 });	 
-	 
-	
-	
-	
-	
-	
-	
-			
-}
-	
 		// you could use set() which builds on the set only if it does not already exist.
 		//$('#search').on('keyup',function(){
 		$('#search').on('input',function(){
@@ -1280,6 +1863,11 @@ function modalSave(destination, source)
 				
 				$(domObjs).each(function(i,res){
 					
+					
+					
+					
+					
+					
 					var thedate = $(res).parent('.edit').attr('modalid'); //e.g., d21 for the 21st date of a month.	
 				  	
 					if(typeof thedate !== 'undefined' && thedate.length > 1){
@@ -1291,10 +1879,26 @@ function modalSave(destination, source)
 						//results[i] = thedate + ': ' + results[i];						
 					} // if defined
 					
-					
 					if( typeof res !== 'undefined'){ //  && $(res).html().indexOf(searchTerm) !== -1 					
 						
-						$('#srchResult').append( "Date: " + thedate + ", " + $(res).html() ).append("<br/>");	
+						//$('#srchResult').append( "<div class='result"+i+"' >Date: " + thedate + ", " + $(res).html() ).append("</div><br/>");
+						$("#srchResult").append( "<div style='cursor:pointer' class='result"+i+"'  >Date: " + thedate + ", " + $(res).html() + "</div>");
+						
+						
+						
+						$(document.body).find('.result'+i).on('click', function() {
+								$(res).addClass('context-style');
+   								//modalOpen($(res).closest('.modalImg'));
+							modalOpen(res);
+						});
+						
+						
+						
+						
+						/*$('.result'+i).on("click", function(){	
+							$(this).addclass('context-style');
+							modalOpen($(res));
+						});*/
 					}
 					
 					
@@ -1326,15 +1930,166 @@ function modalSave(destination, source)
 		
 		
 		
-		$('#search').on('focusout',function(){
-			$('#srchResult').addClass('hide');
-			$( '#srchResult').empty();
+		$('#srchResult').parent('form').on('focusout',function(){
+			
+			if( $('.blocker').hasClass('.hide') ){
+				
+				$('#srchResult').addClass('hide');
+				$( '#srchResult').empty();
+				
+			} 
+			
+			
 		});
+	
+//2 functions: set and unset overdue jobs.
+//over due jobs are contained in the glob obj "overdueJobs"
+//and accessed by keys named after each overdue job number
+//overdueJobs.jobnumber
+function setOverDueJob(){
+	//alert("Set this as overdue");
+	$(editableLI).addClass("due");
+	$(editableLI).removeClass('context-style');
+	$(editableLI).addClass("t21");
+	//add this job to the global obj 'overdueJobs':
+	//1. get the job # of current edited job in dom
+		var jobNmbr = $(editableLI).children('span').first().text(); //the job number parent span is always the first one in the LI.
+	//alert("Job# is " + jobNmbr);
+	//2. get the date of the edited job's UL wrapper's modalid.
+		var date = $(editableLI).parent('ul').attr('modalid').substr(1);
+	//3. trim off the first char ('d') from the modalid value, leaving just the numeral.
+		//date = date.substr(1);
+		date = '<span style="color: red">'+month + '/' + date + '/' + year+'</span>';
+	//get the job desc text and truncate it to the first 30 chars.
+		var desc = $(editableLI).text();
+		desc = desc.slice(0,30);
+	//concat into a line of text to save as a property of overdueJobs obj.
+		var info = '<div class="ovrDue" id="'+jobNmbr+'">' + date +': '+ desc +'...</div>';
+	if( overdueJobs.hasOwnProperty(jobNmbr) === false ){
+		overdueJobs[jobNmbr] = info;
+	}
+
+	if( isEmpty(overdueJobs) === false ){
+
+		//first erase all the content of the overdue job list in the view:
+		$('#OverDueJobsList').html('');
+
+		//write all the updated overdue jobs to the view:
+		//by iterating through the overdueJobs properties:
+		Object.keys(overdueJobs).forEach(function(key) {
+			$('#OverDueJobsList').append(overdueJobs[key]);
+		});		
+		$('#OverDueJobsList').prepend('<p><span class="due" style="padding: 3px 8px !important; font-size: 18px">Overdue Jobs</span></p>');
+	}//if			
+				
+}
+		
+function unsetOverDueJob(){
+	//alert("UnSet this as overdue");
+	//called when user assigns a job "overdue";
+	$(editableLI).removeClass("due");
+	$(editableLI).removeClass("t21"); //this class is used in checkbox controls to hide/show entry
+	$(editableLI).addClass('context-style');
+	//remove this job from the global obj 'overdueJobs'
+	//1. get the job # of current edited job in dom
+		var jobNmbr = $(editableLI).children('span').first().text(); //the job number parent span is always the first one in the LI.
+	//2. delete that property
+		delete overdueJobs[jobNmbr]; 
+	//3. Delete the job from the overdue display in the DOM.
+		$("#"+jobNmbr).remove();	
+	
+}
+
+//display overdue to the user interface.
+//generally called only when page loads
+function displayOverDueJobs(){
+	
+	let wks = document.body.querySelector('div#weeks');
+	let $due = wks.querySelectorAll('li.due');
+	$.each($due, function(i,v){
+		//alert("Found a due LIST: "+ v);
+		editableLI = v;
+		setOverDueJob();
+	});
+}	
+	
+function onloadSetOverdueDisplay(){
+	
+	var $overdues = $("#weeks").find("li.due");
+	
+	$.each($overdues, function(i, d){
+		//  alert("overdue found");
+		  //list this in the view of overdue jobs.
+		 var jobNmbr = $(this).children('span').first().text(); //the job number parent span is always the first one in the LI.
+		//alert("Job# is " + jobNmbr);
+		//2. get the date of the edited job's UL wrapper's modalid.
+			var date = $(this).parent('ul').attr('modalid').substr(1);
+		//3. trim off the first char ('d') from the modalid value, leaving just the numeral.
+			//date = date.substr(1);
+			var mo = $(d).closest( ".month" ).attr('ordinal');
+			var yr = $(d).closest( ".month" ).attr('yr');
+			date = '<span style="color: red">'+ mo + '/' + date + '/' + yr+'</span>';
+		//get the job desc text and truncate it to the first 30 chars.
+			var desc = $(this).text();
+			desc = desc.slice(0,30);
+		//concat into a line of text to save as a property of overdueJobs obj.
+			var info = '<div class="ovrDue" id="'+jobNmbr+'">' + date +': '+ desc +'...</div>';
+		if( overdueJobs.hasOwnProperty(jobNmbr) === false ){
+			overdueJobs[jobNmbr] = info;
+		}
+
+		});
+	
 
 
+	if( isEmpty(overdueJobs) === false ){
+
+		//first erase all the content of the overdue job list in the view:
+		$('#OverDueJobsList').html('');
+
+		//write all the updated overdue jobs to the view:
+		//by iterating through the overdueJobs properties:
+		Object.keys(overdueJobs).forEach(function(key) {
+			$('#OverDueJobsList').append(overdueJobs[key]);
+		});		
+		$('#OverDueJobsList').prepend('<p><span class="due" style="padding: 3px 8px !important; font-size: 18px">Overdue Jobs</span></p>');
+	}//if			
+				
+	
+}
+
+
+function isEmpty(obj) {
+   
+   //check if it's an Obj first
+   var isObj = obj !== null 
+   && typeof obj === 'object' 
+   && Object.prototype.toString.call(obj) === '[object Object]';
+
+   if (isObj) {
+       //"var o", simply represents any property at all, no matter its name.
+       for (var o in obj) {
+           if (obj.hasOwnProperty(o)) {
+			// this is not an empty object.
+               return false;
+               break;
+           }
+       }
+       return true;
+   } else {
+       console.error("isEmpty function only accepts an Object");
+   }
+}
+
+
+	
+	
+	
+
+	
 </script>
 
-
+<div id="print" class="hide"></div>
 </body>
 
 

@@ -5,16 +5,17 @@
 <file name="calendarmaintenance.php" server="70.39.250.251" local="131376144549415456" remote="131375080800000000" Dst="2" />
 <file name="help.html" server="70.39.250.251" local="131376144551141177" remote="131375080800000000" Dst="2" />
 <file name="logsDScalendar_log.txt" server="70.39.250.251" local="131376144552905082" remote="131375080800000000" Dst="2" />
-<file name="index.php" server="70.39.250.251" local="131515945332557250" remote="131515947000000000" Dst="2" />
+<file name="index.php" server="70.39.250.251" local="131539458934744315" remote="131539458600000000" Dst="2" />
 <file name="serverVars.php" server="70.39.250.251" local="131376144553988037" remote="131375080800000000" Dst="2" />
-<file name="view.php" server="70.39.250.251" local="131426179929448867" remote="131454858600000000" Dst="2" />
 <file name="register.php" server="70.39.250.251" local="131383958591121125" remote="131383958400000000" Dst="2" />
-<file name="login.php" server="70.39.250.251" local="131515223187570154" remote="131515222800000000" Dst="2" />
 <file name="pdf.php" server="70.39.250.251" local="131395879123925305" remote="131395878600000000" Dst="2" />
-<file name="csvimport.php" server="70.39.250.251" local="131479876843618446" remote="131479870800000000" Dst="2" />
+<file name="csvimport.php" server="70.39.250.251" local="131539269796828443" remote="131539269600000000" Dst="2" />
 <file name="layouts-tester.html" server="70.39.250.251" local="131414945361268683" remote="131414944800000000" Dst="2" />
 <file name="datefunctions.php" server="70.39.250.251" local="131421039927397181" remote="131421039600000000" Dst="2" />
 <file name="view_schedule.php" server="70.39.250.251" local="131449620316835951" remote="131449620000000000" Dst="2" />
 <file name="directoryDEV.php" server="70.39.250.251" local="131456343513473749" remote="131456344200000000" Dst="2" />
-<file name="directory.php" server="70.39.250.251" local="131486847475670535" remote="131486847000000000" Dst="2" />
+<file name="directory.php" server="70.39.250.251" local="131534260127227517" remote="131534259600000000" Dst="2" />
+<file name="login.php" server="70.39.250.251" local="131541904252607160" remote="131541904200000000" Dst="2" />
+<file name="importhelp.html" server="70.39.250.251" local="131534206740452706" remote="131534205600000000" Dst="2" />
+<file name="view.php" server="70.39.250.251" local="131539312599471884" remote="131539312200000000" Dst="2" />
 </dwsync>

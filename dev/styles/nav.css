@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-.container{
+.nav .nav-container{
     margin: 0 auto;
 }
 nav a{
@@ -95,27 +95,27 @@ nav ul ul ul li {
     top:-60px; 
     left:170px;
 }*/
-.container {
+.nav-container {
 	width: 270px;
 }
 
-.container{
+.nav-container{
 	margin-right: auto;
 	margin-left: auto;
 	*zoom: 1;
 }
-.container:before,
-.container:after
+.nav-container:before,
+.nav-container:after
  {
 	display: table;
 	content: "";
 	line-height: 0;
 }
 
-.navbar .container {
+.navbar .nav-container {
 	width: auto;
 }
-.container {
+.nav-container {
 	background-color: #fff;
 	-moz-border-radius: 9px;
 	-webkit-border-radius: 9px;

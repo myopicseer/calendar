@@ -1,7 +1,7 @@
 <?php
 // Include our Database Abstraction Layer.
-// Methods: dbOpen($db_name); dbClose($db)
-include('../../classes/dbConnPDO.php');
+include($_SERVER['DOCUMENT_ROOT'].'/../classes/dbConnPDO.php');
+/**
 /**
  * Session
  */
@@ -12,7 +12,7 @@ class Session extends dbConnPDO {
 	   */
 
 	  private $db;
-
+	  
 	  public function __construct(){
 
 		  // Instantiate new Database object
@@ -34,6 +34,7 @@ class Session extends dbConnPDO {
 		  
 		  // Start the session
 		  session_start();
+		  
 	  }
 
 	/**
@@ -88,6 +89,7 @@ class Session extends dbConnPDO {
 	 */
 	public function _read($id){
 	  // Set query
+	   
 	   $statem = $this->db->prepare('SELECT data FROM sessions WHERE id = :id LIMIT 1');
 
 	  // Bind the Id
@@ -96,8 +98,10 @@ class Session extends dbConnPDO {
 	  // Attempt execution
 	  // If successful
 	  if( $statem->execute(['id' => $id]) ){
+		
 	    // Save returned row
-	    $row =  $statem->fetch();
+	    $row =  $statem->fetch(); 	  
+		
 	    // Return the data
 	    return $row['data'];
 	  }else{
@@ -225,6 +229,7 @@ success return true else return false.
 		$stmtSess->bindParam(':id', $id);
 		$stmtSess->bindParam(':access', $access);  
 		$stmtSess->bindParam(':data', $data);
+		//$stmtSess->bindParam(':fk_id_user', $fk_id_user);
 		
 		if( $stmtSess->execute() ) {
 			

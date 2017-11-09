@@ -42,7 +42,7 @@
 <file name="icon-permit-inspect_approved.png" server="70.39.250.251" local="131406407513164064" remote="131413302600000000" Dst="2" />
 <file name="icon-permit-inspect_requred.png" server="70.39.250.251" local="131406406661875008" remote="131413302600000000" Dst="2" />
 <file name="icon-permit-req.png" server="70.39.250.251" local="131406403883918915" remote="131413302600000000" Dst="2" />
-<file name="admin.js" server="70.39.250.251" local="131511797526512978" remote="131511797400000000" Dst="2" />
-<file name="mgr.js" server="70.39.250.251" local="131511646621273204" remote="131511646200000000" Dst="2" />
-<file name="common.js" server="70.39.250.251" local="131514399960602704" remote="131514399600000000" Dst="2" />
+<file name="admin.js" server="70.39.250.251" local="131547073307477479" remote="131547102600000000" Dst="1" />
+<file name="mgr.js" server="70.39.250.251" local="131547073310515290" remote="131527497600000000" Dst="1" />
+<file name="common.js" server="70.39.250.251" local="131547073309890107" remote="131547102600000000" Dst="1" />
 </dwsync>

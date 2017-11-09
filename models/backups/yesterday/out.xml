@@ -434,8 +434,6 @@
           <day ordinal="20" name="Friday" date="18">
             <job number="1123-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false"#$#  ~~i class="ic-flag"#$# *^*i#$#	 ~~span id="job_1123-1"#$#1123-1*^*span#$# BMA/DD's Discounts #5335*^*li#$#</job>
             <job number="914">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false"#$#  ~~i class="ic-flag"#$# *^*i#$#	 ~~span id="job_914"#$#914*^*span#$# Capital Sign / AT&amp;T (Poinciana)*^*li#$#</job>
-            <job number="1036">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false"#$#  ~~i class="ic-flag"#$# *^*i#$#	 ~~span id="job_1036"#$#1036*^*span#$# Pattison Sign Group (Toronto) / Auto Nation Toyota*^*li#$#
-</job>
             <job number="1067">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false"#$#  ~~i class="ic-flag"#$# *^*i#$#	 ~~span id="job_1067"#$#1067*^*span#$# Bendsen Signs &amp; Graphics, Inc. / Jimmy John's #3788*^*li#$#
 </job>
             <job number="1121-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false"#$#  ~~i class="ic-flag"#$# *^*i#$#	 ~~span id="job_1121-1"#$#1121-1*^*span#$# Custom Sign Center / Kiddie Academy*^*li#$#
@@ -527,10 +525,7 @@
           <day ordinal="15" name="Sunday" date="10"/>
           <day ordinal="16" name="Monday" date="11"/>
           <day ordinal="17" name="Tuesday" date="12"/>
-          <day ordinal="18" name="Wednesday" date="13">
-            <job number="1146">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false"#$#  ~~i class="ic-flag"#$# *^*i#$#	 ~~span id="job_1146"#$#1146*^*span#$# BMA/Dd's Discounts #5065*^*li#$#
-</job>
-          </day>
+          <day ordinal="18" name="Wednesday" date="13"/>
           <day ordinal="19" name="Thursday" date="14">
             <job number="952-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false"#$#  ~~i class="ic-flag"#$# *^*i#$#	 ~~span id="job_952-1"#$#952-1*^*span#$# BMA/DD's Discounts #5335*^*li#$#
 </job>
@@ -574,8 +569,6 @@
           <day ordinal="32" name="Wednesday" date="27"/>
           <day ordinal="33" name="Thursday" date="28"/>
           <day ordinal="34" name="Friday" date="29">
-            <job number="1155">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false"#$#  ~~i class="ic-flag"#$# *^*i#$#	 ~~span id="job_1155"#$#1155*^*span#$# Custom Sign Center / Wendy's #08847*^*li#$#</job>
-            <job number="1155-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false"#$#  ~~i class="ic-flag"#$# *^*i#$#	 ~~span id="job_1155-1"#$#1155-1*^*span#$# Custom Sign Center / Wendy's #08847*^*li#$#</job>
             <job number="1100">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1100" #$#1100*^*span#$# First Communities/The Adelaide*^*li#$# </job>
           </day>
           <day ordinal="35" name="Saturday" date="30">
@@ -600,7 +593,6 @@
             <job number="1175">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1175" #$#1175*^*span#$# Custom Sign Center, Inc / Simply Self Storage*^*li#$# </job>
           </day>
           <day ordinal="3" name="Tuesday" date="3">
-            <job number="1020-2">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false"#$#  ~~i class="ic-flag"#$# *^*i#$#	 ~~span id="job_1020-2"#$#1020-2*^*span#$# Cummings Resources, LLC / 7-11 #7112141*^*li#$#</job>
             <job number="1118-4">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1118-4" #$#1118-4*^*span#$# BHSSA Capital Campaing*^*li#$# </job>
           </day>
           <day ordinal="4" name="Wednesday" date="4"/>
@@ -609,34 +601,26 @@
           <day ordinal="7" name="Saturday" date="7"/>
         </week>
         <week ordinal="2">
-          <day ordinal="8" name="Sunday" date="8">
-            <job number="1030-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1030-1" #$#1030-1*^*span#$# Cummings Resources, LLC / 7-11 #26801*^*li#$# </job>
-          </day>
+          <day ordinal="8" name="Sunday" date="8"/>
           <day ordinal="9" name="Monday" date="9"/>
           <day ordinal="10" name="Tuesday" date="10">
             <job number="1094-2">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1094-2" #$#1094-2*^*span#$# Walton Signage / Toys R Us*^*li#$# </job>
           </day>
           <day ordinal="11" name="Wednesday" date="11"/>
           <day ordinal="12" name="Thursday" date="12"/>
-          <day ordinal="13" name="Friday" date="13">
-            <job number="1146-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1146-1" #$#1146-1*^*span#$# BMA/Dd's Discounts #5065*^*li#$# </job>
-            <job number="1135">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1135" #$#1135*^*span#$# MC/T-Mobile*^*li#$# </job>
-          </day>
+          <day ordinal="13" name="Friday" date="13"/>
           <day ordinal="14" name="Saturday" date="14"/>
         </week>
         <week ordinal="3">
           <day ordinal="15" name="Sunday" date="15">
-            <job number="1023-3">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1023-3" #$#1023-3*^*span#$# Cummings Resources, LLC / 7/11 #35766*^*li#$# </job>
             <job number="1129">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1129" #$#1129*^*span#$# BMA/DD's Discounts #5130*^*li#$# </job>
           </day>
           <day ordinal="16" name="Monday" date="16"/>
           <day ordinal="17" name="Tuesday" date="17"/>
-          <day ordinal="18" name="Wednesday" date="18">
-            <job number="1085-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1085-1" #$#1085-1*^*span#$# Custom Sign Center, Inc. / Wendy's #01778*^*li#$# </job>
-          </day>
+          <day ordinal="18" name="Wednesday" date="18"/>
           <day ordinal="19" name="Thursday" date="19"/>
           <day ordinal="20" name="Friday" date="20">
-            <job number="1157-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1157-1" #$#1157-1*^*span#$# Pattison Sign Group (Toronto)*^*li#$# </job>
+            <job number="1172-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1172-1" #$#1172-1*^*span#$# Pattison Sign Group / Toyota of Deland*^*li#$# </job>
           </day>
           <day ordinal="21" name="Saturday" date="21"/>
         </week>
@@ -646,19 +630,26 @@
             <job number="1036-3">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1036-3" #$#1036-3*^*span#$# Pattison Sign Group (Toronto) / Auto Nation Toyota*^*li#$# </job>
           </day>
           <day ordinal="24" name="Tuesday" date="24"/>
-          <day ordinal="25" name="Wednesday" date="25"/>
+          <day ordinal="25" name="Wednesday" date="25">
+            <job number="1184">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1184" #$#1184*^*span#$# First Communities/The Adelaide*^*li#$# </job>
+            <job number="1210">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1210" #$#1210*^*span#$# SouthWater Signs / Sears1285*^*li#$# </job>
+          </day>
           <day ordinal="26" name="Thursday" date="26">
             <job number="1133-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1133-1" #$#1133-1*^*span#$# Principle Global / Cricket Wireless*^*li#$# </job>
+            <job number="1195">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1195" #$#1195*^*span#$# Sign-Age / Coldwell Banker*^*li#$# </job>
           </day>
           <day ordinal="27" name="Friday" date="27">
             <job number="1173">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1173" #$#1173*^*span#$# Bill Moore &amp;amp;amp; Assoc. / ROSS #0514*^*li#$# </job>
+            <job number="1213">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1213" #$#1213*^*span#$# Vixxo/Michaels #1264*^*li#$# </job>
           </day>
           <day ordinal="28" name="Saturday" date="28"/>
         </week>
         <week ordinal="5">
           <day ordinal="29" name="Sunday" date="29"/>
           <day ordinal="30" name="Monday" date="30"/>
-          <day ordinal="31" name="Tuesday" date="31"/>
+          <day ordinal="31" name="Tuesday" date="31">
+            <job number="1135">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1135" #$#1135*^*span#$# MC/T-Mobile*^*li#$# </job>
+          </day>
           <day ordinal="32" name="Wednesday" date=""/>
           <day ordinal="33" name="Thursday" date=""/>
           <day ordinal="34" name="Friday" date=""/>
@@ -671,9 +662,13 @@
           <day ordinal="2" name="Monday" date=""/>
           <day ordinal="3" name="Tuesday" date=""/>
           <day ordinal="4" name="Wednesday" date="1">
-            <job number="1133-2">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1133-2" #$#1133-2*^*span#$# Principle Global / Cricket Wireless*^*li#$# </job>
+            <job number="1148-4">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1148-4" #$#1148-4*^*span#$# Egan Sign / Famous Footwear #3580*^*li#$# </job>
+            <job number="1218">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1218" #$#1218*^*span#$# Bootz &amp;amp;amp; Duke Sign / Data Doctors*^*li#$# </job>
           </day>
-          <day ordinal="5" name="Thursday" date="2"/>
+          <day ordinal="5" name="Thursday" date="2">
+            <job number="1219">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1219" #$#1219*^*span#$# Custom Sign Center / Simply Self Storage*^*li#$# </job>
+            <job number="1220">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1220" #$#1220*^*span#$# Pattison Sign Group / Fountain Acura*^*li#$# </job>
+          </day>
           <day ordinal="6" name="Friday" date="3">
             <job number="1157">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false"#$#  ~~i class="ic-flag"#$# *^*i#$#	 ~~span id="job_1157"#$#1157*^*span#$# Pattison Sign Group (Toronto)*^*li#$#</job>
           </day>
@@ -681,39 +676,77 @@
         </week>
         <week ordinal="2">
           <day ordinal="8" name="Sunday" date="5"/>
-          <day ordinal="9" name="Monday" date="6"/>
+          <day ordinal="9" name="Monday" date="6">
+            <job number="1189-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1189-1" #$#1189-1*^*span#$# Custom Sign Center / Wendy's #11932*^*li#$# </job>
+          </day>
           <day ordinal="10" name="Tuesday" date="7"/>
-          <day ordinal="11" name="Wednesday" date="8"/>
-          <day ordinal="12" name="Thursday" date="9"/>
-          <day ordinal="13" name="Friday" date="10"/>
+          <day ordinal="11" name="Wednesday" date="8">
+            <job number="1155">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1155" #$#1155*^*span#$# Custom Sign Center / Wendy's #08847*^*li#$# </job>
+          </day>
+          <day ordinal="12" name="Thursday" date="9">
+            <job number="1030-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1030-1" #$#1030-1*^*span#$# Cummings Resources, LLC / 7-11 #26801*^*li#$# </job>
+            <job number="1118-5">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1118-5" #$#1118-5*^*span#$# BHSSA Capital Campaing*^*li#$# </job>
+            <job number="1191">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1191" #$#1191*^*span#$# MC/*^*li#$# </job>
+            <job number="1164">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1164" #$#1164*^*span#$# First Communities/The Lory of Braden Spirngs*^*li#$# </job>
+          </day>
+          <day ordinal="13" name="Friday" date="10">
+            <job number="1193-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1193-1" #$#1193-1*^*span#$# Custom Sign Center / Wendy's #01762*^*li#$# </job>
+            <job number="1085-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1085-1" #$#1085-1*^*span#$# Custom Sign Center, Inc. / Wendy's #01778*^*li#$# </job>
+            <job number="1157-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1157-1" #$#1157-1*^*span#$# Autonation Toyota*^*li#$# </job>
+          </day>
           <day ordinal="14" name="Saturday" date="11"/>
         </week>
         <week ordinal="3">
           <day ordinal="15" name="Sunday" date="12"/>
-          <day ordinal="16" name="Monday" date="13"/>
+          <day ordinal="16" name="Monday" date="13">
+            <job number="1155-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1155-1" #$#1155-1*^*span#$# Custom Sign Center / Wendy's #08847*^*li#$# </job>
+          </day>
           <day ordinal="17" name="Tuesday" date="14"/>
           <day ordinal="18" name="Wednesday" date="15">
             <job number="1085">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1085" #$#1085*^*span#$# Custom Sign Center, Inc. / Wendy's #01778*^*li#$# </job>
+            <job number="1023-3">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1023-3" #$#1023-3*^*span#$# Cummings Resources, LLC / 7/11 #35766*^*li#$# </job>
+            <job number="1129-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1129-1" #$#1129-1*^*span#$# ROSS Stores Inc c/o Bill Moore &amp;amp;amp; Associates*^*li#$# </job>
+            <job number="1214">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1214" #$#1214*^*span#$# Bo Benton II / Bojangles*^*li#$# </job>
           </day>
-          <day ordinal="19" name="Thursday" date="16"/>
+          <day ordinal="19" name="Thursday" date="16">
+            <job number="1020-2">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1020-2" #$#1020-2*^*span#$# Cummings Resources, LLC / 7-11 #7112141*^*li#$# </job>
+            <job number="1146">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1146" #$#1146*^*span#$# ROSS Stores Inc c/o Bill Moore &amp;amp;amp; Associates*^*li#$# </job>
+          </day>
           <day ordinal="20" name="Friday" date="17"/>
-          <day ordinal="21" name="Saturday" date="18"/>
+          <day ordinal="21" name="Saturday" date="18">
+            <job number="1209-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1209-1" #$#1209-1*^*span#$# TDI Signs / Beachworks Outlet*^*li#$# </job>
+          </day>
         </week>
         <week ordinal="4">
           <day ordinal="22" name="Sunday" date="19"/>
-          <day ordinal="23" name="Monday" date="20"/>
+          <day ordinal="23" name="Monday" date="20">
+            <job number="1021-4">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1021-4" #$#1021-4*^*span#$# MC/*^*li#$# </job>
+            <job number="1209">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1209" #$#1209*^*span#$# TDI Signs / Beachworks Outlet*^*li#$# </job>
+          </day>
           <day ordinal="24" name="Tuesday" date="21"/>
-          <day ordinal="25" name="Wednesday" date="22"/>
+          <day ordinal="25" name="Wednesday" date="22">
+            <job number="1133-2">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1133-2" #$#1133-2*^*span#$# Principle Global / Cricket Wireless*^*li#$# </job>
+          </day>
           <day ordinal="26" name="Thursday" date="23"/>
-          <day ordinal="27" name="Friday" date="24"/>
+          <day ordinal="27" name="Friday" date="24">
+            <job number="1146-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1146-1" #$#1146-1*^*span#$# ROSS Stores Inc c/o Bill Moore &amp;amp;amp; Associates*^*li#$# </job>
+          </day>
           <day ordinal="28" name="Saturday" date="25"/>
         </week>
         <week ordinal="5">
           <day ordinal="29" name="Sunday" date="26"/>
-          <day ordinal="30" name="Monday" date="27"/>
-          <day ordinal="31" name="Tuesday" date="28"/>
-          <day ordinal="32" name="Wednesday" date="29"/>
-          <day ordinal="33" name="Thursday" date="30"/>
+          <day ordinal="30" name="Monday" date="27">
+            <job number="1201-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1201-1" #$#1201-1*^*span#$# Archer Sign / Bar Louie*^*li#$# </job>
+          </day>
+          <day ordinal="31" name="Tuesday" date="28">
+            <job number="1148-5">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1148-5" #$#1148-5*^*span#$# Egan Sign / Famous Footwear #3580*^*li#$# </job>
+          </day>
+          <day ordinal="32" name="Wednesday" date="29">
+            <job number="1206">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1206" #$#1206*^*span#$# ROSS Stores Inc c/o Bill Moore &amp;amp;amp; Associates*^*li#$# </job>
+          </day>
+          <day ordinal="33" name="Thursday" date="30">
+            <job number="1211">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1211" #$#1211*^*span#$# ROSS #0271*^*li#$# </job>
+          </day>
           <day ordinal="34" name="Friday" date=""/>
           <day ordinal="35" name="Saturday" date=""/>
         </week>
@@ -735,9 +768,12 @@
           <day ordinal="11" name="Wednesday" date="5"/>
           <day ordinal="12" name="Thursday" date="6"/>
           <day ordinal="13" name="Friday" date="7"/>
-          <day ordinal="14" name="Saturday" date="8"/>
+          <day ordinal="14" name="Saturday" date="8">
+            <job number="1036">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1036" #$#1036*^*span#$# Pattison Sign Group (Toronto) / Auto Nation Toyota*^*li#$# </job>
+            <job number="1221-1">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1221-1" #$#1221-1*^*span#$# Pattison Sign Group Inc. (Knoxville)*^*li#$# </job>
+          </day>
         </week>
-        <week ordinal="3"><day ordinal="15" name="Sunday" date="9"/><day ordinal="16" name="Monday" date="10"/><day ordinal="17" name="Tuesday" date="11"/><day ordinal="18" name="Wednesday" date="12"/><day ordinal="19" name="Thursday" date="13"/><day ordinal="20" name="Friday" date="14"/>"
+        <week ordinal="3"><day ordinal="15" name="Sunday" date="9"/><day ordinal="16" name="Monday" date="10"/><day ordinal="17" name="Tuesday" date="11"><job number="1223">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1223" #$#1223*^*span#$# Rent A Center*^*li#$# </job></day><day ordinal="18" name="Wednesday" date="12"/><day ordinal="19" name="Thursday" date="13"><job number="1221">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1221" #$#1221*^*span#$# Pattison Sign Group / Fountain Acura*^*li#$# </job></day><day ordinal="20" name="Friday" date="14"/>"
 				<day ordinal="21" name="Saturday" date="15"/></week>
         <week ordinal="4">
           <day ordinal="22" name="Sunday" date="16"/>
@@ -746,7 +782,9 @@
           <day ordinal="25" name="Wednesday" date="19"/>
           <day ordinal="26" name="Thursday" date="20"/>
           <day ordinal="27" name="Friday" date="21"/>
-          <day ordinal="28" name="Saturday" date="22"/>
+          <day ordinal="28" name="Saturday" date="22">
+            <job number="1212">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1212" #$#1212*^*span#$# Bahia Shrine Center*^*li#$# </job>
+          </day>
         </week>
         <week ordinal="5">
           <day ordinal="29" name="Sunday" date="23"/>
@@ -765,6 +803,155 @@
           <day ordinal="40" name="Thursday" date=""/>
           <day ordinal="41" name="Friday" date=""/>
           <day ordinal="42" name="Saturday" date=""/>
+        </week>
+      </month>
+    </year>
+    <year ordinal="2018">
+      <month ordinal="1" name="January">
+        <week ordinal="1">
+          <day ordinal="1" name="Sunday" date=""/>
+          <day ordinal="2" name="Monday" date="1"/>
+          <day ordinal="3" name="Tuesday" date="2"/>
+          <day ordinal="4" name="Wednesday" date="3">
+            <job number="1201">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1201" #$#1201*^*span#$# Archer Sign / Bar Louie*^*li#$# </job>
+          </day>
+          <day ordinal="5" name="Thursday" date="4"/>
+          <day ordinal="6" name="Friday" date="5"/>
+          <day ordinal="7" name="Saturday" date="6"/>
+        </week>
+        <week ordinal="2">
+          <day ordinal="8" name="Sunday" date="7"/>
+          <day ordinal="9" name="Monday" date="8"/>
+          <day ordinal="10" name="Tuesday" date="9"/>
+          <day ordinal="11" name="Wednesday" date="10"/>
+          <day ordinal="12" name="Thursday" date="11"/>
+          <day ordinal="13" name="Friday" date="12"/>
+          <day ordinal="14" name="Saturday" date="13"/>
+        </week>
+        <week ordinal="3">
+          <day ordinal="15" name="Sunday" date="14"/>
+          <day ordinal="16" name="Monday" date="15"/>
+          <day ordinal="17" name="Tuesday" date="16">
+            <job number="1188">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1188" #$#1188*^*span#$# Custom Sign Center / Wendy's #01775*^*li#$# </job>
+          </day>
+          <day ordinal="18" name="Wednesday" date="17"/>
+          <day ordinal="19" name="Thursday" date="18"/>
+          <day ordinal="20" name="Friday" date="19"/>
+          <day ordinal="21" name="Saturday" date="20"/>
+        </week>
+        <week ordinal="4">
+          <day ordinal="22" name="Sunday" date="21"/>
+          <day ordinal="23" name="Monday" date="22"/>
+          <day ordinal="24" name="Tuesday" date="23"/>
+          <day ordinal="25" name="Wednesday" date="24"/>
+          <day ordinal="26" name="Thursday" date="25"/>
+          <day ordinal="27" name="Friday" date="26"/>
+          <day ordinal="28" name="Saturday" date="27"/>
+        </week>
+        <week ordinal="5">
+          <day ordinal="29" name="Sunday" date="28"/>
+          <day ordinal="30" name="Monday" date="29"/>
+          <day ordinal="31" name="Tuesday" date="30"/>
+          <day ordinal="32" name="Wednesday" date="31"/>
+          <day ordinal="33" name="Thursday" date=""/>
+          <day ordinal="34" name="Friday" date=""/>
+          <day ordinal="35" name="Saturday" date=""/>
+        </week>
+      </month>
+      <month ordinal="2" name="February">
+        <week ordinal="1">
+          <day ordinal="1" name="Sunday" date=""/>
+          <day ordinal="2" name="Monday" date=""/>
+          <day ordinal="3" name="Tuesday" date=""/>
+          <day ordinal="4" name="Wednesday" date=""/>
+          <day ordinal="5" name="Thursday" date="1"/>
+          <day ordinal="6" name="Friday" date="2"/>
+          <day ordinal="7" name="Saturday" date="3"/>
+        </week>
+        <week ordinal="2">
+          <day ordinal="8" name="Sunday" date="4"/>
+          <day ordinal="9" name="Monday" date="5"/>
+          <day ordinal="10" name="Tuesday" date="6"/>
+          <day ordinal="11" name="Wednesday" date="7"/>
+          <day ordinal="12" name="Thursday" date="8"/>
+          <day ordinal="13" name="Friday" date="9"/>
+          <day ordinal="14" name="Saturday" date="10"/>
+        </week>
+        <week ordinal="3">
+          <day ordinal="15" name="Sunday" date="11"/>
+          <day ordinal="16" name="Monday" date="12"/>
+          <day ordinal="17" name="Tuesday" date="13"/>
+          <day ordinal="18" name="Wednesday" date="14"/>
+          <day ordinal="19" name="Thursday" date="15">
+            <job number="1154">~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_1154" #$#1154*^*span#$# Persona / Holiday Inn Express*^*li#$# </job>
+          </day>
+          <day ordinal="20" name="Friday" date="16"/>
+          <day ordinal="21" name="Saturday" date="17"/>
+        </week>
+        <week ordinal="4">
+          <day ordinal="22" name="Sunday" date="18"/>
+          <day ordinal="23" name="Monday" date="19"/>
+          <day ordinal="24" name="Tuesday" date="20"/>
+          <day ordinal="25" name="Wednesday" date="21"/>
+          <day ordinal="26" name="Thursday" date="22"/>
+          <day ordinal="27" name="Friday" date="23"/>
+          <day ordinal="28" name="Saturday" date="24"/>
+        </week>
+        <week ordinal="5">
+          <day ordinal="29" name="Sunday" date="25"/>
+          <day ordinal="30" name="Monday" date="26"/>
+          <day ordinal="31" name="Tuesday" date="27"/>
+          <day ordinal="32" name="Wednesday" date="28"/>
+          <day ordinal="33" name="Thursday" date=""/>
+          <day ordinal="34" name="Friday" date=""/>
+          <day ordinal="35" name="Saturday" date=""/>
+        </week>
+      </month>
+      <month ordinal="3" name="March">
+        <week ordinal="1">
+          <day ordinal="1" name="Sunday" date=""/>
+          <day ordinal="2" name="Monday" date=""/>
+          <day ordinal="3" name="Tuesday" date=""/>
+          <day ordinal="4" name="Wednesday" date=""/>
+          <day ordinal="5" name="Thursday" date="1"/>
+          <day ordinal="6" name="Friday" date="2"/>
+          <day ordinal="7" name="Saturday" date="3"/>
+        </week>
+        <week ordinal="2">
+          <day ordinal="8" name="Sunday" date="4"/>
+          <day ordinal="9" name="Monday" date="5"/>
+          <day ordinal="10" name="Tuesday" date="6"/>
+          <day ordinal="11" name="Wednesday" date="7"/>
+          <day ordinal="12" name="Thursday" date="8"/>
+          <day ordinal="13" name="Friday" date="9"/>
+          <day ordinal="14" name="Saturday" date="10"/>
+        </week>
+        <week ordinal="3">
+          <day ordinal="15" name="Sunday" date="11"/>
+          <day ordinal="16" name="Monday" date="12"/>
+          <day ordinal="17" name="Tuesday" date="13"/>
+          <day ordinal="18" name="Wednesday" date="14"/>
+          <day ordinal="19" name="Thursday" date="15"/>
+          <day ordinal="20" name="Friday" date="16"/>
+          <day ordinal="21" name="Saturday" date="17"/>
+        </week>
+        <week ordinal="4">
+          <day ordinal="22" name="Sunday" date="18"/>
+          <day ordinal="23" name="Monday" date="19"/>
+          <day ordinal="24" name="Tuesday" date="20"/>
+          <day ordinal="25" name="Wednesday" date="21"/>
+          <day ordinal="26" name="Thursday" date="22"/>
+          <day ordinal="27" name="Friday" date="23"/>
+          <day ordinal="28" name="Saturday" date="24"/>
+        </week>
+        <week ordinal="5">
+          <day ordinal="29" name="Sunday" date="25"/>
+          <day ordinal="30" name="Monday" date="26"/>
+          <day ordinal="31" name="Tuesday" date="27"/>
+          <day ordinal="32" name="Wednesday" date="28"/>
+          <day ordinal="33" name="Thursday" date="29"/>
+          <day ordinal="34" name="Friday" date="30"/>
+          <day ordinal="35" name="Saturday" date="31"/>
         </week>
       </month>
     </year>

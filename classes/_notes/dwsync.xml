@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="filedelete.php" server="70.39.250.251" local="131381245237062321" remote="131381245200000000" Dst="2" />
-<file name="calendar.php" server="70.39.250.251" local="131463382622319796" remote="131463381000000000" Dst="2" />
-<file name="sendemail.php" server="70.39.250.251" local="131199991887183418" remote="131199991800000000" Dst="2" />
-<file name="register.php" server="70.39.250.251" local="131390656257644322" remote="131390656800000000" Dst="2" />
-<file name="session.php" server="70.39.250.251" local="131511843958910811" remote="131511843600000000" Dst="2" />
-<file name="PhoneDirectory.php" server="70.39.250.251" local="131461526724166001" remote="131460028200000000" Dst="2" />
-<file name="security.php" server="70.39.250.251" local="131515137525237821" remote="131515137600000000" Dst="2" />
+<file name="filedelete.php" server="70.39.250.251" local="131547072243441296" remote="131522217600000000" Dst="1" />
+<file name="calendar.php" server="70.39.250.251" local="131541011583520778" remote="131547105600000000" Dst="1" />
+<file name="sendemail.php" server="70.39.250.251" local="131547072284651057" remote="131522217600000000" Dst="1" />
+<file name="register.php" server="70.39.250.251" local="131547072247266286" remote="131522217600000000" Dst="1" />
+<file name="session.php" server="70.39.250.251" local="131547072285594429" remote="131522217600000000" Dst="1" />
+<file name="PhoneDirectory.php" server="70.39.250.251" local="131547072246062886" remote="131522217600000000" Dst="1" />
+<file name="security.php" server="70.39.250.251" local="131547072283602750" remote="131541102000000000" Dst="1" />
+<file name="active_token.php" server="70.39.250.251" local="131547072239297346" remote="131534439600000000" Dst="1" />
+<file name="backup.php" server="70.39.250.251" local="131522834628534061" remote="131522145600000000" Dst="2" />
+<file name="db.php" server="70.39.250.251" local="131547072242130555" remote="131522217600000000" Dst="1" />
+<file name="Maintenance.php" server="70.39.250.251" local="131547072244696735" remote="131522217600000000" Dst="1" />
+<file name="Reservations.php" server="70.39.250.251" local="131547072248683958" remote="131522217600000000" Dst="1" />
+<file name="securityBAD.php" server="70.39.250.251" local="131522834645332442" remote="131522145600000000" Dst="2" />
+<file name="securityRETIRED.php" server="70.39.250.251" local="131522834645488963" remote="131522145600000000" Dst="2" />
+<file name="sessionBAD.php" server="70.39.250.251" local="131522834649295158" remote="131522145600000000" Dst="2" />
 </dwsync>

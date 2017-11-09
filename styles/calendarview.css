@@ -132,11 +132,11 @@ h1{
 .content-row{
 	padding: 10px;	
 }
-#headerDays, .row, #weeks, #calFooter{
+#headerDays, .calRow, #weeks, #calFooter{
 	float:left;
 	width:100%;
 }
-.row {
+.calRow {
 	height: auto;
 	font-size: 16px;
 	color: #236FBF;
@@ -151,7 +151,7 @@ h1{
 .context-style{	
 	border: #32C1EC dotted 5px !important;
 }
-.headerDays, .calCol, .row, .empty, .today, .day, .date{
+.headerDays, .calCol, .calRow, .empty, .today, .day, .date{
 	box-sizing:border-box;	
 }
 .empty, .date, .calCol{
@@ -198,7 +198,7 @@ h1{
 	overflow-y: scroll;	
 	padding-top: 3px;
 	font-size: 13px;
-	/*font-weight: 300 !important;*/
+	font-weight: 300 !important;
 }
 ul.edit{
 	list-style:none;
@@ -210,10 +210,10 @@ ul.edit{
 	padding-top: 12px;
 	margin-top: 10px;	
 }
-#topHeaders, #topHeaders .row{
+#topHeaders, #topHeaders .calRow{
 	background: #FFF !important;	
 }
-#topHeaders .row{
+#topHeaders .calRow{	
 	height: 40px;
 	font-size: 22px;
 	font-weight:bold;
@@ -317,16 +317,16 @@ ul.edit{
 .addNewLine:hover{cursor:pointer;}
 /*team assignments menu*/
 #divContextMenu{
-	width:130px;  padding: 1px; position:absolute !important;border:1px solid #777;background:#FFF;
-	margin:0px; list-style:none;float:left;z-index:9950; box-sizing: border-box;
+	width:100px; height:300px; padding: 1px; position:absolute !important;border:1px solid #777;background:#FFF;
+	margin:0px; list-style:none;float:left;z-index:99999;
 }
 #ulContextMenu{
-	width:127px; height:200px; padding: 4px; position:absolute !important;border:1px solid #777;background:#FFF;
-	margin:0px; list-style:none;float:left;z-index:9950;box-sizing: border-box;
+	width:92px; height:288px; padding: 4px; position:absolute !important;border:1px solid #777;background:#FFF;
+	margin:0px; list-style:none;float:left;z-index:99999;
 }
 #ulContextMenu > *{cursor:pointer}
 .modal #ulContextMenu{
-	height: 240px; width: 146px; box-sizing: border-box;
+	height: 240px; width: 125px
 }
 .lineEntry{
 	padding: 6px 0px;
@@ -370,6 +370,7 @@ ul.edit li{text-align:left}
 	color: #CC0A0D;
 	padding-left: 3px;
 }*/
+
 .due {
 	/*padding-left: 20px;
 	background-image:url(../assets/stop_sign.png);	
@@ -378,6 +379,7 @@ ul.edit li{text-align:left}
 	border: #E00E12 solid 2px !important;
 	padding:3px !important;
 }
+
 #t5{
 	/*color: #52A815;*/
 	background: #FFF;
@@ -427,7 +429,7 @@ ul.edit li{text-align:left}
 }
 #modal li{
 	font-size: 16px !important;
-	width: 98% !important;
+	width: 100% !important;
 }
 #modal ul.edit{
 	height: 97%;
@@ -444,14 +446,14 @@ ul.edit li{text-align:left}
     width: 580px;
     z-index: 2;
 }	
-.blocker::before, #modalWindow:before {
+.blocker::before {
     content: "";
     display: inline-block;
     height: 100%;
     margin-right: -0.05em;
     vertical-align: middle;
 }
-.blocker, #modalWindow {
+.blocker {
     background-color: rgba(0, 0, 0, 0.75);
     bottom: 0;
     box-sizing: border-box;
@@ -494,13 +496,12 @@ h1 {
 }
 /*EFFECTIVELY HIDES WEEKENDS IN THE CALENDAR 
 /* if you hide weekends again, remember to set width from 14.2% to 19.88% on .empty, .date, .calCol in this file.
-#headerDays > div:first-child, #headerDays > div:last-child, .month > .row > div:first-child, .month > .row > div:last-child{
+#headerDays > div:first-child, #headerDays > div:last-child, .month > .calRow > div:first-child, .month > .calRow > div:last-child{
 	visibility:hidden;
 	width:0%;
 	display:none;
 }
 */
-
 #wait{
 	top: 33%;
 	left: 52%;
@@ -512,46 +513,32 @@ h1 {
 	color: #0E43AF;
 	background-color:#EBFF5D;
 }
-/***** TOOL TIP ****
-
-used like:
-<div class="tooltip">Hover over me
-  <span class="tooltiptext">Tooltip text</span>
-</div>
-*********/
-/* Tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    /*border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #029500;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
- 
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
 /* hover shows js trigger edit button on each job entry -- allow a single left click to show context menu. */
 /*li.lineEntry:hover:after {
 	
 	content: '<img id="OpenMenu" style="padding-left: 8px" src="../assets/pencil.png" />';
 	
 	}*/
-#teamSelection li{
+/*** VIEW ONLY ***/
+#jobClaimMenu{
+	
+	background: #FFF;
+	height:auto;
+	min-width: 75px;
+	border: #4E8EAD;
+	padding:4px;
+	box-sizing:border-box;
+	display:inline-block;
+	position:relative;
+	z-index: 1;
+	margin: 3px 0;
+	
+	/*display table cell?*/
+}
+claimed{
+	
+}
+.iconrow li{
 	list-style: none !important;
 	display: inline !important;
 }
@@ -560,9 +547,11 @@ used like:
 	font-style: italic;
 }
 #OverDueJobsList{
-	max-width: 330px;
-	box-sizing: border-box;
-	display:inline-block;
-	float:left;
+	min-width: 330px;	
 }
+[class^="col-"]{
+	margin-top:13px !important;
+}
+
+
 

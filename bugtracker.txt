@@ -119,6 +119,20 @@ BUG 7 (version 1.01): Major issue, overwriting and duplication of jobs when doin
 [ Note: After determining we need to reconcile conflicting CASper/WIP Calendar dates during a csv update, it was necessary to make a structural change to the xml documents that store the calendar data for each company (encapsulating each job in its own xml node "job" that has an attribute "number" with a value set to the unique job number).  This both helps achieve our goal of reliable reconciliation without duplication or overwrites, AND improves the efficiency of imports.]
 
 
+*******************************************************************************************************************************************************
+BUG 8 (version 1.02): Minor issue, overwriting of Copied Jobs on saves when already a different copied job is in the cell.
+*******************************************************************************************************************************************************
+Bug: When copy/pasting jobs across the same date cells, any new save of a continued job replaces any old saved continued job in that cell.
+        The pattern php utilizes is the prefix "copyof".[the job number] to pass over the content during csv updates.  On saves, this seems to cause a problem.
+
+Original Report: T Turner.  Date: 10/19/2017.  
+"Chris, See me tomorrow as I figured out when they are disappearing over and over... It's only when i have more than one that is copied to be out all week ... Like bob and dennis are both out on wendy's like week i showed you earlier and i just had it do it to me again for next week more than once... once i would fix and submit one for bob and then fix dennis then bob's disappear again... Let me know thanks !"
+
+FIXED:
+The problem in calendar.php (method 'save') was I was getting a value of null or 0 and storing that in the var $jobNmbr from the HTML span inside the LI.  And so when adding content to the html content storing array $xmlToSaveArray[$monthOrd][$ord][$jobNmbr], the index of the content to save into the xml node was 0.  That is fine, except if there were more than one span of type copyof (CONT.), then the last one on that HTML date would overwrite any prior one; i.e., overwrite $xmlToSaveArray[$monthOrd][$ord][0].  To fix this, I now acct for an attrib "class" in the leading span element of a LI, and if it has a substr 'copyof', I using that as my index value: $xmlToSaveArray[$monthOrd][$ord][copyof101556];  So now each index is unique and each copied job will be assigned to the xmlToSaveArray for later writing into the XML doc.
+$
+
+
 	 
 	 
 	 

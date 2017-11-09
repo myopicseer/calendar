@@ -1,17 +1,6 @@
 <?php //model = models/calendarXML.php
-libxml_use_internal_errors(true);
-
-
-$calendar = new calendar;
-$calendar->init();
-
-if( $calendar->method==NULL || empty($calendar->method) ){
-	$calendar->display;
-} else {
-	//echo 'Else was called!  ';
-	$action = $calendar->method; 
-	$calendar->$action();//update, display...etc. [set by init()]
-}
+//libxml_use_internal_errors(true);
+include($_SERVER['DOCUMENT_ROOT'].'/../classes/dbConnPDO.php');
 /*xml nodes and attribs :
 	<root aka "calendars">
 		<calendar id="Custom Sign Center">
@@ -21,7 +10,7 @@ if( $calendar->method==NULL || empty($calendar->method) ){
 					   <day ordinal="1" name="Sunday"  date="1">
 */
 
-class calendar {
+class calendar extends dbConnPDO {
 	//submitted data
 	public $cMo; //current mo.  Set in init func: $this->cMo = date('m');
 	public $cYr; //current yr.  set in init func: $this->cYr = date('Y');
@@ -57,6 +46,7 @@ class calendar {
 	public $xmlfile;
 	public $arXmlYearNodes = array(); //hold the year node objs if more than one yr is in the xml doc	
 	public $userCompany;  // defines privileges based upon user's company.  Also used to define if this is a developer in the dev folder.
+	public $pdoDB; //db connection
 	
 	function init()
 	{
@@ -110,7 +100,7 @@ class calendar {
 			 //echo 'found wwwroot and xmlpath is: ' . $this->xmlPath;
 		} else { 
 			$this->xmlPath = dirname($this->path).$this->ds.'models'.$this->ds;
-			$this->userCompany = $this->comapny;
+			$this->userCompany = $this->company;
 		}
 		// echo $this->xmlPath.$this->xmlfile;
 		
@@ -119,93 +109,47 @@ class calendar {
 		//echo $this->xmlPath.$this->xmlfile;
 		 if (file_exists(realpath ( $this->xmlPath.$this->xmlfile ))) 
 		 {
+			 /*
+			 echo "The file exists and it is at ".$this->xmlPath.$this->xmlfile; 
+			 exit;
+			 OUTPUTS: /home/custo299/public_html/calendar/dev/models/csc.xml
+				 */
 			 $this->doc = new DOMDocument();		
 			//echo '    YES';
 			//http://de.php.net/manual/en/domdocument.load.php		
 			if( $this->doc->load(filter_var(realpath($this->xmlPath.$this->xmlfile )), LIBXML_NOBLANKS))
 			{	
-				//echo 'The document loaded.';
+				//exit('THE FILE LOADED');
+				//start calendar node AS $c (there is always just one of these)
+				$this->companyCalendar = $this->doc->getElementsByTagName("calendar")->item(0);
 				
-				//start with the correct company calendar node for this request
-				for( $i = 0; $c = $this->doc->getElementsByTagName("calendar")->item($i); $i++ ) {
-			
-					if( $c->getAttribute("id") == $this->company ) {
-						//echo 'Company calendar node found :  ' . $c->getAttribute("id");
-						//exit;
-						$this->companyCalendar = $c; // obj node
+				
+				//get each of the year nodes as $yrNode, and save to our year node array;
+				for( $i = 0; $yrNode = $this->companyCalendar->getElementsByTagName("year")->item($i); $i++ ) {		    		
+					//echo "Found a year node and it is ".$yrNode->getAttribute("ordinal");
+					if( (integer)$yrNode->getAttribute("ordinal") === (integer)$this->year ){
+
+						$this->activeYearNode = $yrNode;
+						//echo '$this->activeYearNode equates to'. $this->activeYearNode;
 					}
+					//store each year node (if more than one in the xml) to an array to iterate thru
+					array_push($this->arXmlYearNodes, $yrNode);		
 				}
 				
-				
-				
-				//get the correct xml year node for this request
-				
-				//for( $i = 0; $node = $doc->getElementsByTagName('month')->item($i); $i++)
-			    		for( $x = 0; $yrNode = $this->companyCalendar->getElementsByTagName( "year" )->item($x); $x++  ) {
-						
-						if( $yrNode->getAttribute("ordinal") == $this->year ){
-							
-							$this->activeYearNode = $yrNode;
-							//echo '$this->activeYearNode equates to'. $this->activeYearNode;
-						}
-						//save each year node (if more than one in the xml) to an array to iterate thru
-						array_push($this->arXmlYearNodes, $yrNode);		
-					}
-					
-					foreach($this->arXmlYearNodes as $yrNODE){
-						$this->iterateYEAR($yrNODE);//param is the yr node 
-					}
-				
-			     	
-			}		
+				foreach($this->arXmlYearNodes as $yrNODE){
+					$this->iterateYEAR($yrNODE);//param is the yr node 
+				}
+			} else {
+				//exit('THE FILE DID NOT LOAD');
+			}
+			// var_dump($this->arXmlYearNodes); exit;
 		}//file_exists
 		else {
 			echo '    NO.  The xml document does not exist.';
 		}
 		 
 	}
-	
-	
-	//update xml calendar
-	//incoming content for the month looks like:
-	/*
-	//this is AFTER stripslashes():
-	<div class="row" id="row1"><div class="empty" ordinal="1"></div><div class="empty" ordinal
-	 ="2"></div><div class="empty" ordinal="3"></div><div class="date" ordinal="4"><div class
-	 ="day">1</div><div class="edit"></div></div><div class="date" ordinal="5"><div class="day
-	 ">2</div><div class="edit"></div></div><div class="date" ordinal="6"><div class="day">3<
-	 /div><div class="edit"></div></div><div class="date" ordinal="7"><div class="day">4</div
-	 ><div class="edit"></div></div></div><div class="row" id="row2"><div class="date" ordinal
-	 ="8"><div class="day">5</div><div class="edit"></div></div><div class="date" ordinal="9"
-	 ><div class="day">6</div><div class="edit"></div></div><div class="date" ordinal="10"><div
-	  class="day">7</div><div class="edit"></div></div><div class="date" ordinal="11"><div class
-	 ="day">8</div><div class="edit"></div></div><div class="date" ordinal="12"><div class="day
-	 ">9</div><div class="edit"></div></div><div class="date" ordinal="13"><div class="day">10
-	 </div><div class="edit"></div></div><div class="date" ordinal="14"><div class="day">11</div
-	 ><div class="edit"></div></div></div><div class="row" id="row3"><div class="date" ordinal
-	 ="15"><div class="day">12</div><div class="edit"></div></div><div class="date" ordinal="16
-	 "><div class="day">13</div><div class="edit"></div></div><div class="date" ordinal="17">
-	 <div class="day">14</div><div class="edit"></div></div><div class="date" ordinal="18"><div
-	  class="day">15</div><div class="edit"></div></div><div class="date" ordinal="19"><div class
-	 ="day">16</div><div class="edit"></div></div><div class="date" ordinal="20"><div class="day
-	 ">17</div><div class="edit"></div></div><div class="date" ordinal="21"><div class="day">18
-	 </div><div class="edit"></div></div></div><div class="row" id="row4"><div class="date" ordinal
-	 ="22"><div class="day">19</div><div class="edit"></div></div><div class="date" ordinal="23
-	 "><div class="day">20</div><div class="edit"></div></div><div class="date" ordinal="24">
-	 <div class="day">21</div><div class="edit"></div></div><div class="date" ordinal="25"><div
-	  class="day">22</div><div class="edit"></div></div><div class="date" ordinal="26"><div class
-	 ="day">23</div><div class="edit"></div></div><div class="date" ordinal="27"><div class="day
-	 ">24</div><div class="edit"></div></div><div class="date" ordinal="28"><div class="day">25
-	 </div><div class="edit"></div></div></div><div class="row" id="row5"><div class="date" ordinal
-	 ="29"><div class="day">26</div><div class="edit"></div></div><div class="date" ordinal="30
-	 "><div class="day">27</div><div class="edit"></div></div><div class="date" ordinal="31">
-	 <div class="day">28</div><div class="edit"></div></div><div class="date" ordinal="32"><div
-	  class="day">29</div><div class="edit"></div></div><div class="date" ordinal="33"><div class
-	 ="day">30</div><div class="edit"></div></div><div class="empty" ordinal="34"></div><div class
-	 ="empty" ordinal="35"></div></div>"
-	
-	*/
-	
+
 	/* flow:
 	Converting HTML to XML tree to saveMonth()
 	 HTML comes as "content" in the request array.
@@ -224,326 +168,254 @@ class calendar {
 	 */
 	 
 	// Convert the above into the XML structure needed to update the xml file.
-	function saveMonth() 
-	
-	{
-		
-	   $this->content = stripslashes($this->content); // remove escaping backslashes, if any
-		
-		
-	    $htmlDoc = new DOMDocument();		
-	    $htmlDoc->loadHTML($this->content);
-	
-	    
-	    $xmlToSaveArray = array(); 
-	    $tempArray = array();
-	    //search html object tree ....
-	    //$htmlSearchDiv = $htmlDoc->getElementsByTagName("div");
-	    
-	   
-		 for($z=0; $div = $htmlDoc->getElementsByTagName("div")->item($z); $z++)
-		 {
-		    //$debugMsg .= " - a div tag was found - ";
-		    //if the ordinal cell does not have a class="empty" (meaning it is a cell with a date for the save month)
-		    
-		    
-		   // $v = html_entity_decode(json_encode($div ->nodeValue));
-		   
-		   
-		   if( $div->getAttribute("class") == "month" || $div->getAttribute("class") == "month hide"  )
-		   {
-			   $monthOrd = $div->getAttribute("ordinal"); //used as the index value for our html array of content to save to our xml file.			   
-		   	   //$div is a month div to iterate thru & extract LI HTML to save to our array, then to xml;
-		   
-		   	   for($d=0; $dateDiv = $div->getElementsByTagName("div")->item($d); $d++)
-			   { //for each date div within the current month $div
-		   
-		   
-		    
-		    if( /*$div->getAttribute("ordinal") && */ $dateDiv->getAttribute("class") == "date" || $dateDiv->getAttribute("class") == "date today"  ) 
-		    {
-			    
-			    $ord = $dateDiv->getAttribute("ordinal");
-			    
-			    //we have a date cell with potentially new content
-			   //$debugMsg .= $z . " - we have a date cell with potentially new content - ";
-			  
-			    
-			   //drill down to this div's child ul of class="edit" for its content.
-			   // echo json_encode(addslashes($div ->nodeValue));
-			   for($i=0; $childUL = $dateDiv->getElementsByTagName("ul")->item($i); $i++)
-			   {
-				    
-				   
-				  //$debugMsg .= "\r\n"; 
-				  //$debugMsg .= " -we have the child UL for the date cell \r\n"; 
-				  if( $childUL->getAttribute("class") == "edit" ) 
-				  {
-					 
-					 
-			    		$xmlToSaveArray[$monthOrd][$ord] = array();
-					  
-					 //what if we want to save an empty value (no <li> tags)?
-					if($childUL->getElementsByTagName("li")->length > 0) 
-					{
-						
-		
-						
-						foreach($childUL->getElementsByTagName("li") as $li) 
-						{
-							 //we have the edit div, let's get the contents	  
-							//echo 'an edit class node was found';
-							//get each list and save to the ordinal index for our array
-							$val = '';
-							
-							 //remove the .hide class if present to 
-							 //prevent entries from hiding when xml loads next time.
-							
-							$class = $li->getAttribute('class');							
-							 
-							
-							
-							 if(preg_match('~^[ hide]$~',$class))
-							 {
-								$val = str_replace($class,'7#77****88#8',$val);
-								$liClassTxt = str_replace( ' hide','',$class);
-								$val = str_replace('7#77****88#8',$class,$val);
-							 } 
-							
-							
-							
-						// ad hoc not LI's added by admins have NO SPAN.
-						// have to account for this when saving
-							
-							
-							$span = $li->getElementsByTagName("span");
-							if($span->length){
-								
-								$jobNmbr = $span->item(0)->getAttribute("id");
-								
-								if(strlen($jobNmbr) > 2){
-									
-									$jobNmbr = str_replace("job_","",$jobNmbr);
-										
-								} else {
-									
-									$jobNmbr = null;
-									
-								}
-								
-							} else {
-								
-								//this is a + added LI by an admin.
-								$jobNmbr = 'admin-note';
-								
+	function saveMonth() {		
+		/* Check that user possess the access_token to perform this action */		
+		$this->pdoDB = parent::dbOpen('custo299_wipcalendar');		
+		$query = 'SELECT COUNT(id) FROM `active_token` WHERE `id_user` = :userID AND `coid_token` = :coID';
+		$statement = $this->pdoDB->prepare($query);
+		$statement->bindParam(':userID', $_POST['userID']);
+		$statement->bindParam(':coID', $_POST['coID']);
+		if( $statement->execute() ) {			
+			$row = $statement->fetch(PDO::FETCH_ASSOC);
+			if( $row["COUNT(id)"] < 1 ) {
+				//user does NOT have the access_token permission to save at this time.
+				$msg = array('msg'=>"Not Saved.  Another user with save rights is currently logged in.");
+				$msg = json_encode($msg);
+				exit($msg);
+			} else {		
+				// THIS USER HAS THE ACCESS_TOKEN -> AUTHORIZED TO SAVE THE CALENDAR.
+				// Convert HTML to be saved ( POST[content] ) into DomDocument.
+			    $this->content = stripslashes($this->content); // remove escaping backslashes, if any
+			    $htmlDoc = new DOMDocument();		
+			    $htmlDoc->loadHTML($this->content);
+			    //free some memory:
+			    unset($this->content);
+			    /* set the domdoc node contents into an array such that:
+			    // array[12][4][100100] is the html contents for job 100100, which should be saved to the 
+			    // xml doc at node December 4th for the current iteration year we are in.
+			    // it will be saved in a <job> node with attrib 'number' equal to 100100.
+			    */
+			    $xmlToSaveArray = array();				
+			    $tempArray = array();
+			    //search html object tree ....
+			    //$htmlSearchDiv = $htmlDoc->getElementsByTagName("div");
+				for($z=0; $div = $htmlDoc->getElementsByTagName("div")->item($z); $z++) {				    
+
+					/*// DEBUG: Examine the Contents of the Current Div.
+					 $v = html_entity_decode(json_encode($div ->nodeValue));
+					//*/
+
+					/* TODO: 	Getting the Month Ordinal Value below MUST be done within 
+							a FOREACH YR Node Ordinal Value.  Otherwise, there will 
+							be, e.g., the possibility of more than 1 month with an 
+							ordinal of, say, 2 (feb) & identical content would probably 
+							save to both Feb 2017 and Feb 2018.
+
+							UNTIL ADDRESSED, best to have not more than 12 months total 
+							within an xml structure.
+					*/
+
+					/* TODO:  look for substring 'month' in class attrib, to achieve 
+							greater stability against future class attrib modifications.
+					*/
+
+					if( $div->getAttribute( "class" ) == "month" || $div->getAttribute( "class" ) == "month hide" ) {
+					   $monthOrd = ( integer )$div->getAttribute( "ordinal" ); //this number will be utilized 
+					   // as the index value in the html content array, to map htmldoc month node 
+					   //contents to a matching xml mo. node.	
+					   $yearOrd = ( integer )$div->getAttribute( "yr" );
+					   //Here, $div is a month div to iterate into / extract LI HTML to store in an array, 
+					   //then write into the xml;
+					   for( $d=0; $dateDiv = $div->getElementsByTagName( "div" )->item( $d ); $d++ ) { 
+						    //for each date div within the current month $div
+						    if( $dateDiv->getAttribute( "class" ) == "date" || $dateDiv->getAttribute( "class" ) == "date today" ) {
+							    $ord = ( integer )$dateDiv->getAttribute( "ordinal" );
+							    //we have a date cell with potentially new content
+							    //$debugMsg .= $z . " - we have a date cell with potentially new content - ";
+							    //drill down to this div's child ul of class="edit" for its content.
+							    // echo json_encode(addslashes($div ->nodeValue));
+							    for( $i=0; $childUL = $dateDiv->getElementsByTagName( "ul" )->item( $i ); $i++ ) {
+									  // $debugMsg .= "\r\n"; 
+									  // $debugMsg .= " -we have the child UL for the date cell \r\n"; 
+									  if( $childUL->getAttribute( "class" ) == "edit" ) {
+										$xmlToSaveArray[ $yearOrd ][ $monthOrd ][ $ord ] = array();
+										// what if we want to save an empty value (no <li> tags)?
+										if( $childUL->getElementsByTagName( "li" )->length > 0 ) {
+											foreach( $childUL->getElementsByTagName( "li" ) as $li ) {
+												// we have the edit div, let's get the contents	  
+												// echo 'an edit class node was found';
+												// get each list and save to the ordinal index for our array
+												$val = '';
+												// remove the .hide class if present to 
+												// prevent entries from hiding when xml loads next time.
+												$class = $li->getAttribute( 'class' );
+												if( preg_match( '~^[ hide]$~', $class ) ) {
+													$val = str_replace( $class, '7#77****88#8', $val );
+													$liClassTxt = str_replace( ' hide', '', $class );
+													$val = str_replace( '7#77****88#8', $class, $val );
+												} 
+
+											// ad hoc not LI's added by admins have NO SPAN.
+											// have to account for this when saving.
+
+											// DEFINE THE jobNmbr VARIABLE AS THE 1st SPAN CHILD
+												$span = $li->getElementsByTagName( "span" );
+												if( $span->length ) {
+													// this LI contains at least 1 node of type "span".
+
+													// the 1st span node [aka item(0)] will usually be the
+													// jobnumber-identity-holder (within its 'id' attribute).
+
+													// copied / pasted jobs don't have an id attrib,
+													// but do use a class beginning with "copyof".
+													if( $span->item( 0 )->getAttribute( "id" ) ) {
+														$jobNmbr = $span->item( 0 )->getAttribute( "id" );
+														if( strlen($jobNmbr) > 2 ) {
+															if( strpos( $jobNmbr, 'job_' ) !== false ) {
+																// the span's id attrib holds our job number:
+																// store the job number.
+																$jobNmbr = str_replace( "job_", "", $jobNmbr );
+															} elseif( strpos( $jobNmbr, 'note' ) !== false ) {
+																// this is a [+] added LI by an admin.
+																$jobNmbr = 'admin-note';
+															}
+														} else {
+															$jobNmbr = null;
+														}// if/else id attrib len > 2
+													}// if get 1st span's "id" attrib
+													elseif( strlen( $span->item( 0 )->getAttribute( "class" ) ) > 2 ) {
+														//span has no id attrib.  Try for "class" attrib:
+														//e.g., 'copyof' spans.
+														$clasVal = $span->item( 0 )->getAttribute( "class" );			
+														if( strpos( $clasVal, 'copyof' ) !== false ) {					$jobNmbr = $clasVal;						
+														} elseif( strpos( $clasVal, 'note' ) !== false ) {
+															//there can be classes instead of id's
+															//of value "admin-note"
+															$jobNmbr = 'admin-note';								
+														}
+													}//end elseif try to get a class attrib from the span node.
+													else {
+														$jobNmbr = null;
+													}
+												}
+											    //echo 'there are '.$childUL->getElementsByTagName("li")->length.' list elements for this edit UL found';										    
+
+												//echo "we have a list element to save ";					  
+												// $val .= (string)$htmlDoc->saveXML( $li );
+												$val .= (string)$htmlDoc->saveHTML( $li );
+												// echo "json encoded $val is: " . $val;
+
+												 $val = str_replace('<br>', '', $val);
+												 $val = str_replace('</', '*^*', $val);
+												 $val = str_replace('<', '~~', $val); 
+												 $val = str_replace('/>', '$^$', $val); 
+												 $val = str_replace('>', '#$#', $val);
+												/* $val = str_replace('~~li', $openJobTag.'~~li',$val);
+												   $val = str_replace('li#$#', 'li#$#'.$closeJobTag,$val);
+												*/
+
+												//$span = $li->getElementsByTagName("span");
+
+												//$jobNumber = $span->item[0]->nodeValue;
+
+
+												//echo 'val of '. $val . ' saved to xmlarray index '.$monthOrd.' and subindex '.$ord;	
+												if($jobNmbr !== null){
+														$xmlToSaveArray[ $yearOrd ][ $monthOrd ][ $ord ][ $jobNmbr ] = $val;
+												 }												
+											}//end foreach li
+									      }//end if li length
+									  }
+								}//end for each date div
+						    }
+					} //end if date div
+
+				}//end if month div
+			}
+			// var_dump($xmlToSaveArray); exit;
+		   /* ***************NOW BEGIN ITERATING OVER THE XML DOC NODES, SAVING DATA FROM xmlToSaveArray******************** */
+		   for( $xyr = 0; $XMLyr = $this->companyCalendar->getElementsByTagName( 'year' )->item( $xyr ); $xyr++ ) {
+				// iterate the month nodes in the (each) year node(s) of the xml doc.
+				$currentXMLyr = ( integer )$XMLyr->getAttribute( 'ordinal' );		   	
+			   
+			    // companyCalendar XML's month nodes, each as $m.
+			    for( $i = 0; $m = $XMLyr->getElementsByTagName( 'month' )->item( $i ); $i++ ) {
+				    // the xml month's ordinal will be used to map it to the index value of our html 
+				    // within our xmlToSaveArray
+				    $currentXMLmo = ( integer )$m->getAttribute( 'ordinal' );
+				    for( $s = 0; $d = $m->getElementsByTagName( "day" )->item( $s ); $s++ ) {
+					    $currentXMLday = ( integer )$d->getAttribute( 'ordinal' );
+					    // prevent moved jobs in cal from duplicating across original and new date.
+					    // Best just to completely remove all job nodes from the XML doc,
+					    // then append the new jobs using the updated html array:
+					    for( $iJ = 0; $j = $d->getElementsByTagName( "job" )->item( $iJ ); $iJ++ ){
+						   $d->removeChild( $j );
+					    }
+					    $d->nodeValue = '';
+						  
+						// Structure for June 4 2017, contents for job # 01234 is like this: array[2017][6][4][01234]=>li contents
+
+						//go directly to the html array contents for the current XML day node that we have accessed:				    
+						$HTMLdayContentsArray = $xmlToSaveArray[$currentXMLyr][$currentXMLmo][$currentXMLday];	
+					   	
+						if( count( $HTMLdayContentsArray ) > 0 ) { //array of LIs with content with index value of job number.
+							foreach( $HTMLdayContentsArray as $jNbr => $job ) {
+							   $jobNode = $this->doc->createElement( 'job', $job );
+							   $attrib = $this->doc->createAttribute( 'number' );
+							   // assign job# to the new attribute
+							   $attrib->value = $jNbr;
+							   // attach attrib to the new element
+							   $jobNode->appendChild( $attrib );
+							   // append this as a node to this day node:
+							   $d->appendChild( $jobNode );
+							   $this->doc->formatOutput = true;									
+							   // Save the XML with the appended node.
+							   $this->doc->save( $this->xmlPath.$this->xmlfile );
 							}
-							
-						    
-						    //echo 'there are '.$childUL->getElementsByTagName("li")->length.' list elements for this edit ul found';
-						    
-						    //echo 'we have a ul      ';
-							    
-							    //echo "we have a list element to save ";					  
-							// $val .= (string)$htmlDoc->saveXML( $li );
-							$val .= (string)$htmlDoc->saveHTML( $li );
-							// echo "json encoded $val is: " . $val;
-							 
-							 $val = str_replace('<br>', '', $val);
-							 $val = str_replace('</', '*^*', $val);
-							 $val = str_replace('<', '~~', $val); 
-							 $val = str_replace('/>', '$^$', $val); 
-							 $val = str_replace('>', '#$#', $val);
-							/* $val = str_replace('~~li', $openJobTag.'~~li',$val);
-							 $val = str_replace('li#$#', 'li#$#'.$closeJobTag,$val);
-							 */
-							
-							//$span = $li->getElementsByTagName("span");
-							
-							//$jobNumber = $span->item[0]->nodeValue;
-							
-						    
-							    //echo 'val of '. $val . ' saved to xmlarray index '.$monthOrd.' and subindex '.$ord;	
-							if($jobNmbr !== null){
+						 } else {
+							// if update has nothing to add, the xml's date cell needs to be emptied
+							$d->nodeValue = '';
+						 }
 
-									$xmlToSaveArray[$monthOrd][$ord][$jobNmbr] = $val;
 
-							 } 
-							 else 
-							 {
-								$xmlToSaveArray[$monthOrd][$ord][0] = $val;
-							 }
-					  
-							 
-						}//end foreach li
-						
-						
-					 
-				 
-				  }
-				  
-				  }
-		      }//end for each date div
-		    }
-		     } //end if date div
+
+
+				    }//end for $d				    
+				}// end each month in xml
+			    }// end each year in xml
+				// Nicely format the structure.
+				// save change
+				$this->doc->formatOutput = true;
+
+				// Save the XML with the appended node.
+				if( $this->doc->save( $this->xmlPath.$this->xmlfile ) ) {
+					$msg = array('msg'=>"Successfully saved.");
+					echo json_encode($msg);
+				}
+				else {
+					$msg = array('msg'=>"Save status uncertain; try again, then reload the page to see if updates held.  If this message continues, notify Web Team.");
+					echo json_encode($msg);
+				}
+				// $debugMsg .= "Successfully saved \r\n" . $debugMsg
+				// echo $response;
+				exit;
 			
-		   }//end if month div
-	    }
-	  //print_r($xmlToSaveArray);
-	 /* array looks like this for june 1-5 ...
-	 
-	 [6] => Array ( JUNE )
-        (
-            [1] => Array (FIRST DATE )
-                (
-                )
-
-            [2] => Array
-                (
-                )
-
-            [3] => Array
-                (
-                )
-
-            [4] => Array
-                (
-                )
-
-            [5] => Array
-                (
-                    [100710] => ~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable
-="false"#$#
-~~span id="job_100710"#$#100710*^*span#$# WEN #00034 Morrow, GA*^*li#$#
-                    [100710-1] => ~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable
-="false"#$#
-~~span id="job_100710-1"#$#100710-1*^*span#$# WEN #00034 Morrow, GA*^*li#$#
-                    [101065] => ~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable
-="false"#$#
-~~span id="job_101065"#$#101065*^*span#$# WEN 02910 Urbana, OH*^*li#$#
-                    [101377] => ~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable
-="false"#$#
-~~span id="job_101377"#$#101377*^*span#$# Ted's Con/CVS #2323 West Warwick, RI*^*li#$#
-                    [101441] => ~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable
-="false"#$#
-~~span id="job_101441"#$#101441*^*span#$# Wen 01119 Cape Coral FL*^*li#$#
-                    [101765] => ~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable
-="false"#$#
-~~span id="job_101765"#$#101765*^*span#$# Flyers Pizza - Galloway, OH*^*li#$#
-*/
-	    //company calendar xml node for the current requested save operation.
-	    
-		
-		
-		
-	    for( $i = 0; $m = $this->companyCalendar->getElementsByTagName('month')->item($i); $i++ ) {
-			
-		    
-		    
-		     //the xml month's ordinal is a match for the index of our array
-		    for( $s = 0; $d = $m->getElementsByTagName("day")->item($s); $s++ )  //get xml day nodes
-		    {	
-			    //prevent moved jobs in cal from duplicating across original and new date.
-				  //Best just to completely remove all job nodes from the xml
-			    //then append the new jobs using the update html array:
-			    for( $iJ = 0; $j = $d->getElementsByTagName("job")->item($iJ); $iJ++ ){
-
-				   $d->removeChild($j);
-			    }
-
-			    $d->nodeValue = '';
-		    
-		    
-		    
-		    
-		    
-			
-		    //iterate over array of html days, containing html LIs to add / update.  
-		    //Structure for June 4, contents for job # 01234 is like this: array[6][4][01234]=>li contents
-			foreach($xmlToSaveArray as $moOrdinal=>$mo)
-			{
-				//for 6 => 4 (June 4th)
-				
-				//any html LIs inside ?
-				
-					
-					    //now drill down to the correct day node for this LI to update to:
-						// We will replaceChild or appendChild (if not there, ie, a new li added by an admin)
-					    if((integer)$m->getAttribute('ordinal') == (integer)$moOrdinal)
-					    {	
-						    
-						    
-						    foreach($mo as $dayOrdinal => $day)
-						    {
-							      //if xml day ordinal matches the key of the update array:
-							    if( $d->getAttribute('ordinal') == $dayOrdinal ) 
-							    {
-
-								if( count($day) > 0 ){ //true = yes, there's content to update / add
-
-									foreach($day as $jNbr => $job){										
-											
-											   $jobNode = $this->doc->createElement(  'job', $job );
-											   
-											   $attrib = $this->doc->createAttribute('number');
-
-											   //assign job# to the new attribute
-											   $attrib->value = $jNbr;
-											   //attach attrib to the new element
-											   $jobNode->appendChild($attrib);
-											   //append this as a node to this day node:
-											   $d->appendChild($jobNode);	
-											    
-											   $this->doc->formatOutput = true;											
-											   // Save the XML with the appended node.
-											   $this->doc->save($this->xmlPath.$this->xmlfile);
-											  
-										    }//xml
-										} else {
-											
-											//if update has nothing to add, the xml's date cell needs to be emptied
-											$d->nodeValue = '';
-										}
-									
-								}// when we match xml day node with its html day contents
-							}// for days in the html.
-
-						  }   //if this is matched month				  
-
-					    }//each element of the array of html items to save
-					}//end nested for each day in xml				
-					  
-				
-			}//end each month in xml
-	    
-		   
-		     // Nicely format the structure.
-			 //save change
-			$this->doc->formatOutput = true;
-											
-			// Save the XML with the appended node.
-			if($this->doc->save($this->xmlPath.$this->xmlfile))
-			{
-				echo json_encode("Successfully saved.");
+			}// END else user does have access token
+		}// END if we connect to the database
+		else {
+				// user does NOT have the access_token permission to save at this time.
+				$msg = array('msg'=>"Database Connection Failed: Could not Confirm Your User Privileges. Action not completed.");
+				echo json_encode($msg);				
 			}
-			else
-			{
-				echo json_encode("Not sure it saved this time; try again.  If this message continues, notify the Web Team.");
-			}
-			//$debugMsg .= "Successfully saved \r\n" . $debugMsg
-			
-			//echo $response;
-			exit;
 		 
-	    }//end func saveMonth
-		
-
-
-//display the company calendar
+	    }// end saveMonth method.
+	
+// display the company calendar
  function display() 
  {	
-	 $row = '';//rows are the weeks in html
-	 $cells = '';//date cells as html output
-	 
+	 $row = '';// rows are the weeks in html
+	 $cells = '';// date cells as html output
+	 //var_dump($this->arXmlYearNodes);exit;
 	 foreach($this->arXmlYearNodes as $yrNODE)
 	 {
 		    $searchMonthNode = $yrNODE->getElementsByTagName('month');
@@ -568,7 +440,7 @@ class calendar {
 				    
 					    //must clear your cells for each new row of weeks.
 					    unset($cells); $cells='';
-					    $row .= '<div class="row" id="row'.($i).'">'; //row1, row2, etc.
+					    $row .= '<div class="calRow" id="row'.($i).'">'; //row1, row2, etc.
 					    $i++;
 					    for( $t = 0; $dayNode = $searchNode->getElementsByTagName('day')->item($t); $t++ )
 					    {
@@ -664,15 +536,12 @@ class calendar {
 		
 		$searchNode = $yrNODE->getElementsByTagName( "month" );
 					
-				foreach( $searchNode as $sNode ) {
-			    
+				foreach( $searchNode as $sNode ) {			    
 								
 			    		if( (integer) $sNode->getAttribute("ordinal") == (integer) $this->month  )
-					{
-						
+					{						
 						$this->activeMonthName = $sNode->getAttribute("name");
-						$this->activeMonthOrdinal = $this->month;
-						
+						$this->activeMonthOrdinal = $this->month;						
 						$this->activeMonthNode = $yrNODE->getElementsByTagName("month")->item($this->month-1);
 					}
 				}
@@ -718,6 +587,17 @@ class calendar {
 	}
 	
 }//end class
+
+$calendar = new calendar;
+$calendar->init();
+
+if( $calendar->method==NULL || empty($calendar->method) ){
+	$calendar->display;
+} else {
+	//echo 'Else was called!  ';
+	$action = $calendar->method; 
+	$calendar->$action();//update, display...etc. [set by init()]
+}
 
 
 ?>

@@ -132,11 +132,11 @@ h1{
 .content-row{
 	padding: 10px;	
 }
-#headerDays, .row, #weeks, #calFooter{
+#headerDays, .calRow, #weeks, #calFooter{
 	float:left;
 	width:100%;
 }
-.row {
+.calRow {
 	height: auto;
 	font-size: 16px;
 	color: #236FBF;
@@ -148,7 +148,10 @@ h1{
 .white-bg{
 	background: #FFF;
 }
-.headerDays, .calCol, .row, .empty, .today, .day, .date{
+.context-style{	
+	border: #32C1EC dotted 5px !important;
+}
+.headerDays, .calCol, .calRow, .empty, .today, .day, .date{
 	box-sizing:border-box;	
 }
 .empty, .date, .calCol{
@@ -207,10 +210,10 @@ ul.edit{
 	padding-top: 12px;
 	margin-top: 10px;	
 }
-#topHeaders, #topHeaders .row{
+#topHeaders, #topHeaders .calRow{
 	background: #FFF !important;	
 }
-#topHeaders .row{
+#topHeaders .calRow{	
 	height: 40px;
 	font-size: 22px;
 	font-weight:bold;
@@ -334,29 +337,40 @@ ul.edit{
 .yellow-bg li.lineEntry:hover{
 	background:#DBFF95
 }
+/* permit color */
+.p{color:#007F16}
+/* job status color */
+.j{color:#236FBF}
+
+
 ul.edit li{text-align:left}
-#t1,#t2,#t3,#t4,#t6,#t7,#t8,#t9,#t10,
-.t1,.t2,.t3,.t4,.t5,.t6,.t7,.t8,.t9,.t10{
-	 font-weight:bold;
+#t1,#t2,#t3,#t4,#t6,#t7,#t8,#t9,#t10,#t11,#t12,#t13,#t14,#t15,#t16,#t17,#t18,#t19,#t20,#t21,.t1,.t2,.t3,.t4,.t5,.t6,.t7,.t8,.t9,.t10,.t11,.t12,.t13,.t14,.t15,.t16,.t17,.t18,.t19,.t20,.t21{
+	 font-weight: bold !important;
 }
 
 #t1,.t1{color:#B92426;}
 #t2,.t2{color:#510FBC;}
-#t3,.t3{color:#000000}
-#t4,.t4{color:#E3A201}
-/*#t5,.t5{color:#52a815} GREEN */
+#t5,.t5{color:#000000}
+#t6,.t6{color:#E3A201}
+#t3,.t3{color:#52a815}
 /* UPS Brown */
-#t5,.t5{color:#6E4503}
-#t6,.t6{color:#0064FF}
+.ic-ups, #t10, .t10{color:#6E4503}
+#t7,.t7{color:#0064FF}
 /* crimson #t7,.t7{color:#801214} */
 /* dark blue */
-#t7,.t7{color:#000EAE}
-#t8,.t8{color:#F218F8}
-#t9,.t9{color:#000000}
+#t8,.t8{color:#000EAE}
+#t9,.t9{color:#F218F8}
 #delete{color:#C90D10; background-color:#FFFFFF}
 /*#t10,.t10{color:}*/
 /*#t3,.unassigned{color:#000}*/
-.unassigned{background:#FCFFA1;}
+.unassigned,#t11{background:#FCFFA1;}
+/*.unassigned:before{
+	content: '! ';
+	font-weight: bold;	
+	color: #CC0A0D;
+	padding-left: 3px;
+}*/
+
 .due {
 	/*padding-left: 20px;
 	background-image:url(../assets/stop_sign.png);	
@@ -364,23 +378,6 @@ ul.edit li{text-align:left}
 	background-position: 2px 2px;*/
 	border: #E00E12 solid 2px !important;
 	padding:3px !important;
-}
-.t5 {
-	padding-left: 22px;
-	background-image:url(../assets/ups_logo.gif);	
-	color: #6E4503 !important;
-	background-repeat:no-repeat;
-	background-position: 0px 0px;
-	font-weight: bold;
-}
-
-/* scale down for the popup menu display */
-#ulContextMenu #t5{
-	padding-left: 19px;
-	background-image:url(../assets/small_ups_logo.gif);
-	background-position: 1px 0px;	
-	background-repeat:no-repeat;
-	color: #6E4503 !important;	
 }
 
 #t5{
@@ -392,29 +389,31 @@ ul.edit li{text-align:left}
 .completed{
 	background:#A1E35D;
 	/*color: #FFF; remain the team color */
-	font-weight: bold;
-	padding-left: 3px;
-	border:none;
+	font-weight: bold;	
+	border:none;	
+	
 }
-.completed:before{ /* leading checkmark */
+/*
+.completed:before{ /* leading checkmark 
 	content: "\2713  ";
 	color: #FFF;
 	font-size: 17px;
-}
+}*/
 .iconrow{
 	margin-left: 16px; float:left; margin-top: 12px;
 }
 .iconrow:first-child{margin-left:0px;}
 .icon-box{
-	display:inline; float:left; border: 2px #eee solid; width: 11px; height: 11px; margin-top: 2px; margin-left: 20px;
+	display:inline; float:left; border: 2px #eee solid; width: 11px; height: 11px; margin-top: 2px;
 }
 .b1{margin-left:0px}
 .box-label{
-	margin-left: 8px; display:inline; float:left; font-size: 15px; font-weight: bold; line-height: 20px;
+	display:inline; float:left; font-size: 15px; font-weight: bold; line-height: 20px;
 }
-.unassigned{font-weight:normal !important; color:#554B44 !important; }
+/*
+.unassigned{font-weight:normal !important; color:#554B44 !important; }*/
 .b1{background-color:#B92426}.b2{background-color:#510FBC}.b3{background-color:#000000}.b4{background-color:#E3A201}.b5{background-color:#6E4503}.b6{background-color:#0064FF}.b7{background-color:#000EAE}.b8{background-color:#F218F8}.b9{background-color:#000000}.b10{background-color:#525252}
-#t1:hover,#t2:hover,#t3:hover,#t4:hover,#t5:hover,#t6:hover,#t7:hover,#t8:hover,#t9:hover,#t10:hover{background:#DBFF95}
+/*#t1:hover,#t2:hover,#t3:hover,#t4:hover,#t5:hover,#t6:hover,#t7:hover,#t8:hover,#t9:hover,#t10:hover{background:#DBFF95}*/
 #delete:hover{background:#C90D10; color:#FFFFFF}
 .hide{
 	display:none !important;
@@ -497,7 +496,7 @@ h1 {
 }
 /*EFFECTIVELY HIDES WEEKENDS IN THE CALENDAR 
 /* if you hide weekends again, remember to set width from 14.2% to 19.88% on .empty, .date, .calCol in this file.
-#headerDays > div:first-child, #headerDays > div:last-child, .month > .row > div:first-child, .month > .row > div:last-child{
+#headerDays > div:first-child, #headerDays > div:last-child, .month > .calRow > div:first-child, .month > .calRow > div:last-child{
 	visibility:hidden;
 	width:0%;
 	display:none;
@@ -539,11 +538,20 @@ h1 {
 claimed{
 	
 }
-#OverDueJobsList{
-	max-width: 330px;
-	box-sizing: border-box;
-	display:inline-block;
-	float:left;
+.iconrow li{
+	list-style: none !important;
+	display: inline !important;
 }
+.admin-note{
+	font-weight: normal !important;
+	font-style: italic;
+}
+#OverDueJobsList{
+	min-width: 330px;	
+}
+[class^="col-"]{
+	margin-top:13px !important;
+}
+
 
 

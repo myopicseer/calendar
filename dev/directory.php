@@ -6,18 +6,17 @@
 			header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 
 
-	if(!isset($_SESSION)){
+
+		if(!isset($_SESSION)){
 			require_once('classes/session.php');
-			$s = new Session;
+			$s = new Session;			
 		}
 
 		if( !isset($_SESSION['user']['role']) ){
 			//$user = unserialize($_SESSION['user']);
 			//print_r($_SESSION['user']);
-
 			
 			header('Location: login.php');
-
 
 			//echo $sesID;	TESTED: This new session start id does match the one in the uri from prior page.
 			//and matches the one in the database for the active session.
@@ -26,7 +25,7 @@
 		//if($query['user']){
 			//$username =  $query['user'];
 			$username = $_SESSION['user']['name'];	
-			session_id() != NULL ? $sesID = session_id() : $sesID = '' ;
+			$sesID =( session_id() != NULL ? session_id() : '' );
 		}
 	
 
@@ -59,7 +58,7 @@ function auto_version($file)
 <body>
 
 <div class="content-row">
-<a href="index.php"><img src="assets/ico-calendarcell.png" title="Open WIP Calendar" style="width: 60px" /></a>
+<a href="index.php?<?php echo 'user='.$username.'&sid='.$sesID ?>"><img src="assets/ico-calendarcell.png" title="Open WIP Calendar" style="width: 60px" /></a>
 <pre style="text-align:center"><span style="font-size: 12px; background:#FEFFF3;padding:5px 8px;color:#419200; border: 1px dotted #8AC72D">Today: <span id="date"></span> [ <span id="curTime"></span> ]</span><br><br>
 </pre>
 
@@ -99,8 +98,7 @@ function auto_version($file)
 
 <div id="container" class="clearfix">
 <div id="directory">
-	<div id="addNew"></div>
-		<button id="showAddForm" class="smBtn inline eighty" onclick="showAddForm()">Add New</button>
+
 	</div>
 	
          </div>
@@ -218,8 +216,8 @@ function outputListToView(){
 				'<div class="inline sixt">Phone</div>'+
 				'<div class="inline sixt">Ext</div>'+
 				'<div class="inline sixt">Cell</div>'+
-				'<div class="inline sevent">E-Mail</div>'+
-				'<div class="inline fift">Dept</div>'+
+				'<div class="inline sixt">E-Mail</div>'+
+				'<div class="inline sixt">Dept</div>'+
 			'</div>';
 	
 	
@@ -242,10 +240,10 @@ function outputListToView(){
 				'<div class="inline sixt p">'+p+'</div>'+
 				'<div class="inline sixt x">'+x+'</div>'+
 				'<div class="inline sixt c">'+c+'</div>'+
-				'<div class="inline sevent e"><a href="mailto:'+e+'">'+e+'</a></div>'+
-		    		'<div class="inline fift d">'+d+'</div>'+
+				'<div class="inline sixt e">'+e+'</div>'+
+		    		'<div class="inline sixt d">'+d+'</div>'+
 				//'<div class="inline sixt n">'+employees[key].dept+'</div>'+
-			'<button id="editEmployee" class="smBtn inline fifty" empid="'+ employees[key].id +'" onclick="editEmployee(this)">Edit</button></div>';
+			'<button id="editEmployee" class="smBtn inline three" empid="'+ employees[key].id +'" onclick="editEmployee(this)">Edit</button></div>';
 		row = row + nextRow;
 		
 		
@@ -400,15 +398,15 @@ function AJAXsynchronous($method){
 							'<input type="text" class="sixt" name="ph" value="'+valsAr[1]+'" />'+
 							'<input type="text" class="sixt" name="ext" value="'+valsAr[2]+'" />'+
 							'<input type="text" class="sixt" name="cell" value="'+valsAr[3]+'" />'+
-							'<input type="text" class="sevent" name="email" value="'+valsAr[4]+'" />'+
-			  				'<input type="text" class="fift" name="dept" value="'+valsAr[5]+'" />'+	
+							'<input type="text" class="sixt" name="email" value="'+valsAr[4]+'" />'+
+			  				'<input type="text" class="sixt" name="dept" value="'+valsAr[5]+'" />'+	
 						    '<input type="hidden" class="sixt" name="method" value="update" />'+
 						    '<input type="hidden" class="sixt" name="id" value="'+empid+'" />'+
-						'</form><div id="btnEditGroup">&nbsp; <button id="updateRow" class="smBtn inline sixty" empid="'+ empid + 
+						'</form><div id="btnEditGroup">&nbsp; <button id="updateRow" class="smBtn inline four" empid="'+ empid + 
 			    			'" onclick="updateEdit(this)">Save</button>'+ 
-			    			'&nbsp; <button id="updateCancel" class="smBtn inline seventy"'+
+			    			'&nbsp; <button id="updateCancel" class="smBtn inline six"'+
 			    			' empid="'+ empid +'" onclick="cancel(this)">Cancel</button>' + 
-			    			'&nbsp; &nbsp; | &nbsp; &nbsp; <button id="delete" class="smBtn inline seventy alertStyle"'+
+			    			'&nbsp; <button id="delete" class="smBtn inline six alertStyle"'+
 			    			' empid="'+ empid +'" onclick="Delete(this)">Delete</button></div>';
 			
 			
@@ -465,9 +463,8 @@ function AJAXsynchronous($method){
 				
 				$('#directory').html('');
 			     //reload data from the database to show changes
+				AJAXsynchronous("read");
 				giveNotice(result);
-				/*AJAXsynchronous("read");
-				giveNotice(result);*/
 				
 			},
 			failure: function(jqXHR, textStatus, errorThrown){
@@ -488,7 +485,7 @@ function AJAXsynchronous($method){
 	}
 	
 	function cancel(btn){
-		if(btn !== 'close'){
+		
 		//console.log('cancel called.');
 		var $origRow = $(btn).closest('.editable');
 		$($origRow).removeClass('editable ghosted');
@@ -497,15 +494,6 @@ function AJAXsynchronous($method){
 		$($origRow).find('form#saveUpdates').remove();
 		//remove all buttons except the 'Edit' Btn
 		$($origRow).find('#btnEditGroup').remove();		
-			
-		} else {
-			//show the add button again.
-			$('#showAddForm').removeClass('hide');
-			
-			//remove the addnewemployee form wrapper and contents
-			$("#addForm").remove();
-			
-		}
 		
 	}//cancel
 	
@@ -550,96 +538,6 @@ function AJAXsynchronous($method){
 		}
 		
 	}//delete
-	
-	function showAddForm(){
-		
-		//is another add new employee record already open? Close it when clicking Add button.
-		
-		/*if( $('#addForm') ){
-			console.log('Gonna close the addForm');		
-			cancel('close');		
-			
-		} else {
-		
-		*/
-			$('#showAddForm').addClass('hide');
-
-			var addForm = '<div id="addForm"><h3>Add A New Record to a Company Directory</h3>'+
-								'<form method="" id="addEmployee">'+
-								'<label for="newcoid">Company: </label>'+
-								'<select class="sixt" name="newcoid" >'+
-									'<option value="0">CSC</option>'+
-									'<option  value="1">Boyer</option>'+
-								    '<option  value="2">Marion</option>'+
-								    '<option value="3">Outdoor</option>'+
-								    '<option value="4">JG</option>'+
-								'</select><br>'+
-								'<label class="sixt" for="newname">FName LName</label>'+
-								'<label class="sixt" for="newph">Ph 000-000-0000</label>'+
-								'<label class="sixt" for="newext">Ext 000</label>'+
-								'<label class="sixt" for="newcell">Mobi 000-000-0000</label>'+
-								'<label class="sixt" for="newemail">name@company.com</label>'+
-								'<label class="sixt" for="newdept">Department</label><br>'+						     
-								'<input type="text" class="sixt" name="newname" value="" />'+
-								'<input type="text" class="sixt" name="newph" value="" />'+
-								'<input type="text" class="sixt" name="newext" value="" />'+
-								'<input type="text" class="sixt" name="newcell" value="" />'+
-								'<input type="text" class="sevent" name="newemail" value="" />'+
-								'<input type="text" class="fift" name="newdept" value="" />'+		    					
-							    '<input type="hidden" class="sixt" name="method" value="create" />'+				    
-							'</form><br>&nbsp; <button id="create" class="smBtn inline sixty"'+ 
-							'" onclick="addEmployee(this)">Create</button>&nbsp;'+ 
-							' <button id="Cancel" class="smBtn inline seventy" onclick="cancel(\'close\')">Cancel</button></div>';
-
-
-				$("#addNew").append(addForm);			
-		
-	//	}
-		
-	}
-	
-	function addEmployee(){
-		
-		
-		var reqData = $("#addEmployee").serializeArray();
-		
-		//name field is required by the db table.
-		if(reqData['name'] === '' || reqData['name'] === null){
-			giveNotice('The "Name" Field is Required.  Try Again.');			
-		} else {
-			
-			$.ajax({		
-				url: "classes/PhoneDirectory.php",
-				type: "POST",
-				data: reqData,
-				dataType: "json",		
-				success: function(result, textStatus, jqXHR){			
-
-					$('#addForm').remove();
-					$('#showAddForm').removeClass('hide');
-					//reload data from the database to show changes
-					AJAXsynchronous("read");
-					cancel("close");
-					giveNotice(result.msg);
-
-				},
-				failure: function(jqXHR, textStatus, errorThrown){
-
-					giveNotice(result.msg + " Error: " + errorThrown);
-
-				}	  	 
-
-			});
-			
-			
-			
-		}			
-		
-		
-		
-		
-	}
-	
 	
 	
 	

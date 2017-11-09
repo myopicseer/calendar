@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
 <file name="filedelete.php" server="70.39.250.251" local="131381248072841668" remote="131381247600000000" Dst="2" />
-<file name="sendemail.php" server="70.39.250.251" local="131376161583074828" remote="131375080800000000" Dst="2" />
-<file name="register.php" server="70.39.250.251" local="131378830686465288" remote="131378830200000000" Dst="2" />
-<file name="Reservations.php" server="70.39.250.251" local="131449615661754599" remote="131449615800000000" Dst="2" />
-<file name="db.php" server="70.39.250.251" local="131445353668885916" remote="131445353400000000" Dst="2" />
-<file name="PhoneDirectory.php" server="70.39.250.251" local="131486850621080593" remote="131486850600000000" Dst="2" />
-<file name="calendar.php" server="70.39.250.251" local="131463326624323846" remote="131463378600000000" Dst="2" />
-<file name="security.php" server="70.39.250.251" local="131515369662107031" remote="131515369200000000" Dst="2" />
+<file name="sendemail.php" server="70.39.250.251" local="131539355661341955" remote="131515259400000000" Dst="2" />
+<file name="register.php" server="70.39.250.251" local="131539355660077509" remote="131515259400000000" Dst="2" />
+<file name="Reservations.php" server="70.39.250.251" local="131539355587605413" remote="131515259400000000" Dst="2" />
+<file name="db.php" server="70.39.250.251" local="131539355590224547" remote="131515259400000000" Dst="2" />
+<file name="PhoneDirectory.php" server="70.39.250.251" local="131521142414470994" remote="131515259400000000" Dst="2" />
+<file name="security.php" server="70.39.250.251" local="131541087152624320" remote="131541082800000000" Dst="2" />
+<file name="session.php" server="70.39.250.251" local="131534280578090791" remote="131517854400000000" Dst="2" />
+<file name="active_token.php" server="70.39.250.251" local="131534367817318550" remote="131534367600000000" Dst="2" />
+<file name="calendar.php" server="70.39.250.251" local="131547062693709042" remote="131539427400000000" Dst="1" />
 </dwsync>

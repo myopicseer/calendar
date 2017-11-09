@@ -1,24 +1,29 @@
-
-
 html *{
 	display:none;	
 }
 .hide, .hide *{
 	display:none !important;
 }
-/*try to force webkit browser to print background images */
--webkit-print-color-adjust: exact;
-/*try to force webkit browser to print background images */
-/*-webkit-print-color-adjust: exact;*/
+
 /*try to show the icon images for teams*/
 #teamSelection *:before, #teamSelection img {display:inline-block}
 .calCol,span#date,span#curTime,.edit,#mo,#yr,.date,.day,.edit *,.empty,.edit li{
 	
 	display:inline-block;
 }
-#pageTitle,#weeks,.row,#topHeaders,body,h1,#headerDays,.month,#icons,#icons *{
+#yr:before{content:" "}
+/*display icomoon stuff
+*/
+i[class^="ic-"], .box-label i, .due{display:inline;}
+
+#pageTitle,#weeks,.calRow,#topHeaders,body,h1,#headerDays,.month,#icons,#icons *{
 	
-	display:block !important;
+	display:block;
+}
+#icons,.j,.p{width:100%; clear:both}
+.due{
+border: #E00E12 solid 2px !important;
+	padding:3px !important;
 }
 .edit{padding:0;margin:0}
 .edit *, .edit,.empty{
@@ -30,8 +35,7 @@ html *{
 span#date{margin-right: 20px;}
 #calWrap, .content-row{
 	width: 100%;
-	margin-top: 0px;
-	
+	margin-top: 0px;	
 }
 #calWrap{
 	margin-bottom: 30px;
@@ -44,10 +48,7 @@ span#date{margin-right: 20px;}
 	vertical-align:middle;
 	border: #C0D1A9 1px solid;	
 }
-/* permit color */
-.p{color:#007F16}
-/* job status color */
-.j{color:#236FBF}
+
 .today{
 	
 	border: #8ac72d 2px solid;
@@ -60,34 +61,36 @@ span#date{margin-right: 20px;}
 .edit *{
 	font-size: 10px;
 }
+.yellow-bg li.lineEntry:hover{
+	background:#DBFF95
+}
+/* permit color */
+.p{color:#007F16}
+/* job status color */
+.j{color:#236FBF}
+
+
+ul.edit li{text-align:left}
+#t1,#t2,#t3,#t4,#t6,#t7,#t8,#t9,#t10,#t11,#t12,#t13,#t14,#t15,#t16,#t17,#t18,#t19,#t20,#t21,.t1,.t2,.t3,.t4,.t5,.t6,.t7,.t8,.t9,.t10,.t11,.t12,.t13,.t14,.t15,.t16,.t17,.t18,.t19,.t20,.t21{
+	 font-weight: bold !important;
+}
+
 #t1,.t1{color:#B92426;}
 #t2,.t2{color:#510FBC;}
-#t3,.t3{color:#000000}
-#t4,.t4{color:#E3A201}
-/*#t5,.t5{color:#52a815} GREEN */
+#t5,.t5{color:#000000}
+#t6,.t6{color:#E3A201}
+#t3,.t3{color:#52a815}
 /* UPS Brown */
-#t5,.t5{color:#6E4503}
-#t6,.t6{color:#0064FF}
+.ic-ups, #t10, .t10{color:#6E4503}
+#t7,.t7{color:#0064FF}
 /* crimson #t7,.t7{color:#801214} */
 /* dark blue */
-#t7,.t7{color:#000EAE}
-#t8,.t8{color:#F218F8}
-#t9,.t9{color:#000000}
+#t8,.t8{color:#000EAE}
+#t9,.t9{color:#F218F8}
 #delete{color:#C90D10; background-color:#FFFFFF}
 /*#t10,.t10{color:}*/
 /*#t3,.unassigned{color:#000}*/
-.unassigned{background:#FCFFA1;}
-/*.unassigned:before{
-	content: '! ';
-	font-weight: bold;	
-	color: #CC0A0D;
-	padding-left: 3px;
-}*/
-#t1,#t2,#t3,#t4,#t6,#t7,#t8,#t9,#t10,#t11,#t12,#t13,#t14,#t15,#t16,#t17,#t18,#t19,#t20,#t21
-.t1,.t2,.t3,.t4,.t5,.t6,.t7,.t8,.t9,.t10,.t11,.t12,.t13,.t14,.t15,.t16,.t17,.t18,.t19,.t20,.t21{
-	 font-weight:bold;
-}
-.unassigned{background:#FCFFA1;}
+.unassigned,#t11{background:#FCFFA1;}
 /*.unassigned:before{
 	content: '! ';
 	font-weight: bold;	
@@ -97,46 +100,35 @@ span#date{margin-right: 20px;}
 .hold:before /* stop sign */, .t5/* UPS */ { /* if there is any ! or other content before the list tag contents, remove it. */
 	content: '';		
 }
+/*
 .hold_small, .hold {
-	/*padding-left: 20px;
+	padding-left: 20px;
 	background-image:url(../assets/stop_sign.png);	
 	background-repeat:no-repeat;
-	background-position: 2px 2px;*/
+	background-position: 2px 2px;
 	border: #E00E12 solid 1px;
 }
 .hold_small{
-	/*padding-left: 18px;
+	padding-left: 18px;
 	background-image:url(../assets/small_stop_sign.png);
-	background-position: 1px 0px;	*/
+	background-position: 1px 0px;	
 	color: #67593C !important;
 }
- /* .t5 {
-	padding-left: 22px;
-	background-image:url(../assets/ups_logo.gif);	
-	color: #6E4503 !important;
-	background-repeat:no-repeat;
-	background-position: 0px 0px;
-	font-weight: bold;
-}
-
-/* scale down for the popup menu display 
-#ulContextMenu #t5{
-	padding-left: 19px;
-	background-image:url(../assets/small_ups_logo.gif);
-	background-position: 1px 0px;	
-	background-repeat:no-repeat;
-	color: #6E4503 !important;	
-}
 */
+ 
+
+
 #t5{
 	/*color: #52A815;*/
 	background: #FFF;
 	font-weight: bold;
 }
+
 .completed{
 	background:#A1E35D;
 	/*color: #FFF; remain the team color */
-	font-weight: bold;
+	font-weight: bold;	
+	border:none;	
 	
 }
 .date{
@@ -161,16 +153,16 @@ span#date{margin-right: 20px;}
    height: 0; 
    clear: both;
 }
-.headerDays, .calCol, .row, .empty, .today, .day, .date {
+.headerDays, .calCol, .calRow, .empty, .today, .day, .date {
     box-sizing: border-box;
 }
-.row {
+.calRow {
     border-collapse: collapse;
     color: #236fbf;
     font-size: 16px;
     height: auto;
 }
-#headerDays, .row, #weeks, #calFooter {
+#headerDays, .calRow, #weeks, #calFooter {
     float: left;
     width: 100%;
 }
@@ -190,11 +182,9 @@ span#date{margin-right: 20px;}
 input[type="checkbox"]{
 	visibility:hidden;
 }
-#date:before{
-	content: "This Calendar Was Generated On: "
-}
+
 /*
-#headerDays > div:first-child, #headerDays > div:last-child, .month > .row > div:first-child, .month > .row > div:last-child{
+#headerDays > div:first-child, #headerDays > div:last-child, .month > .calRow > div:first-child, .month > .calRow > div:last-child{
 	visibility:hidden;
 	width:0%;
 	display:none;
@@ -204,6 +194,3 @@ input[type="checkbox"]{
 	visibility:hidden !important;
 }
 */
-#teamSelection ul{
-	list-style: none !important;
-}

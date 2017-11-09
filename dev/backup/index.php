@@ -81,9 +81,8 @@ function auto_version($file)
   <meta charset="utf-8">
   <title></title> 
    <!--styles-->   
-   <link rel="stylesheet" href="<?php echo auto_version('/calendar/dev/backup/styles/calendar.css'); ?>" type="text/css" media="screen" />
-   
-  <!-- <link href="styles/print.css" rel="stylesheet" media="print"> -->
+   <link rel="stylesheet" href="<?php echo auto_version('/calendar/dev/backup/styles/calendar.css'); ?>" type="text/css" media="screen" />   
+   <link rel="stylesheet" href="<?php echo auto_version('styles/print.css'); ?>" rel="stylesheet" media="print">
    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
    <link rel="stylesheet" href="assets/pickadate.js-3.5.6/default.css">
    <link rel="stylesheet" href="assets/pickadate.js-3.5.6/default.date.css">

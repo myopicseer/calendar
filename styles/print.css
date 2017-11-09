@@ -1,26 +1,29 @@
-
-
 html *{
 	display:none;	
 }
 .hide, .hide *{
 	display:none !important;
 }
-/*try to force webkit browser to print background images */
--webkit-print-color-adjust: exact;
+
 /*try to show the icon images for teams*/
 #teamSelection *:before, #teamSelection img {display:inline-block}
 .calCol,span#date,span#curTime,.edit,#mo,#yr,.date,.day,.edit *,.empty,.edit li{
 	
 	display:inline-block;
 }
-#pageTitle,#weeks,.row,#topHeaders,body,h1,#headerDays,.month,#icons,#icons *{
+#yr:before{content:" "}
+/*display icomoon stuff
+*/
+i[class^="ic-"], .box-label i, .due{display:inline;}
+
+#pageTitle,#weeks,.calRow,#topHeaders,body,h1,#headerDays,.month,#icons,#icons *{
 	
 	display:block;
 }
 #icons,.j,.p{width:100%; clear:both}
-.box-label i{
-	display:inline !important;
+.due{
+border: #E00E12 solid 2px !important;
+	padding:3px !important;
 }
 .edit{padding:0;margin:0}
 .edit *, .edit,.empty{
@@ -32,8 +35,7 @@ html *{
 span#date{margin-right: 20px;}
 #calWrap, .content-row{
 	width: 100%;
-	margin-top: 0px;
-	
+	margin-top: 0px;	
 }
 #calWrap{
 	margin-bottom: 30px;
@@ -151,16 +153,16 @@ ul.edit li{text-align:left}
    height: 0; 
    clear: both;
 }
-.headerDays, .calCol, .row, .empty, .today, .day, .date {
+.headerDays, .calCol, .calRow, .empty, .today, .day, .date {
     box-sizing: border-box;
 }
-.row {
+.calRow {
     border-collapse: collapse;
     color: #236fbf;
     font-size: 16px;
     height: auto;
 }
-#headerDays, .row, #weeks, #calFooter {
+#headerDays, .calRow, #weeks, #calFooter {
     float: left;
     width: 100%;
 }
@@ -182,7 +184,7 @@ input[type="checkbox"]{
 }
 
 /*
-#headerDays > div:first-child, #headerDays > div:last-child, .month > .row > div:first-child, .month > .row > div:last-child{
+#headerDays > div:first-child, #headerDays > div:last-child, .month > .calRow > div:first-child, .month > .calRow > div:last-child{
 	visibility:hidden;
 	width:0%;
 	display:none;

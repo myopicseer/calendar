@@ -1,4 +1,3 @@
-
 	var weeksDOM = document.querySelectorAll("div#weeks");
 	var headerYr = document.getElementById("#headerYr");
 	var timeoutID;
@@ -134,54 +133,45 @@ $(document).ready(function (){
 	$("#curTime").html(cTime);
 
 
-	var weekRows = $( "#weeks .row" ); //each row
+	var weekRows = $( "#weeks .calRow" ); //each row
 	//dispay the cal from xml when page first loads
 	
-	
 
+	 document.onkeypress = function() 
+	 {
+	    _idleSecondsCounter = 0;
+	 };
+	 document.onclick = function() 
+	 {
+	    _idleSecondsCounter = 0;
+	 };
+	 document.onmousemove = function()
+	 {
+	    _idleSecondsCounter = 0;
+	 };
 
- document.onkeypress = function() 
- {
-    _idleSecondsCounter = 0;
- };
- document.onclick = function() 
- {
-    _idleSecondsCounter = 0;
- };
- document.onmousemove = function()
- {
-    _idleSecondsCounter = 0;
- };
-
- window.setInterval(CheckIdleTime, 2000); //checks every 2 seconds
+	 window.setInterval(CheckIdleTime, 2000); //checks every 2 seconds
 	
-	
-	
-	curCompany=$( "#companyCalendar option:selected" ).val();
-	loadCalendar(curCompany,-1,-1);
-	$("#pageTitle").html(curCompany + " WIP Calendar");
 	$('#companyCalendar').on('change', function() {
-  		//$("#company" ).val( this.value ); // or $(this).val()
+  		//$("#company" ).val( this.value ); // or $(this).val()		
+		justReloaded = 1;
 		curCompany=$( "#companyCalendar option:selected" ).val();
 		$("#pageTitle").html(curCompany + " WIP Calendar");
-		teamNamesHTML();
-		loadCalendar( curCompany,-1,-1 );
-		addListenersToDom("true");		
+		teamNamesHTML();		
+		loadCalendar( curCompany,-1,-1 ); //load calendar calls addListenersToDom func.
+		//addListenersToDom("true");		
 		
 		/*if(curCompany !== "Custom Sign Center"){
 			alert('Planned Update: Calendar Jobs Will Change for Each Company.');
 		}*/
 	});
-	//event trigger submit a company cal request
-	/* Hide Submit to Load new Company Calendar.  Select List on Change now fires the submission
-	   New Calendar will now load on that trigger for each selected company.
-	$("#loadCalendarForm").on("submit", function(e){
-		e.preventDefault();
-		var str = $( "#loadCalendarForm" ).serialize(); //selected company name
-		loadCalendar( str['companyCalendar'],-1,-1 );
-		addListenersToDom();
-	});*/
-
+	
+	
+	
+	curCompany=$( "#companyCalendar option:selected" ).val();
+	loadCalendar(curCompany,-1,-1);
+	
+	$("#pageTitle").html(curCompany + " WIP Calendar");
 	
 	
 	
@@ -255,7 +245,7 @@ $(document).ready(function (){
 
  
 	 //add clearfix class to wrappers to hold floats on a single line.		
-	 var floatWraps = ['#headerDays','.row'];
+	 var floatWraps = ['#headerDays','.calRow'];
 	 
 	 $(floatWraps).each(function(i,el){
 		 $('#print ' + el ).addClass("clearfix");
@@ -308,7 +298,10 @@ $(document).ready(function (){
    timeoutID = window.setTimeout(addListenersToDom, 900);
 
 	
-}); // doc ready.
+}); 
+
+/*  END DOC READY ***********************************************************************/
+
 
 //callers set status to 'start' or 'end';
 function wait(status){
@@ -371,10 +364,11 @@ function addListenersToDom(showTeamsBool = "true")
 	 //remove hide class from any hidden LI elements with a new loading of the page.
 	 if(justReloaded === 1)
 	 {	//reset the toggling variable to false
-		 justReloaded = 0;
-		 //this func needs a delay so calling here, not in the doc ready.
+		
+		 
 		  //this func needs a delay so calling here, not in the doc ready.
-		 onloadSetOverdueDisplay();			 		 
+		 onloadSetOverdueDisplay();	
+		 justReloaded = 0;
 	 }
 	 
 	   //hide the first and last div in each .row (sundays and saturday columns)
@@ -554,22 +548,25 @@ function closeEditing( LIst ){
 
 function loadCalendar(co, m, y){
 	//console.log('load calendar func called. CurCompany is: '+ co['companyCalendar']);
-	if(typeof co === 'undefined') co = curCompany;
+	//reset the overdue jobs obj to empty.
+	overdueJobs = {};
+	$("#OverDueJobsList").html('');
+	if(typeof co === 'undefined') { co = curCompany;}
 	wait('start');
 	var today = new Date(); //date obj
 	var cDate = today.getDate(); //current date.
 	
 	//if month and yr not passed in...
 	if(m<0){//set month to cur month		
-		var m = today.getMonth()+1; //month is zero-based (+1)
+		m = today.getMonth()+1; //month is zero-based (+1)
 	}
 	if(y<0){//set year to cur year .. by default, load cur yr on first load.			
-			var y = today.getFullYear();		
+		y = today.getFullYear();		
 	}
 	
 	
 	//date = current date to highlight, month=req mo, year=req yr.
-	var data = {"content":'',"year":y,"month":m,"theDate":cDate,"company":co,"method":"display",}; 
+	var data = {"content":'',"year":y,"month":m,"theDate":cDate,"company":co,"method":"display"}; 
 	
 	$.ajax({	
 		  url : "classes/calendar.php",
@@ -660,7 +657,7 @@ function saveMonth(){
 		
 	wait('start');
 	var htmlDataToSave = $("#weeks").html();
-	var data={"content":htmlDataToSave,"year":year,"month":month,"theDate":theDate,"company":curCompany,"method":"saveMonth"};
+	var data={"content":htmlDataToSave, "year":year, "month":month, "theDate":theDate, "company":curCompany, "method":"saveMonth", "userID":userID, "coID":coID};
 	
 	//update the appropriate cell node in the xml
 	$.ajax({	
@@ -671,7 +668,8 @@ function saveMonth(){
 	   success: function(respData, textStatus, jqXHR)
 	   {	
 	   	  wait('end');
-		  giveNotice('<span style="color: #009000">Success</span>: Your Updates have been Save.');
+		  
+		  giveNotice('<span style="color: #009000">Notice</span>: '+ respData.msg +'.');
 		  //giveNotice('<span style="color: #009000">Success</span>: Your Updates have been Save.');
 		  //console.log(respData);
 		  
@@ -989,7 +987,7 @@ function displayNewMonth(action)
 		// Check 1st if there is HTML available for job listings for the next month being requested
 		// if ! class="month" ordinal="12" (if the DOM does not find that attr == to month+1 (12), 
 		// then giveNotice that there is no job scheduled in that month yet.
-		// +1 for next, -1 for previous month being requested.		
+		// +1 for next, -1 for previous month being requested.	 We need to track YEAR as well for multiyear navigation.	
 				
 		if( parseInt(month) < 12 ){ //stay on the same year.
 			var nextMonth =  String(parseInt(month) + 1);
@@ -1012,7 +1010,7 @@ function displayNewMonth(action)
 				 /* hide all instead.. except the one we are nav to */
 				$(mo).addClass("hide");   
 				
-				if($(mo).attr("ordinal") == nextMonth){
+				if($(mo).attr("ordinal") == nextMonth && $(mo).attr("yr") == String(year) ){
 					$(mo).removeClass("hide");
 					month = String(nextMonth); //set the month var to the new month displayed.
 					curMonthCounter = month;
@@ -1033,7 +1031,7 @@ function displayNewMonth(action)
 			
 			//console.log('the month is dec and the year is ' + year);	
 			//all .month, ordinal month to search DOM, yr attrib val to seach DOM		
-			var validMonth = monthHTMLexists( allMonths, "1", String( parseInt(year) +1 ) ); //does next mo exist in the DOM for on the year requested?
+			var validMonth = monthHTMLexists( allMonths, "1", String( parseInt(year) +1 ) ); //does next mo exist in the DOM for the year requested?
 					
 		   	if( validMonth !== 'ok'){
 				//there is not a DOM element for that year/mo combination.			   	
@@ -1050,7 +1048,7 @@ function displayNewMonth(action)
 				     /* hide all instead.. except the one we are nav to */
 				    $(mo).addClass("hide");   
 				    
-				    if($(mo).attr("ordinal") == nextMonth){
+				    if($(mo).attr("ordinal") == nextMonth && $(mo).attr("yr") == String(year)){
 					    $(mo).removeClass("hide");
 					    month = String(nextMonth); //set the month var to the new month displayed.
 					    curMonthCounter = month;
@@ -1194,7 +1192,7 @@ function cleanCalendarLayout(){
 function printWindow(){
 	$( "#print" ).removeClass( "hide" );
 	 var printWindow = window.open('', '_blank', 'scrollbars=yes,resizable=yes,top=20,left=5,height=900,width=1200');
-	 printWindow.document.write('<html><head><title>Print Calendar</title><link href="styles/print.css" media="all" rel="stylesheet" />');
+	 printWindow.document.write('<html><head><title>Print Calendar</title><link href="styles/print_1.css" media="all" rel="stylesheet" /> <link rel="stylesheet" href="assets/icomoon/style.css"><link rel="stylesheet" href="styles/bootstrap.min.css">');
 	 
 	 var $editULs = $("#print").find(".edit");
 		
@@ -1218,7 +1216,7 @@ function printWindow(){
 	 });
  
 	 //add clearfix class to wrappers to hold floats on a single line.		
-	 var floatWraps = ['#headerDays','.row'];
+	 var floatWraps = ['#headerDays','.calRow'];
 	 
 	 $(floatWraps).each(function(i,el){
 		 $('#print ' + el ).addClass("clearfix");
@@ -1443,7 +1441,7 @@ properties include:
 				
 */
 
-
+/*
 
 // record to obj 'pendingUpdates' all data changes to the calendar
 // called by save()
@@ -1476,7 +1474,7 @@ function confirmLogout(){
 }
 
 
-
+*/
 
 
 /*	TODO:
@@ -1754,41 +1752,8 @@ function editHistory(action){
 
 
 
-		//tests whether obj is empty returns true if empty.
-function isEmpty(obj) {
-   //check if it's an Obj first
-   var isObj = obj !== null 
-   && typeof obj === 'object' 
-   && Object.prototype.toString.call(obj) === '[object Object]';
-
-   if (isObj) {
-       for (var o in obj) {
-           if (obj.hasOwnProperty(o)) {
-               return false;
-               break;
-           }
-       }
-       return true;
-   } else {
-       console.error("isEmpty function only accept an Object");
-   }
-}
 		
-function unsetOverDueJob(){
-	//alert("UnSet this as overdue");
-	//called when user assigns a job "overdue";
-	$(editableLI).removeClass("due");
-	$(editableLI).removeClass("t21"); //this class is used in checkbox controls to hide/show entry
-	$(editableLI).addClass('context-style');
-	//remove this job from the global obj 'overdueJobs'
-	//1. get the job # of current edited job in dom
-		var jobNmbr = $(editableLI).children('span').first().text(); //the job number parent span is always the first one in the LI.
-	//2. delete that property
-		delete overdueJobs[jobNmbr]; 
-	//3. Delete the job from the overdue display in the DOM.
-		$("#"+jobNmbr).remove();	
-	
-}
+/*
 
 //display overdue to the user interface.
 //generally called only when page loads
@@ -1804,10 +1769,14 @@ function displayOverDueJobs(){
 ;	});
 }
 
+*/
+
+
+//tests whether obj is empty returns true if empty.
 function onloadSetOverdueDisplay(){
-	
-	var $overdues = $("#weeks").find("li.due");
-	
+	wait('start'); //spinner gif indicating busy
+	var $overdues = $("#weeks").find("li.due");	
+	wait('end'); 
 	$.each($overdues, function(i, d){
 		//  alert("overdue found");
 		  //list this in the view of overdue jobs.
@@ -1843,10 +1812,500 @@ function onloadSetOverdueDisplay(){
 		Object.keys(overdueJobs).forEach(function(key) {
 			$('#OverDueJobsList').append(overdueJobs[key]);
 		});		
-		$('#OverDueJobsList').prepend('<p><span class="due" style="padding: 3px 8px !important; font-size: 18px">Overdue Jobs</span></p>');
-	}//if			
+		/*$('#OverDueJobsList').prepend('<p><span class="due" style="padding: 3px 8px !important; font-size: 18px">Overdue Jobs</span></p>');*/
+	} else {
+		// no overdueJobs to output to the calendar view.
+		$('#OverDueJobsList').html('<p>Excellent! All WIPs are On-Schedule.</p>');
+		
+	}		
 				
 	
 }
+
+function isEmpty(obj) {
+   
+   //check if it's an Obj first
+   var isObj = obj !== null 
+   && typeof obj === 'object' 
+   && Object.prototype.toString.call(obj) === '[object Object]';
+
+   if (isObj) {
+       //"var o", simply represents any property at all, no matter its name.
+       for (var o in obj) {
+           if (obj.hasOwnProperty(o)) {
+			// this is not an empty object.
+               return false;
+               break;
+           }
+       }
+       return true;
+   } else {
+       console.error("isEmpty function only accepts an Object");
+   }
+}
+
+
+
+//admin and mgr vers are diff: admin adds the teams to the context menu.
+function teamNamesHTML()
+{	
+	
+	
+	var li0 = '<li id="';
+	var liCl = '" Class="';
+	var li1 = '" onclick="jobAssignment(';
+	var li2 = ', this)" option="';
+	var li3 = '">';
+	var li4 = '</li>';
+	
+	
+	if(curCompany == "Custom Sign Center")
+	{	
+		
+		assignLabels = [
+			'RobertC',
+			'DennisH',
+			'',
+			'',
+			'Install',
+			'SubInstall',
+			'CSC Transp',
+			'Shipping',
+			'Cust PU',
+			' UPS', 
+			' Unassigned',			
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required',
+			'Overdue'
+		];	
+		
+		teamAssignment = [
+		
+				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+		
+				/*'<div class="tooltip">Bob-Michael<span class="tooltiptext">Contact Info Can Be Displayed Here!</span></div></li>',*/
+		
+				li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,		
+				'',
+				'',				
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,
+				li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+			
+				// iconmoon elements
+				li0 + 'ic-ups' + liCl +'na' + li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+			
+				
+			
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4,			
+				//css style only, no icon for Overdue (class .due)
+				li0 + 'due' + liCl +'due' + li1 + '21' +li2 + '21' + li3 + assignLabels[21] + li4
+			];	
+	
+		
+	} 
+	else if(curCompany == "MarionOutdoor")
+	{		
+		
+		
+		assignLabels = [
+			'ChadL',
+			'CurtisS',			
+			'DavidS',
+			'',
+			'Install', 
+				'', 
+			'Rec CSC Transp',
+			'Rec Shipping',
+			'Cust PU',
+			' Rec UPS',
+			' Unassigned',
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required'				
+		];	
+		
+		teamAssignment = [
+				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+				li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
+				
+				li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,		
+				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
+				'',
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
+			
+				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				'',
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+				// iconmoon elements
+				li0 + 'ic-ups' + liCl +'t5' + li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
+			];	
+		
+	
+	}
+	else if(curCompany == "Marion Signs")
+	{		
+		
+			assignLabels = [
+				
+			'ChadL',
+			'CurtisS',			
+			'DavidS',
+			'',//team reserved
+			'Install', //unassigned
+				'', //subinstall
+			'Rec CSC Transp',
+			'Rec Shipping',
+			'Cust PU',
+			' Rec UPS',
+			' Unassigned',
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required'
+				
+		
+		];
+		
+		teamAssignment = [
+				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+				li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
+				
+				li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,		
+				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
+				'',
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
+			
+				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				'',
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+				// iconmoon elements
+				li0 + 'ic-ups' + liCl +'t5' + li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
+			];	
+			
+		
+		
+	}
+	else if(curCompany == "Outdoor Images")
+	{	
+		assignLabels = [
+			'ChadL',
+			'',			
+			'DavidS',
+			'',
+			'Install', 
+				'', 
+			'Rec CSC Transp',
+			'Rec Shipping',
+			'Cust PU',
+			' Rec UPS',
+			' Unassigned',
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required'
+			];
+		
+			teamAssignment = [
+		
+				li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+				//li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
+				'',
+				li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,		
+				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
+				'',
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
+			
+				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				'',
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+				// iconmoon elements
+				li0 + 'ic-ups' +  li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
+			];	
+	
+	} else if(curCompany == "JG Signs")
+	{	
+		assignLabels = [
+			'',
+			'',			
+			'',
+			'',
+			'Install', 
+				'', 
+			'Rec CSC Transp',
+			'Rec Shipping',
+			'Cust PU',
+			' Rec UPS',
+			' Unassigned',
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required'
+			];
+		
+			teamAssignment = [
+		
+				//li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+				'',
+				//li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
+				'',
+				//li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,	
+				'',
+				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
+				'',
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
+			
+				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				'',
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+				// iconmoon elements
+				li0 + 'ic-ups' +  li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
+			];	
+	
+	}
+	else if(curCompany == "Boyer Signs")
+	{	
+		assignLabels = [
+			'',
+			'',			
+			'',
+			'',
+			'Install', 
+				'', 
+			'Rec CSC Transp',
+			'Rec Shipping',
+			'Cust PU',
+			' Rec UPS',
+			' Unassigned',
+			' Service',
+			' 2-Man',
+			' 100ft Crane',
+			' Part Needed',
+			' Ready to Invoice',
+			' Collect',
+			' Info Needed',
+			' Inspection Required',
+			' Inspection Approved',						
+			' Prmt Compl/Not Required'
+			];
+		
+			teamAssignment = [
+		
+				
+				//li0 + 't1' + liCl +'1' + li1 + '1' +li2 + '1' + li3 + assignLabels[0] + li4,
+				'',
+				//li0 + 't2' + liCl +'2' + li1 + '2' +li2 + '2' + li3 + assignLabels[1] + li4,	
+				'',
+				//li0 + 't3' + liCl +'3' + li1 + '3' +li2 + '3' + li3 + assignLabels[2] + li4,	
+				'',
+				//li0 + 't4' + liCl +'4' + li1 + '4' +li2 + '4' + li3 + assignLabels[3] + li4,	
+				'',
+				li0 + 't5' + liCl +'5' + li1 + '5' +li2 + '5' + li3 + assignLabels[4] + li4,				
+			
+				//li0 + 't6' + liCl +'6' + li1 + '6' +li2 + '6' + li3 + assignLabels[5] + li4,
+				'',
+				li0 + 't7' + liCl +'7' + li1 + '7' +li2 + '7' + li3 + assignLabels[6] + li4,
+				li0 + 't8' + liCl +'8' + li1 + '8' +li2 + '8' + li3 + assignLabels[7] + li4,
+				li0 + 't9' + liCl +'9' + li1 + '9' +li2 + '9' + li3 + assignLabels[8] + li4,
+				// iconmoon elements
+				li0 + 'ic-ups' +  li1 + '\'ups\'' +li2 + 'ups' + li3 + '<i class="ic-ups"></i>' + assignLabels[9] + li4,			
+				li0 + 'unassigned' + liCl + 'unassigned' +  li1 + '\'unas\'' +li2 + 'unas' + li3 + '<i class="ic-flag"></i>' + assignLabels[10] + li4,
+				li0 + 'ic-i-ret-trip' + li1 + '\'trip\'' + li2 + 'trip' + li3 + '<i class="ic-i-ret-trip"></i>' + assignLabels[11] + li4,
+				li0 + '13' + liCl + 'ic-users' + li1 + '\'crew\'' + li2 + 'crew' + li3 + assignLabels[12] + li4,
+				li0 + '14' + li1 + '\'crane\'' + li2 + 'crane' + li3 + '<i class="ic-i-crane"></i>' + assignLabels[13] + li4,
+				li0 + '15' + liCl + 'ic-cog' + li1 + '\'parts\'' + li2 + 'parts' + li3 + assignLabels[14] + li4,
+				li0 + '16' + li1 + '\'comp\'' + li2 + 'comp' + li3 + '<i class="ic-i-comp-alt"></i>' + assignLabels[15] + li4,
+				li0 + '17' + li1 + '\'inv\'' + li2 + 'inv' + li3 + '<i class="ic-i-comp-inv"></i>' + assignLabels[16] + li4,
+				li0 + '18' + li1 + '\'info\'' + li2 + 'info' + li3 + '<i class="ic-p-inf"></i>' + assignLabels[17] + li4,			
+				li0 + '19' + li1 + '\'inspr\'' + li2 + 'inspr' + li3 + '<i class="ic-p-insp-req"></i>' + assignLabels[18] + li4,
+				li0 + '20' + li1 + '\'inspa\'' + li2 + 'inspa' + li3 + '<i class="ic-p-insp-appr"></i>' + assignLabels[19] + li4,
+				li0 + '21' + li1 + '\'pappr\'' + li2 + 'pappr' + li3 + '<i class="ic-p-appr"></i>' + assignLabels[20] + li4				
+			];	
+	
+	}
+	
+	
+	
+	
+	
+	$(teamAssignment).each(function(i,team){
+			
+		i++;
+		var l = $("#l"+i);
+		var lpar = $(l).parent('div.iconrow');
+		
+		if( team !== '' && team !== 'Overdue' ){
+			//console.log(i + " will be a LIST")
+			$(l).html(team);
+			$(lpar).removeClass('hide');
+			//$("#t"+(i-1)).html(team);
+			//popup opt menu on r-clk of job entry	
+		} else if( team == 'Overdue' ) { 
+			$("#l21").parent('div.iconrow').removeClass('hide');
+			$("#l21").html(team);
+			i--;
+			//alert("menu item is overdue and the iterator is " +i);
+		
+			
+		} else {
+			
+			$(lpar).addClass('hide');
+			
+		}
+		
+	});
+	
+	
+	
+			
+			
+	
+	
+	var menuOptAssign = '';
+	var menuOptJob = '';
+	var menuOptPermt = '';
+	
+	//assignment menu with up to 12 options
+	for($g=0; 11 >= $g; $g++){
+		
+		if(teamAssignment[$g] !== '' && $g !== 11){
+			menuOptAssign += teamAssignment[$g];
+		}
+		else if($g == 11){
+			//this would be the 1st item in the STATUS submenu, but needs to be Overdue item.
+			menuOptAssign += teamAssignment[21];
+		}
+	}
+	
+	
+	
+	
+	
+	contextMenu = $('<div id="divContextMenu" style="display:none">'+ 
+	'<input id="reschedule" type="text" placeholder="reschedule" />'+	
+	'<div class="nav-container"><nav class="navbar"><ul id="ulContextMenu">'+	
+	    '<li id="t0" onclick="jobAssignment(0, this)" option="0" style="text-align:right;color:red">x Close</li>'+
+	    '<li style="padding:12px 5px;color:#000000">ASSIGN<ul>'+	    
+		menuOptAssign +
+	    '</ul></li>'+
+	    '<li style="padding:12px 5px"><span style="color:#236FBF">STATUS</span><ul>'+    
+	    teamAssignment[11]+	
+	    teamAssignment[12]+
+	    teamAssignment[13]+	     
+	    teamAssignment[14]+
+         teamAssignment[15]+
+	    teamAssignment[16]+ //completed invoiced	    
+	    '</ul></li>'+
+	    '<li style="padding:12px 5px"><span style="color:#007F16">PERMIT</span><ul style="color:#007F16">'+    
+	    teamAssignment[17]+
+	    teamAssignment[18]+
+	    teamAssignment[19]+
+	    teamAssignment[20]+
+	    '</ul></li>'+
+				 '<li id="copy" data-clipboard-target="" data-clipboard-action="copy" onclick="jobAssignment(13, this)" class="copy" option="copy">Copy This Job</li>'+
+	    '<li style="padding:12px 5px" id="delete" class="delete" onclick="jobAssignment(11, this)" option="11">Delete Entry</li>'+
+	'</ul></nav></div>');
+	
+}	
+
+
+
 
 

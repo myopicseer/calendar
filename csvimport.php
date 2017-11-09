@@ -1,3 +1,137 @@
+<?php  			
+header("Expires: Sat, 1 Jan 2005 00:00:00 GMT");
+header("Last-Modified: ".gmdate( "D, d M Y H:i:s")."GMT");
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+//error_reporting(E_ALL);
+require_once('classes/security.php');
+require_once('classes/active_token.php');
+$ua = new userAuthenticate; //session start should be called by its parent, Session.
+if(!isset($_SESSION)){	
+	$s = new Session;
+	//echo 'Developer Notification: A new Session created and session.php loaded.';
+}
+//var_dump($_SESSION['user']);
+if( $ua->tokenSet( (integer)$_SESSION['user']['userId'], (integer)$_SESSION['user']['company'] ) === false ){	
+	header('Location: login.php');
+	//echo "userId is " . $_SESSION['user']['userId'] . " and company id is " . $_SESSION['user']['company'];
+	//outputs: userId is 1 and company id is 10	
+}
+//get array of all logged in users:
+//returns empty array, or users with assoc indices of 'username','email',
+$loggedUserList = $ua->getLoggedUsersList();
+$loggedUsers = ''; //str
+if(!empty( $loggedUserList )){
+	$loggedUsers .= "<h4>Logged In</h4><p>Username, Email, Role<br/>";
+	//var_dump($loggedUserList);
+	/*array(1) { [0]=> array(3) { [0]=> array(3) { ["username"]=> string(5) "traci" ["email"]=> string(26) "traci@customsigncenter.com" ["role"]=> string(4) "user" } 
+	
+	[1]=> array(3) { ["username"]=> string(9) "Developer" ["email"]=> string(26) "chris@customsigncenter.com" ["role"]=> string(5) "admin" } 
+	
+	[2]=> array(3) { ["username"]=> string(8) "courtney" ["email"]=> string(29) "courtney@customsigncenter.com" ["role"]=> string(4) "user" } } } */
+	foreach($loggedUserList[0] as $lu){
+		$loggedUsers .= $lu['username'] . ", " . $lu['email']. ", ". $lu['role']."<br/>";
+	}
+	$loggedUsers .= "</p>";
+}
+//
+//active token class obj:
+$tkn = new Active_Token;
+//$userTokenArray = $tkn->tokenUsers();
+//return an array of any access_token holders to display.
+//$userProfiles='';
+/*
+if(!empty( $userTokenArray) ){		
+	$userProfiles .= "<p class=\"hidePrint\"><strong>Admins &amp; Mgrs Logged In:</strong>";
+	foreach($userTokenArray['list'] as $key=>$userInfo){			
+		$userProfiles .= "<li>".$userTokenArray['list'][$key]['username'] . ",  ".$userTokenArray['list'][$key]['role']."</li>";
+	} 
+	$userProfiles .= "</ul></p>";
+}
+else {
+		$userProfiles .= "<p><strong>Current Calendar Logins:</strong><br/>Just You</p>";
+	}
+	*/
+if($_SESSION['user']){ $ses = $_SESSION['user']; }
+// js console.log(json_encode($ses)) = { name: "chris", role: "admin", userId: 1, company: "All" }
+// possible values of 'company': (str) All,0,1,2,3,4 (equating to: *,csc,boy,mar,out,jg)
+// special company when logging into dev directory app is "Developer" which nevers claims the
+// admin token from db.
+
+if( $_SESSION['user']['role'] && $_SESSION['user']['role'] !== 'admin' && $_SESSION['user']['role'] !== 'mgr' && $_SESSION['user']['role'] !== 'Developer' ){
+	//$user = unserialize($_SESSION['user']);
+	//print_r($_SESSION['user']);
+      if($_SESSION['user']['role'] === 'user'){
+			//$_SESSION["user"] = array('name' => $_SESSION['user']['name'], 'role' => $_SESSION['user']['role']);
+			$userURI = '';
+			if(!empty($_SESSION['user']['name'])){
+				$userURI = '?user='.$_SESSION['user']['name'];
+				//$userURI .= '&role='.$_SESSION['user']['role'];
+				header('Location: view.php' . $userURI);
+			} else {
+				header('Location: login.php');
+			}
+
+			//echo $sesID;	TESTED: This new session start id does match the one in the uri from prior page.
+			//and matches the one in the database for the active session.
+			//if(!empty($query['sid'])) { $sesURI .= $query['sid'];}else{ $sesURI = '';};	
+	 }
+} else {
+
+	if($_SESSION['user']['role'] === 'Developer' || $_SESSION['user']['role'] === 'admin'){
+		$role = 'admin';		
+	} elseif($_SESSION['user']['role'] === 'mgr'){
+		$role = 'mgr';
+	}
+
+	$roleBasedJsFile = ( $role === 'admin' ? 'admin.js?1' : 'mgr.js?1');
+	//if($query['user']){
+	//$username =  $query['user'];
+	$username = $_SESSION['user']['name'];	
+	session_id() != NULL ? $sesID = session_id() : $sesID = '' ;
+
+} 
+
+
+//'company' is either "ALL" to view all companies (special admin), 
+// or num char (0=csc, etc) to view calendar for 1 company.
+if( isset( $_SESSION['user']['company'] ) ){
+
+	switch( $_SESSION['user']['company'] ){
+
+		case '10':
+			$coHide = 'co_all';
+			$curCo = 'All';
+			break;	
+		case 'ALL':
+			$coHide = 'co_all';
+			$curCo = 'All';
+			break;
+		case '0':
+			$coHide = 'co_csc';
+			$curCo = 'Custom Sign Center';
+			break;
+		case '1':
+			$coHide = 'co_boy';
+			$curCo = 'Boyer Signs';
+			break;
+		case '2':
+			$coHide = 'co_mar';
+			$curCo = 'Marion Signs';
+			break;
+		case '3':
+			$coHide = 'co_out';
+			$curCo = 'Outdoor Images';
+			break;
+		case '4':
+			$coHide = 'co_jg';
+			$curCo = 'JG Signs';
+			break;
+
+	}
+}
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -5,19 +139,7 @@
 <title>Import CASper CSV to WIP Calendar</title>
 <link href="styles/calendar.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script&effect=3d-float' rel='stylesheet' type='text/css'>
-
-<?php 
-/*
-login 
-*/
-//if($_POST['username']=='csv' && $_POST['password']=='csv' || $u == 'csv' && $p == 'csv'): ?>
-
-<?php
-
-// echo '<div style="visibility:hidden" id="u">csv</div><div style="visibility:hidden" id="p">csv</div>'; ?>
-
 <style>
-
 body{margin:0px;}
 .menu{
 float:left; width:100%; border-bottom: #288D9A 2px solid; margin-bottom: 30px;
@@ -146,11 +268,27 @@ function giveNotice(message){
 <div class="content-row">
 
 	<h1 style="margin: 9px auto 0px auto;text-align:center;color:#8AC72D">Import CASper CSV File</h1>
-     <h3 style="margin: 9px auto 30px auto;text-align:center;color:#7EAB26">WIP Calendar</h3> 
+	<h3 style="margin: 9px auto 30px auto;text-align:center;color:#7EAB26">WIP Calendar [ <a href="importhelp.html" target="_blank" title="Opens instructions in a new window">help</a> ]</h3> 
      <div style="text-align:center">  
     
      <div style="height:0;display:none" id="message"></div>
-      <!-- The data encoding type MUST be specified as below -->
+      <!-- The data encoding type MUST be specified mutlipart/form-data -->
+		 
+		 <?php if($username) { 
+			echo "<div style=\"margin: 2px auto 8px auto;;font-size:18px;color:#8AC72D\" class=\"cursive\">Welcome <span id=\"username\">". $username ." <span style='font-family:san-serif'>&nbsp;(".$role.").</span></span></div>
+			<form action=\"login.php\" method=\"POST\" name=\"logoutform\" id=\"logoutform\" >
+				<input type=\"hidden\" value=\"".$username."\" name=\"loggedOutUser\" />
+				<input class=\"smBtn\" type=\"submit\" value=\"logout\" name=\"logout\" />
+			</form>
+			<br/>";
+			
+			if( !empty( $_GET['editor']) ){
+				echo "<br/>The Only user with Editor-Rights Is: " . $_GET['editor'] . ", login time: ".$_GET['authtime'];				
+			} 
+			echo $loggedUsers;			
+		} else {
+			$username = 'user';
+		} ?>
      
     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" name="loadCalendar" enctype="multipart/form-data" id="loadCalendarForm" style="width:480px; margin: 30px auto; text-align:left; padding:20px; border-radius:9px; border: #E3ECD3 solid 1px">
     <div style="text-align:center">
@@ -529,12 +667,9 @@ class saveToCalendar  {
 				 
 				  foreach($this->CSVrows as $rowNmbr=>$csvRow)
 				  { //get the year for this row, then the month, then date.
-  						//reset the duplicateEntry global
 					  
 					  	$this->xmlDayNode = $this->xmlJobNode = $this->xmlYearNode = $this->xmlMonthNode = null;
-					
 					  	
-					  	$this->duplicateEntry = false;
 						  //***YR NODE******** get the XML year for this CSV row.
 					       // Generally there is ONLY going to be ONE Yr Node in the XML 
 						  for( $iYr = 0; $y = $this->xmlCompanyNode->getElementsByTagName('year')->item($iYr); $iYr++ ){
@@ -615,157 +750,109 @@ class saveToCalendar  {
 							  	} //end for wk
 								
 							   } //end isset xmlmonthnode...
+								  
+								// got our (day), let's check job nodes for matching job # in this xml day node.
+					  			// if a match is found, we can skip this csv job (i.e., dupEntry = true), and exit the for $ij loop
 
-								  
-								  
-								  
-								  
-								  // got our (day), let's find check job nodes for matching job # in this xml day node.
-					  			  // when we find matches, we can skip this csv job (i.e., dupEntry = true)
-								  
-								  
-								  
-							//	  if((string)$this->xmlDayNode->getAttribute('date') === (string)$csvRow['date'] ){
-
-
-										  // try to remove csv items that already have an entry in the xml calendar file.
-
-
-										  // so, for example, if job is '', or is 'none',
-										  // it will not be added to the calendar.  Job#
-										  // must be unique in the calendar XML.
-
-										 // $p = "job_".$csvRow['job'];  
-										 // not all entries had the span with job_jobnumber so let's just look thru
-										 // for the job number
-										
-										// $ptrn = "~[".$csvRow['job']."]~";
-									      $ptrn = "/".preg_quote( $csvRow['job'], '/')."/";
-									     
+								$ptrn = (string)$csvRow['job'];
+					  
+					  			//reset the duplicateEntry global for this xml-csv date-matched nodes.
+					  			$this->duplicateEntry = false;
+					  
+								for($iJ = 0; $jNode = $this->xmlDayNode->getElementsByTagName('job')->item($iJ); $iJ++){		    			
 									
-										//echo $ptrn;
-										//any job nodes inside this day node?  Who cares, the import may have new data for this date.
-									  	//most have <job number="0"> anyway
-										//if( $this->xmlDayNode->hasChildNodes() ){
-											
-										for($iJ = 0; $jNode = $this->xmlDayNode->getElementsByTagName('job')->item($iJ); $iJ++){
-												//for each job node in xml's matching date node for this csv row
-										
-											
-											
-											//must check str len in addition to prematch, because:
-					  					     //100100 and 100100-1 do not BOTH give a fount result for 100100 searches.
-											
-											 if( strlen($csvRow['job']) === strlen($jNode->getAttribute('number'))   ){
-												 
-												 echo "JOB " . $csvRow['job'] . " strlen matches.<br>";
-												 
-												 
-												 
-											if( preg_match($ptrn, $jNode->getAttribute('number')) || $jNode->getAttribute('number') === 'admin-note'){
-												
-												echo "JOB " . $csvRow['job'] . " pregmatched.<br>";
-												
-											
-													
-													// $this->xmlJobNode = $jNode;
-													echo "Skipping: This Entry Already Exists in the Calendar: Job No ".$csvRow['job']." <br/>";
+									//for each job node in xml.  Find any that match the job of this csv row
 
-													//unset($this->CSVrows[$rowNmbr]);
-													$this->duplicateEntry = true;
-												     //experimental to prevent duplication:
-												     unset($csvRow[$rowNmbr]);												
-												 
-											 }
-											 }
-											
-												 
-										}//for each job node in xml's matching date node for this csv row
-										
-					  					//if still not found a job in xml matching csv's job...
-										if($this->duplicateEntry === false){
-											 echo "Extended Search Required for this Job<br>";
-											 $result = array();
-											 $result = $this->exhaustiveSearch($ptrn);
+									// Compare the strings for identical match
+									// 100100 and 100100-1 do not BOTH give a found result for 100100 searches.
+									// AND allow for job="admin-note" to be skipped during this update
 
-											 if( count($result) > 0 && !isset($result['assigned'])){
-												 
-												 //got an array of unassigned job nodes that are duplicates
-												 //to delete.
-												 foreach($result as $r){
-												 
-													$parent = $r->parentNode;
-													$parent->removeChild($r);
-												 }
-												 
-												 echo "Array count(result) > 0; duplicate= true";
-												 $this->duplicateEntry = false; //we need to add this job
-											 } 
-											if($result['assigned'] === 1){
-												
-												//there is at least one out there that is assigned for this job.
-												$this->duplicateEntry = true;
-												
-												
-											}
-											
-										
+									$patterns = array( 0=>"copyo", 1=>"admin" );//1st 5 chars of 'copyof or admin-note								
+									foreach( $patterns as $p )
+									{
+										//int strncasecmp ( string $str1 , string $str2 , int $len )
+										//strncasecmp — Binary safe case-insensitive string comparison of the first n characters
+										//Returns < 0 if str1 is less than str2; > 0 if str1 is greater than str2, and 0 if they are equal.
+										if(strncasecmp($p, (string)$jNode->getAttribute('number'), 5) === 0)
+										{  //ignore this job: it is a copyof or an admin note.									   
+										   break;//break out of the if, foreach loops. 
+										}												
+									}
+									if( strcmp((string)$csvRow['job'],(string)$jNode->getAttribute('number')) === 0 )
+									{
+										echo "Skipping Update, Job " . $csvRow['job'] .
+										". Already exists in the Calendar.<br>";												
+										$this->duplicateEntry = true;	
+										break;//break out of the if.
+										/* // DEBUG:  
+										echo "duplicateEntry = " .$this->duplicateEntry."<br/>"; */											 
+									} 
 
-										}
-										
-											
+								}//for each job node in xml's matching date node for this csv row
 
-										 if($this->duplicateEntry === false)
-										 {	
-												//update this record.
-												echo "<br>Attempting to Add: Job No ".$csvRow['job']."<br>";					   
-												//$this->updateDayNode($rowNmbr); //row to update
+								//if still not found a job in xml matching csv's job...
+								if($this->duplicateEntry === false){
+									 echo "Extended Search Required for this Job<br>";
+									 $result = array();
+									 $result = $this->exhaustiveSearch($ptrn);
+
+									 if( count($result) > 0 && !isset($result['assigned'])){
+
+										 //got an array of unassigned job nodes that are duplicates
+										 //to delete.
+										 foreach($result as $r){
+											echo 'Deleting array of duplicate jobs<br/>';
+											$parent = $r->parentNode;
+											$parent->removeChild($r);
+										 }
+
+										 echo "Array count(result) > 0; duplicate= true";
+										 $this->duplicateEntry = false; //we need to add this job
+									 } 
+									if($result['assigned'] === 1){
+
+										//there is at least one out there that is assigned for this job.
+										$this->duplicateEntry = true;
 
 
-												//echo "the csvrow is set";
-												$jobContent = '~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_'.
-												$csvRow['job'].'" #$#' . $csvRow['job'] . '*^*span#$# ' . htmlspecialchars($csvRow['custName']) .'*^*li#$# ';
-											 	//createElementNS ( string $namespaceURI , string $qualifiedName [, string $value ] )
-												$newJobNode = $this->doc->createElement( 'job', $jobContent );
-											    
-												$numAttrib = $this->doc->createAttribute('number');
-												$numAttrib->value = (string)$csvRow['job'];
-
-												//append attrib to element
-												$newJobNode->appendChild($numAttrib);
+									}
 
 
-											if(is_object($newJobNode)){
-												//append elem to document	
-												//ERROR THROWN "Call to a member function appendChild() on null" 
-												//Error happens when adding to a date, that was previously added to.  It is messing up
-												//the xml structure when each job is added.
-												//each add alters tree to:
-												/*
 
-												<day xmlns="" ordinal="31" name="Tuesday" date="30"><job number="100100-1"> ~~li class="lineEntry unassigned" title="Right-Click for Options" #$#~~span id="job_100100-1" #$#100100-1*^*span#$# Mills Realty - Lancaster, OH*^*li#$# </job></day>
-
-												*/
-												$this->xmlDayNode->appendChild($newJobNode);
-
-												//$this->doc->saveXML();
-												//$this->doc->save(dirname(__FILE__) . $this->modelsDir . $this->xmlfile);
-												//DEBUG.  Save xml on first found update:
-												//$this->doc->save(dirname(__FILE__) . $this->modelsDir . $this->xmlfile);
-												//Exit;
+								}
 
 
-											}else{
-												echo "<br>A Problem Occurred: Could not append this job as required.<br>";
-											}
 
-										 } //if dupEnty === false
-										
-								
-									  
-									  //there is no date in the calendar for this csv date... create that node:
-									  //TODO
-								
+								 if($this->duplicateEntry === false)
+								 {	
+										//update this record.
+										echo "<br>Attempting to Add: Job No ".$csvRow['job']."<br>";					   
+										//$this->updateDayNode($rowNmbr); //row to update
+
+
+										//echo "the csvrow is set";
+										$jobContent = '~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#  ~~i class="ic-flag"*#$# *^*i#$#	 ~~span id="job_'.
+										$csvRow['job'].'" #$#' . $csvRow['job'] . '*^*span#$# ' . htmlspecialchars($csvRow['custName']) .'*^*li#$# ';
+										//createElementNS ( string $namespaceURI , string $qualifiedName [, string $value ] )
+										$newJobNode = $this->doc->createElement( 'job', $jobContent );
+
+										$numAttrib = $this->doc->createAttribute('number');
+										$numAttrib->value = (string)$csvRow['job'];
+
+										//append attrib to element
+										$newJobNode->appendChild($numAttrib);
+
+
+									if(is_object($newJobNode))
+									{										
+										$this->xmlDayNode->appendChild($newJobNode);
+
+									} else
+									{
+										echo "<br>A Problem Occurred: Could not append this job as required.<br>";
+									}
+								 } //if dupEnty === false
+
 								 
 				  }//foreach csv row
 							  
@@ -807,12 +894,6 @@ class saveToCalendar  {
 		//$oldNodeVal = $this->xmlDayNode->nodeValue;
 		
 	//	if(isset($this->CSVrows[$rowNmbr])){
-			
-		
-			
-
-
-		
 			//echo "the csvrow is set";
 			$appendToNode = ' ~~li class="lineEntry unassigned" title="Right-Click for Options" contenteditable="false" #$#			
 			~~i class="icons"*#$# *^*i#$#			
@@ -846,26 +927,10 @@ class saveToCalendar  {
 			//Exit;
 			
 				 
-		}else{
+		} else 
+		{
 			echo "<br>A Problem Occurred: Could not append this job as required.<br>";
-		}
-			
-		
-			
-			//echo "<br/> Try update ".htmlspecialchars($this->CSVrows[$rowNmbr]['custName']);
-			//echo "The New Node value should now be: ".$oldNodeVal . $appendToNode."<br/>";
-		
-			
-			//$this->xmlDayNode->nodeValue = $oldNodeVal . $appendToNode;
-			
-			
-		//} else {
-			//$this->errorMsg();
-			//echo 'Done';
-			//exit; //done with all csv rows.		
-		//}
-		//return;
-		
+		}	
 		
 	}//end updateDayNode()
 	
@@ -1035,177 +1100,39 @@ class saveToCalendar  {
 
 			  } 
 		    }//end for	
-		}
-		 /* if($this->xmlDayNode === ''){
-			  
-				   echo 'xmldaynode not set';
-				   // let's get the date node of this csv row, or create it if !exist:
-				   // send parent: node parent obj, newNodeName, new node attrib name, new node attrib value.
-				   $this->xmlDayNode = $this->createNode($this->xmlMonthNode, 'day', 'date',  $csvRow['date']);
-			  	   return $this->xmlDayNode;
-		  }*/
+		}	
 		
 	}//getXmlDate
 	
-	private function exhaustiveSearch($ptrn){
-		echo "<br>pattern sent for exh srch is ".$ptrn;
+	private function exhaustiveSearch($csvNumber)
+	{		
 		$matchedNodes = array();
 		
-		//$mNodes = $this->xmlYearNode->getElementsByTagName('month');
+		// $mNodes = $this->xmlYearNode->getElementsByTagName('month');
 		$jNodes = $this->xpd->query('//year/month/week/day/job');
 		
 		
 		foreach($jNodes as $j){
 			//echo '<br>Day node.<br>'; displays output for every day in the whole calendar.
-			
-					
-						
-							
-							if( preg_match($ptrn, $j->getAttribute('number') ) ){
-								
-								echo '<br>Duplicate Found.<br>';
-								if( preg_match( '~unassigned~', $j->nodeValue ) ){
 
-									//delete it if it is unassigned.
-									echo "Adding unassigned job to array for deletion.";
-									array_push($matchedNodes, $j);								
-									
-								} else {
-									
-									$matchedNodes['assigned'] = 1;
-									
-									//it is assigned.  set this node into the array of valid duplicates
-									
-								}
-									
-								
-							}
+			if( strcmp((string)$csvNumber,(string)$j->getAttribute('number')) === 0 )
+			{								
+				echo '<br>Duplicate Found.<br>';
+				if( preg_match( '~unassigned~', $j->nodeValue ) ){
 
+					//delete it if it is unassigned.
+					echo "Adding unassigned job to array for deletion.";
+					array_push($matchedNodes, $j);								
 
-					
-
-					
-			
-		}
-		/*
-		for($i=0; $m = $this->xmlYearNode->getElementsByTagName('month')->item($i); $i++){
-			
-			for($iw=0; $w = $m->getElementsByTagName('week')->item($iw); $iw++){
-				
-				for($id=0; $d = $w->getElementsByTagName('day')->item($id); $id++){
-					
-					if($d->hasChildNodes){
-					
-						for($ij=0; $j = $d->getElementsByTagName('job')->item($ij); $ij++){
-							
-							if( preg_match($ptrn, $j->getAttribute('number') ) !== false ){
-								
-								echo '<br>Duplicate Found.<br>';
-								if( preg_match( '~unassigned~', $j->nodeValue ) !== false ){
-
-									//delete it if it is unassigned.
-									echo "Adding unassigned job to array for deletion.";
-									array_push($matchedNodes, $j);								
-									
-								} else {
-									
-									//it is assigned.  set this node into the array of valid duplicates
-									
-								}
-									
-								
-							}
-
-
-						}//each job
-
-					}//has child job nodes
-					
-				}//each day
-				
-			}//each week		
-			
-		}//each month
-			
-			*/
-		
-		/*
-		
-		
-		foreach($this->allMonthNodes as $m) {
-			
-			
-			foreach($m->getElementsByTagName('week') as $w){
-				
-				foreach($w->getElementsByTagName('day') as $day){
-					
-					if( $day->hasChildNodes() ) {
-					
-						foreach($day->getElementsByTagName('job') as $job){
-
-							//if( preg_match( $ptrn, $job->nodeValue ) ){
-
-								if( preg_match( $ptrn, $job->getAttribute('number') ) !== false ){
-									//no match for 'unassigned' in the node
-									
-									if( preg_match( '/unassigned/', $job->nodeValue ) !== false ){
-										
-										//delete it if it is unassigned.
-										$parent = $job->parentNode;
-										$parent->removeChild($job);
-									} else {
-										//it is assigned.  set this node into the array of valid duplicates
-										array_push($matchedNodes, $job);
-									}
-
-								}
-
-							//}
-
-						}//foreach job node
-						
-					}//haschildnodes
-					
+				} else {
+					$matchedNodes['assigned'] = 1;
+					//it is assigned.  set this node into the array of valid duplicates
 				}
 			}
 			
-			
-			
-			
-			
-		}*/
-			
+		}	
 		
-		//check the current month first (we don't want to waste cpu looking in past months)
-	/*	for((integer)$iM = $this->xmlMonthNode->getAttribute('ordinal'); $mo = $this->xmlYearNode->getElementsByTagName('month')->item($iM); $iM++){
-			
-			for($iW = 0; $day = $week->getElementsByTagName('day')->item($iW); $iW++){
-				
-				
-				for($iW = 0; $day = $week->getElementsByTagName('day')->item($iW); $iW++){
-					
-					
-					for($iW = 0; $day = $week->getElementsByTagName('day')->item($iW); $iW++){
-					
-					
-						
-					
-					
-					}
-					
-				}
-				
-				
-				
-				
-				
-			}*/
-		
-		return $matchedNodes;
-			
-		
-		
-		
+		return $matchedNodes;		
 	}
 		
 	
@@ -1216,21 +1143,3 @@ class saveToCalendar  {
 	}//endMsg()
 	
 }//class
-?>
-<?php // else: ?>
-<!--
-</head>
-<body>
-<div style="color:#575F6C">
-<h1 style="text-align:center; color:#B42528; margin-top: 100px">Login Required</h1>
-	<form action="<?php // $_SERVER['PHP_SELF']; ?>" method="post" name="login" style="width:480px; margin: 30px auto; text-align:left; padding:20px; border-radius:9px; border: #E3ECD3 solid 1px">
-     <label for="username">Username &nbsp;</label>
-     <div style="text-align:center"><input name="username" type="text" value="" /></div><br/>
-     <label for="password">Password &nbsp;&nbsp;</label>
-     <div style="text-align:center"><input name="password" type="password" value="" /></div><br/><br/>
-     <div style="text-align:center"><input type="submit" name="submit" Value="Submit" /></div>     
-     </form>
-</div>
-</body</html>-->
-
-<?php // endif;?>

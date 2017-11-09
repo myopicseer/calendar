@@ -1,4 +1,3 @@
-@charset "utf-8";
 body{	
 background: -moz-linear-gradient(top,  rgba(247,247,247,1) 0%, rgba(255,255,255,0) 97%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top,  rgba(247,247,247,1) 0%,rgba(255,255,255,0) 97%); /* Chrome10-25,Safari5.1-6 */
@@ -121,7 +120,7 @@ h1{
 .morPad{
 	padding: 15px 10px;
 }
-#calWrap, .content-row{
+#calWrap{
 	width: 78%;
 	margin-top: 0px;
 	margin-left: auto; margin-right:auto;
@@ -132,12 +131,11 @@ h1{
 .content-row{
 	padding: 10px;	
 }
-#headerDays, .row, #weeks, #calFooter{
+#headerDays,#weeks, .calRow, #calFooter{
 	float:left;
 	width:100%;
 }
-.row {
-	height: auto;
+.calRow {		
 	font-size: 16px;
 	color: #236FBF;
 	border-collapse:collapse;
@@ -151,7 +149,7 @@ h1{
 .context-style{	
 	border: #32C1EC dotted 5px !important;
 }
-.headerDays, .calCol, .row, .empty, .today, .day, .date{
+.headerDays, .calRow,.calCol,.empty, .today, .day, .date{
 	box-sizing:border-box;	
 }
 .empty, .date, .calCol{
@@ -159,8 +157,9 @@ h1{
 	float:left;	
 	padding: 3px;	
 }
+.empty{height:100%;}
 .date{
-	min-height:70%;
+	height:100%;
 	position: relative;
 }
 .day{
@@ -210,10 +209,10 @@ ul.edit{
 	padding-top: 12px;
 	margin-top: 10px;	
 }
-#topHeaders, #topHeaders .row{
+#topHeaders, #topHeaders .calRow{
 	background: #FFF !important;	
 }
-#topHeaders .row{
+#topHeaders .calRow{	
 	height: 40px;
 	font-size: 22px;
 	font-weight:bold;
@@ -288,7 +287,7 @@ ul.edit{
 	float:left;
 }
 /* ICONS */
-#icons{background-color: #FFF; border: #E2E9D7 1px solid; margin-top: 10px; padding: 3px 7px;}
+#icons{background-color: #FFF; border: #E2E9D7 1px solid; margin-top: 10px;}
 .save,.undo,.redo,.undoall,.import,
 .save:hover,.undo:hover,.redo:hover,.undoall:hover,.import:hover{
 	padding-left: 32px !important;
@@ -370,6 +369,7 @@ ul.edit li{text-align:left}
 	color: #CC0A0D;
 	padding-left: 3px;
 }*/
+
 .due {
 	/*padding-left: 20px;
 	background-image:url(../assets/stop_sign.png);	
@@ -378,7 +378,6 @@ ul.edit li{text-align:left}
 	border: #E00E12 solid 2px !important;
 	padding:3px !important;
 }
-
 
 #t5{
 	/*color: #52A815;*/
@@ -496,13 +495,13 @@ h1 {
 }
 /*EFFECTIVELY HIDES WEEKENDS IN THE CALENDAR 
 /* if you hide weekends again, remember to set width from 14.2% to 19.88% on .empty, .date, .calCol in this file.
-#headerDays > div:first-child, #headerDays > div:last-child, .month > .row > div:first-child, .month > .row > div:last-child{
+#headerDays > div:first-child, #headerDays > div:last-child, .month > .calRow > div:first-child, .month > .calRow > div:last-child{
 	visibility:hidden;
 	width:0%;
 	display:none;
 }
 */
-
+.month{float:left;box-sizing: border-box}
 #wait{
 	top: 33%;
 	left: 52%;
@@ -558,7 +557,7 @@ used like:
 	content: '<img id="OpenMenu" style="padding-left: 8px" src="../assets/pencil.png" />';
 	
 	}*/
-#teamSelection li{
+.iconrow li{
 	list-style: none !important;
 	display: inline !important;
 }
@@ -567,19 +566,9 @@ used like:
 	font-style: italic;
 }
 #OverDueJobsList{
-	max-width: 330px;
-	box-sizing: border-box;
-	display:inline-block;
-	float:left;
+	min-width: 330px;	
 }
-.forty-pct,.sixty-pct{
-	display:inline-block;
-	min-width: 38%;
-	margin-right:2%;
-	box-sizing: border-box;
+[class^="col-"]{
+	margin-top:13px !important;
 }
-.sixty-pct{
-	max-width:58%;
-}
-
 
